@@ -8,20 +8,27 @@ extends ColorRect
 
 export var sample : AudioStreamSample = null setget _set_sample
 export var timeScale : int = 128
+export var active : bool = true setget _set_active
 var bytesPerSample: int
 
 var offSet = 0
+
+func _set_active(x):
+	active = x
+	update()
 
 func _set_sample(x):
 	sample = x
 	offSet = 0
 	bytesPerSample = _bytesPerSample()
+	update()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update()
 
 func _bytesPerSample():
+	if sample == null: return 0
 	var bytes = [1,2,0][sample.format]
 	if sample.stereo: bytes <<= 1
 	return bytes
@@ -54,7 +61,8 @@ func _process(_dt):
 	#if sample and t < sample.data.size():
 	#	update()
 
-func _draw():	
+func _draw():
+	color = Color.ghostwhite if active else Color.goldenrod
 	if sample:
 		printSampleInfo()
 		var o = Vector2(0,rect_size.y/2)

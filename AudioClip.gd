@@ -43,7 +43,7 @@ func printSampleInfo():
 
 func getStereoSample16(i):
 	# help from: https://godotengine.org/qa/67091/how-to-read-audio-samples-as-1-1-floats
-	var d = sample.data; var j =  i + 2
+	var d = sample.data # ; var j =  i + 2
 	var a = (((d[i] | (d[i+1]<<8)) + 32768)  & 0xffff) - 32768
 	return a # draw left channel only
 	# var b = (((d[j] | (d[j+1]<<8)) + 32768)  & 0xffff) - 32768
@@ -59,13 +59,10 @@ func _draw():
 		printSampleInfo()
 		var o = Vector2(0,rect_size.y/2)
 		var pen = o + Vector2.ZERO
-		var vs = ""
-		var w = rect_size.x / sample.get_length()
 		for x in range(rect_size.x):
 			var i = timeScale*(offSet+x) * bytesPerSample
 			if i >= sample.data.size(): break
 			var v = getStereoSample16(i)/32768.0 * (rect_size.y /2)
-			vs += " " + str(v)
 			var next = o + Vector2(x, v)
 			draw_line(pen, next, Color.black)
 			pen = next

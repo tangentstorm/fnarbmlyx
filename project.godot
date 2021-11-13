@@ -11,12 +11,17 @@ config_version=4
 [application]
 
 config/name="fnarbmlyx"
-run/main_scene="res://canvas.tscn"
+run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
 [audio]
 
 enable_audio_input=true
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
 
 [physics]
 

@@ -15,6 +15,7 @@ var offSet = 0
 
 func _set_active(x):
 	active = x
+	color = Color.ghostwhite if active else Color.goldenrod
 	update()
 
 func _set_sample(x):
@@ -57,7 +58,6 @@ func getStereoSample16(i):
 	# return (a+b)>>1
 
 func _draw():
-	color = Color.ghostwhite if active else Color.goldenrod
 	if sample:
 		printSampleInfo()
 		var o = Vector2(0,rect_size.y/2)

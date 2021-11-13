@@ -10,7 +10,6 @@ func _ready():
 	mic = AudioServer.get_bus_effect(idx,0)
 
 
-
 func _process(_dt):
 	if Input.is_action_just_pressed("ui_record"):
 		mic.set_recording_active(true)
@@ -28,3 +27,10 @@ func _process(_dt):
 
 	if Input.is_action_just_released("ui_select"):
 		$ClipScroller.play()
+
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		if event.scancode == KEY_UP:
+			$Prompter.cursor -= 1
+		if event.scancode == KEY_DOWN:
+			$Prompter.cursor += 1

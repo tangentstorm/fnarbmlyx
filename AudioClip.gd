@@ -56,11 +56,6 @@ func getStereoSample16(i):
 	# var b = (((d[j] | (d[j+1]<<8)) + 32768)  & 0xffff) - 32768
 	# return (a+b)>>1
 
-func _process(_dt):
-	pass
-	#if sample and t < sample.data.size():
-	#	update()
-
 func _draw():
 	color = Color.ghostwhite if active else Color.goldenrod
 	if sample:

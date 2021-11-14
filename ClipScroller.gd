@@ -4,13 +4,20 @@ export var sample : AudioStreamSample setget _set_sample,_get_sample
 export var start  : float = 0.0
 export var end    : float = 0.0
 export var head   : float = 0.0 setget _set_head
+export var timeScale : int = 128 setget _set_timeScale, _get_timeScale
 
 onready var clipNode = $ClipContainer/AudioClip
 onready var headNode = $ClipContainer/PlayHead
 
 var playing = false
 var mix_rate = 44100
-export var timeScale = 128
+
+
+func _set_timeScale(x):
+	clipNode.timeScale = x
+
+func _get_timeScale():
+	return clipNode.timeScale
 
 func _set_sample(x):
 	start = 0.0
@@ -30,6 +37,9 @@ func play():
 	if head >= end: head = start
 	playing = true
 	$AudioStreamPlayer.stream = clipNode.sample
+	print("end is:", end)
+	print("length is:", clipNode.sample.get_length())
+	print("playing from ", head)
 	$AudioStreamPlayer.play(head)
 	yield($AudioStreamPlayer, "finished")
 
@@ -37,8 +47,15 @@ func stop():
 	self.playing = false
 	$AudioStreamPlayer.stop()
 
-func timeToPixels(t):
-	return t * (mix_rate / timeScale)
+func timeToPixels(t:float) -> float:
+	return t * mix_rate / timeScale
+
+func pixelsToTime(px:float) -> float:
+	return px * timeScale / mix_rate
+
+func _input(event):
+	if event is InputEventMouseButton and event.pressed:
+		self.head = pixelsToTime(event.position.x - rect_position.x)
 
 func _process(dt):
 	if playing:

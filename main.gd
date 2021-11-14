@@ -32,7 +32,9 @@ func _process(_dt):
 		$Prompter.save_clip()
 
 	if Input.is_action_just_released("ui_select"):
-		if $ClipScroller.playing: $ClipScroller.stop()
+		if $ClipScroller.playing:
+			$ClipScroller.stop()
+			print("head stopped at:", $ClipScroller.head)
 		else: $ClipScroller.play()
 
 func _input(event):
@@ -43,3 +45,5 @@ func _input(event):
 		if event.scancode == KEY_DOWN:
 			$Prompter.cursor += 1
 			$ClipScroller.sample = $Prompter.sample
+		if event.scancode == KEY_HOME:
+			$ClipScroller.head = 0.0

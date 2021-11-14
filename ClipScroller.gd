@@ -27,11 +27,15 @@ func _set_head(x):
 	headNode.rect_position.x = timeToPixels(x)
 
 func play():
-	self.head = start
-	self.playing = true
+	if head >= end: head = start
+	playing = true
 	$AudioStreamPlayer.stream = clipNode.sample
-	$AudioStreamPlayer.play()
+	$AudioStreamPlayer.play(head)
 	yield($AudioStreamPlayer, "finished")
+
+func stop():
+	self.playing = false
+	$AudioStreamPlayer.stop()
 
 func timeToPixels(t):
 	return t * (mix_rate / timeScale)

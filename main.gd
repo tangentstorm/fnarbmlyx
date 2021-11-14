@@ -32,7 +32,8 @@ func _process(_dt):
 		$Prompter.save_clip()
 
 	if Input.is_action_just_released("ui_select"):
-		$ClipScroller.play()
+		if $ClipScroller.playing: $ClipScroller.stop()
+		else: $ClipScroller.play()
 
 func _input(event):
 	if event is InputEventKey and event.pressed:

@@ -15,9 +15,9 @@ export var timeScale = 128
 func _set_sample(x):
 	start = 0.0
 	self.head = start
-	end = x.get_length()
+	end = 0.0 if x == null else x.get_length()
+	mix_rate = 44100 if x == null else x.mix_rate
 	clipNode.sample = x
-	mix_rate = x.mix_rate
 
 func _get_sample():
 	return clipNode.sample
@@ -39,7 +39,5 @@ func timeToPixels(t):
 func _process(dt):
 	if playing:
 		self.head += dt
-		print(self.head)
 		if self.head > self.end:
 			playing = false
-			print("done playing")

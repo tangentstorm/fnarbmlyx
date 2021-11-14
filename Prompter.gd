@@ -8,12 +8,19 @@ export var cursor : int = 0 setget _set_cursor
 export var prompts : PoolStringArray = [
 	"zero", "one", "two", "three", "four",
 	"five", "six", "seven", "eight", "nine"]
+export var sample : AudioStreamSample setget _set_sample, _get_sample
 var clips : Array = []
 var paths : Array = []
 
 func clearCards():
 	for i in range(0, $vbox.get_child_count()):
 		$vbox.get_child(i).queue_free()
+
+func _get_sample():
+	return get_clip(cursor).sample
+
+func _set_sample(x):
+	get_clip(cursor).sample = x
 
 func _set_cursor(i):
 	get_clip(cursor).active = false

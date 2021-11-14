@@ -19,7 +19,13 @@ func _process(_dt):
 		mic.set_recording_active(false)
 
 		# todo: replace selection with new clip
-		$ClipScroller.sample = clip
+		var s : AudioStreamSample = $ClipScroller.sample
+		if s == null: s = clip
+		else:
+			var d = s.data
+			d.append_array(clip.data)
+			s.data = d
+		$ClipScroller.sample = s
 		$Prompter.get_clip().sample = $ClipScroller.sample
 
 	if Input.is_action_just_released("ui_save"):
@@ -32,5 +38,7 @@ func _input(event):
 	if event is InputEventKey and event.pressed:
 		if event.scancode == KEY_UP:
 			$Prompter.cursor -= 1
+			$ClipScroller.sample = $Prompter.sample
 		if event.scancode == KEY_DOWN:
 			$Prompter.cursor += 1
+			$ClipScroller.sample = $Prompter.sample

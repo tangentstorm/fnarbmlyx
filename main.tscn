@@ -22,7 +22,7 @@ autoplay = true
 [node name="Label" type="Label" parent="."]
 margin_right = 194.0
 margin_bottom = 14.0
-text = "Hold shift  to record. Press space to play sample."
+text = "Hold shift  to record. Press space to play sample. Select with mouse. Press delete to delete  selection."
 __meta__ = {
 "_edit_use_anchors_": false
 }

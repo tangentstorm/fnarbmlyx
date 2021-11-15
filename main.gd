@@ -22,6 +22,9 @@ func _process(_dt):
 	if Input.is_action_just_released("ui_save"):
 		$Prompter.save_clip()
 
+	if Input.is_action_just_released("ui_delete"):
+		$ClipScroller.delete_selection()
+
 	if Input.is_action_just_released("ui_select"):
 		if $ClipScroller.playing:
 			$ClipScroller.stop()

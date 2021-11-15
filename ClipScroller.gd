@@ -17,6 +17,7 @@ onready var player = get_node(playerPath)
 var selection : Vector2 = Vector2.ZERO  # x=start,y=end (in seconds)
 var playing = false
 var mix_rate = 44100
+var bytesPerSample : int = 4
 
 func _set_timeScale(x):
 	clipNode.timeScale = x
@@ -60,6 +61,9 @@ func timeToPixels(t:float) -> float:
 func pixelsToTime(px:float) -> float:
 	return px * timeScale / mix_rate
 
+func pixelsToIndex(px:float) -> int:
+	return timeScale * bytesPerSample * int(floor(px))
+
 var mouse_xy0 : Vector2 = Vector2.ZERO
 var mouse_down : bool = false
 var mouse_drag : bool = false
@@ -100,6 +104,18 @@ func insert_sample(x):
 		d.append_array(x.data)
 		s.data = d
 	self.sample = s
+
+func delete_selection():
+	var s = self.sample
+	if s and selectNode.visible:
+		var a = pixelsToIndex(selection.x)
+		var Z = s.data.size()-1
+		var z = int(min(Z, pixelsToIndex(selection.y)))
+		var d = PoolByteArray()
+		if a>0: d.append_array(s.data.subarray(0,a-1))
+		if z<Z: d.append_array(s.data.subarray(z, s.data.size()-1))
+		s.data = d
+		self.sample = s
 
 func _process(dt):
 	if playing:

@@ -47,7 +47,8 @@ func printSampleInfo():
 	print("bytes per sample:", bytesPerSample)
 	var s = sample
 	var t = (1.0*s.data.size()) / (bytesPerSample*s.mix_rate)
-	assert(abs(s.get_length() - t) < 0.000001)
+	if not abs(s.get_length() - t) < 0.000001:
+		print("weird length:", s.get_length(), " vs t: ", t)
 
 func getStereoSample16(i):
 	# help from: https://godotengine.org/qa/67091/how-to-read-audio-samples-as-1-1-floats

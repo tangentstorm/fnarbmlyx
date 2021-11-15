@@ -59,6 +59,13 @@ margin_bottom = 256.0
 rect_min_size = Vector2( 1, 256 )
 color = Color( 0.972549, 0.113725, 0.0235294, 1 )
 
+[node name="Selection" type="ColorRect" parent="ClipScroller/ClipContainer"]
+visible = false
+margin_left = 333.0
+margin_right = 888.0
+margin_bottom = 256.0
+color = Color( 0.0352941, 0.682353, 1, 0.384314 )
+
 [node name="Prompter" type="Node2D" parent="."]
 position = Vector2( 0, 430 )
 script = ExtResource( 3 )
@@ -81,7 +88,7 @@ __meta__ = {
 
 [node name="clip" type="ColorRect" parent="Prompter/card"]
 margin_top = 18.0
-margin_right = 256.0
+margin_right = 1820.0
 margin_bottom = 66.0
 rect_min_size = Vector2( 0, 48 )
 script = ExtResource( 1 )

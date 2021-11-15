@@ -9,8 +9,10 @@ export var playerPath : NodePath #setget _set_playerPath
 
 onready var clipNode = $ClipContainer/AudioClip
 onready var headNode = $ClipContainer/PlayHead
+onready var selectNode = $ClipContainer/Selection
 onready var player = get_node(playerPath)
 
+var selection : Vector2 = Vector2.ZERO  # x=start,y=end (in seconds)
 var playing = false
 var mix_rate = 44100
 
@@ -55,9 +57,38 @@ func timeToPixels(t:float) -> float:
 func pixelsToTime(px:float) -> float:
 	return px * timeScale / mix_rate
 
+var mouse_xy0 : Vector2 = Vector2.ZERO
+var mouse_down : bool = false
+var mouse_drag : bool = false
 func _input(event):
-	if event is InputEventMouseButton and event.pressed:
-		self.head = pixelsToTime(event.position.x - rect_position.x)
+	if mouse_down and event is InputEventMouseMotion:
+		var x = event.position.x - rect_position.x
+		if ! mouse_drag:
+			print("init drag")
+			mouse_drag = true
+			selectNode.visible = true
+		if event.position.x < mouse_xy0.x:
+			# if drag left, move start instead of head
+			selection.x = x
+			self.head = pixelsToTime(x)
+		else:
+			selection.y = x
+		selectNode.rect_position.x = selection.x
+		selectNode.rect_size.x = selection.y - selection.x
+
+	if event is InputEventMouseButton and event.button_index == 1:
+		var x = event.position.x - rect_position.x
+		if event.pressed:
+			mouse_down = true
+			mouse_xy0 = event.position
+			selection = Vector2(x,x)
+			selectNode.visible = false
+			self.head = pixelsToTime(x)
+		else: # mouse up (not mouse over, because button_index = 0)
+			print("released")
+			mouse_down = false
+			selectNode.visible = mouse_drag and selection.x != selection.y
+			mouse_drag = false
 
 func _process(dt):
 	if playing:

@@ -16,6 +16,9 @@ stream = SubResource( 1 )
 autoplay = true
 bus = "Record"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
+
 [node name="Label" type="Label" parent="."]
 margin_right = 194.0
 margin_bottom = 14.0
@@ -34,6 +37,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+playerPath = NodePath("../AudioStreamPlayer")
 
 [node name="ClipContainer" type="Container" parent="ClipScroller"]
 margin_right = 1880.0
@@ -54,9 +58,6 @@ margin_right = 1.0
 margin_bottom = 256.0
 rect_min_size = Vector2( 1, 256 )
 color = Color( 0.972549, 0.113725, 0.0235294, 1 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ClipScroller"]
-autoplay = true
 
 [node name="Prompter" type="Node2D" parent="."]
 position = Vector2( 0, 430 )

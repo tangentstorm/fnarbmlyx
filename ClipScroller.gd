@@ -5,13 +5,14 @@ export var start  : float = 0.0
 export var end    : float = 0.0
 export var head   : float = 0.0 setget _set_head
 export var timeScale : int = 128 setget _set_timeScale, _get_timeScale
+export var playerPath : NodePath #setget _set_playerPath
 
 onready var clipNode = $ClipContainer/AudioClip
 onready var headNode = $ClipContainer/PlayHead
+onready var player = get_node(playerPath)
 
 var playing = false
 var mix_rate = 44100
-
 
 func _set_timeScale(x):
 	clipNode.timeScale = x
@@ -34,18 +35,19 @@ func _set_head(x):
 	headNode.rect_position.x = timeToPixels(x)
 
 func play():
+	if clipNode.sample == null: return
 	if head >= end: head = start
 	playing = true
-	$AudioStreamPlayer.stream = clipNode.sample
+	player.stream = clipNode.sample
 	print("end is:", end)
 	print("length is:", clipNode.sample.get_length())
 	print("playing from ", head)
-	$AudioStreamPlayer.play(head)
-	yield($AudioStreamPlayer, "finished")
+	player.play(head)
+	yield(player, "finished")
 
 func stop():
 	self.playing = false
-	$AudioStreamPlayer.stop()
+	player.stop()
 
 func timeToPixels(t:float) -> float:
 	return t * mix_rate / timeScale

@@ -64,7 +64,6 @@ func _input(event):
 	if mouse_down and event is InputEventMouseMotion:
 		var x = event.position.x - rect_position.x
 		if ! mouse_drag:
-			print("init drag")
 			mouse_drag = true
 			selectNode.visible = true
 		if event.position.x < mouse_xy0.x:
@@ -85,7 +84,6 @@ func _input(event):
 			selectNode.visible = false
 			self.head = pixelsToTime(x)
 		else: # mouse up (not mouse over, because button_index = 0)
-			print("released")
 			mouse_down = false
 			selectNode.visible = mouse_drag and selection.x != selection.y
 			mouse_drag = false

@@ -1,5 +1,6 @@
 extends Node2D
 
+
 # project settings > audio > enable audio input
 
 var mic
@@ -15,18 +16,8 @@ func _process(_dt):
 		mic.set_recording_active(true)
 
 	if Input.is_action_just_released("ui_record"):
-		clip = mic.get_recording()
+		$ClipScroller.insert_sample(mic.get_recording())
 		mic.set_recording_active(false)
-
-		# todo: replace selection with new clip
-		var s : AudioStreamSample = $ClipScroller.sample
-		if s == null: s = clip
-		else:
-			var d = s.data
-			d.append_array(clip.data)
-			s.data = d
-		$ClipScroller.sample = s
-		$Prompter.get_clip().sample = $ClipScroller.sample
 
 	if Input.is_action_just_released("ui_save"):
 		$Prompter.save_clip()
@@ -47,3 +38,7 @@ func _input(event):
 			$ClipScroller.sample = $Prompter.sample
 		if event.scancode == KEY_HOME:
 			$ClipScroller.head = 0.0
+
+
+func _on_ClipScroller_notify(sample):
+	$Prompter.get_clip().sample = sample

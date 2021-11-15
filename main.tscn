@@ -105,3 +105,5 @@ rect_min_size = Vector2( 1880, 600 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="notify" from="ClipScroller" to="." method="_on_ClipScroller_notify"]

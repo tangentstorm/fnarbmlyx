@@ -1,5 +1,7 @@
 extends ScrollContainer
 
+signal notify(sample)
+
 export var sample : AudioStreamSample setget _set_sample,_get_sample
 export var start  : float = 0.0
 export var end    : float = 0.0
@@ -28,6 +30,7 @@ func _set_sample(x):
 	end = 0.0 if x == null else x.get_length()
 	mix_rate = 44100 if x == null else x.mix_rate
 	clipNode.sample = x
+	emit_signal("notify", x)
 
 func _get_sample():
 	return clipNode.sample
@@ -87,6 +90,16 @@ func _input(event):
 			mouse_down = false
 			selectNode.visible = mouse_drag and selection.x != selection.y
 			mouse_drag = false
+
+func insert_sample(x):
+	var s = self.sample
+	if s == null: s = x
+	else:
+		var d = s.data
+		# todo: replace selection with new clip
+		d.append_array(x.data)
+		s.data = d
+	self.sample = s
 
 func _process(dt):
 	if playing:

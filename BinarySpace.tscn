@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Rect.gd" type="Script" id=1]
+[ext_resource path="res://NodeArray.gd" type="Script" id=2]
+[ext_resource path="res://NodeArray.tscn" type="PackedScene" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="bg" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0.2, 0.32549, 0.439216, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 960, 540 )
+current = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="O" type="ColorRect" parent="."]
+margin_left = 121.908
+margin_top = 280.463
+margin_right = 153.908
+margin_bottom = 312.463
+rect_min_size = Vector2( 32, 32 )
+color = Color( 0.133333, 0.133333, 0.133333, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+strokeWidth = 2.0
+
+[node name="I" type="ColorRect" parent="."]
+margin_left = 107.924
+margin_top = 380.35
+margin_right = 139.924
+margin_bottom = 412.35
+rect_min_size = Vector2( 32, 32 )
+color = Color( 0.933333, 0.933333, 0.933333, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+strokeWidth = 2.0
+
+[node name="NodeArray" parent="." instance=ExtResource( 3 )]
+
+[node name="row" type="Container" parent="."]
+margin_left = 463.042
+margin_top = 362.156
+margin_right = 463.042
+margin_bottom = 362.156
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+ref = NodePath("../O")
+num = 32
+
+[node name="col" type="Container" parent="."]
+margin_left = 502.996
+margin_top = 255.051
+margin_right = 502.996
+margin_bottom = 255.051
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+ref = NodePath("../row")
+dxy = Vector2( 0, -32 )
+num = 5

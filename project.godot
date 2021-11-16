@@ -8,10 +8,20 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Container",
+"class": "NodeArray",
+"language": "GDScript",
+"path": "res://NodeArray.gd"
+} ]
+_global_script_class_icons={
+"NodeArray": ""
+}
+
 [application]
 
 config/name="fnarbmlyx"
-run/main_scene="res://main.tscn"
+run/main_scene="res://BinarySpace.tscn"
 config/icon="res://icon.png"
 
 [audio]

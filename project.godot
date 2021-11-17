@@ -23,17 +23,23 @@ _global_script_classes=[ {
 "class": "TruthTable",
 "language": "GDScript",
 "path": "res://TruthTable.gd"
+}, {
+"base": "VBoxContainer",
+"class": "WebSocketDemo",
+"language": "GDScript",
+"path": "res://WebsocketDemo.gd"
 } ]
 _global_script_class_icons={
 "Circle": "",
 "NodeArray": "",
-"TruthTable": ""
+"TruthTable": "",
+"WebSocketDemo": ""
 }
 
 [application]
 
 config/name="fnarbmlyx"
-run/main_scene="res://BinarySpace.tscn"
+run/main_scene="res://WebsocketDemo.tscn"
 config/icon="res://icon.png"
 
 [audio]

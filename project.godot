@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "NodeArray",
 "language": "GDScript",
 "path": "res://NodeArray.gd"
+}, {
+"base": "Control",
+"class": "TruthTable",
+"language": "GDScript",
+"path": "res://TruthTable.gd"
 } ]
 _global_script_class_icons={
 "Circle": "",
-"NodeArray": ""
+"NodeArray": "",
+"TruthTable": ""
 }
 
 [application]

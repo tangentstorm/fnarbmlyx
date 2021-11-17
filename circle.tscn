@@ -5,7 +5,6 @@
 [sub_resource type="CircleShape2D" id=1]
 
 [node name="circle" type="RigidBody2D"]
-position = Vector2( 192.705, 94.3971 )
 input_pickable = true
 mode = 1
 script = ExtResource( 1 )

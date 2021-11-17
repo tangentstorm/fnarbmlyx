@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "RigidBody2D",
+"class": "Circle",
+"language": "GDScript",
+"path": "res://Circle.gd"
+}, {
 "base": "Container",
 "class": "NodeArray",
 "language": "GDScript",
 "path": "res://NodeArray.gd"
 } ]
 _global_script_class_icons={
+"Circle": "",
 "NodeArray": ""
 }
 

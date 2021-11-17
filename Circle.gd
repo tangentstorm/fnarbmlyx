@@ -1,4 +1,5 @@
-extends RigidBody2D
+class_name Circle
+tool extends RigidBody2D
 
 signal mbld
 

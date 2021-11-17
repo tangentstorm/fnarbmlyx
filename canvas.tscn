@@ -24,8 +24,7 @@ items = [ "item0", null, 0, false, false, 0, 0, null, "", false, "Item 1", null,
 script = ExtResource( 2 )
 
 [node name="circle" parent="sketch" instance=ExtResource( 1 )]
+position = Vector2( 206.362, 151.332 )
 
 [node name="circle2" parent="sketch" instance=ExtResource( 1 )]
-position = Vector2( 312.289, 82.7562 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 145.083, 149.427 )

@@ -6,7 +6,6 @@ var held_obj = null
 func _ready():
 	for child in self.get_children():
 		child.connect('mbld', self, "_on_grab")
-	pass # Replace with function body.
 
 
 func _on_grab(x):

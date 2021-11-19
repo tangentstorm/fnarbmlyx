@@ -1,3 +1,4 @@
+# old sketch concept. used physics engine example from:
 # https://kidscancode.org/godot_recipes/physics/rigidbody_drag_drop/
 extends Node2D
 

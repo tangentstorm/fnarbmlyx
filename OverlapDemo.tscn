@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://OverlapDemo.gd" type="Script" id=1]
+
+[node name="OverlapDemo" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.270588, 0.294118, 0.329412, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mouseXY" type="Label" parent="."]
+margin_right = 356.0
+margin_bottom = 68.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

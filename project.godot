@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "BinaryTree",
+"language": "GDScript",
+"path": "res://BinaryTree.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Circle",
 "language": "GDScript",
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://WebsocketDemo.gd"
 } ]
 _global_script_class_icons={
+"BinaryTree": "",
 "Circle": "",
 "NodeArray": "",
 "TruthTable": "",

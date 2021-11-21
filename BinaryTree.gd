@@ -35,5 +35,4 @@ func build_node(xy, depth):
 	draw_circle(xy, node_radius-1.5, colors[DEPTH-depth])
 
 func _draw():
-	var width = (node_radius + gap) * (2<<DEPTH)
 	build_node(rect_size * 0.5, DEPTH)

@@ -79,7 +79,7 @@ func _draw():
 	var radius = rect_min_size.x * 0.5
 
 	for c in get_children():
-		draw_line(center, c.rect_position + c.link_point(0), Color.black, 1, true)
+		draw_line(center, c.rect_position + c.link_point(0), Color.black, 1.5, true)
 
 	match shape:
 		SHAPE.RECT:

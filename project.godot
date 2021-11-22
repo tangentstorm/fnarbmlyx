@@ -29,6 +29,36 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Circle.gd"
 }, {
+"base": "Control",
+"class": "GsCurve",
+"language": "GDScript",
+"path": "res://gslib/GsCurve.gd"
+}, {
+"base": "Label",
+"class": "GsMouse",
+"language": "GDScript",
+"path": "res://gslib/GsMouse.gd"
+}, {
+"base": "Node",
+"class": "GsMouseTool",
+"language": "GDScript",
+"path": "res://gslib/GsMouseTool.gd"
+}, {
+"base": "Control",
+"class": "GsNode",
+"language": "GDScript",
+"path": "res://gslib/GsNode.gd"
+}, {
+"base": "GsMouseTool",
+"class": "GsNodeTool",
+"language": "GDScript",
+"path": "res://gslib/GsNodeTool.gd"
+}, {
+"base": "Control",
+"class": "GsSketch",
+"language": "GDScript",
+"path": "res://gslib/GsSketch.gd"
+}, {
 "base": "Container",
 "class": "NodeArray",
 "language": "GDScript",
@@ -54,6 +84,12 @@ _global_script_class_icons={
 "ASTNodeDemo": "",
 "BinaryTree": "",
 "Circle": "",
+"GsCurve": "",
+"GsMouse": "",
+"GsMouseTool": "",
+"GsNode": "",
+"GsNodeTool": "",
+"GsSketch": "",
 "NodeArray": "",
 "Palettes": "",
 "TruthTable": "",
@@ -63,7 +99,7 @@ _global_script_class_icons={
 [application]
 
 config/name="fnarbmlyx"
-run/main_scene="res://ASTNodeDemo.tscn"
+run/main_scene="res://gslib/GameSketchApp.tscn"
 config/icon="res://icon.png"
 
 [audio]

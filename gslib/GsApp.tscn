@@ -268,9 +268,6 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-sketch_path = NodePath("../sketch")
-grid_path = NodePath("../grid")
-selectangle_path = NodePath("../selectangle")
 
 [node name="tool" type="Node" parent="mouse"]
 script = ExtResource( 6 )

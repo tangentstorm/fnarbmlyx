@@ -4,6 +4,7 @@ func get_class_name(): return "GsMouse"
 export var sketch_path : NodePath = '/root/app/sketch'
 export var grid_path : NodePath = '/root/app/grid'
 export var selectangle_path : NodePath = '/root/app/selectangle'
+export var selection_path : NodePath = '/root/app/selection'
 
 var button_state : int = 0
 var position : Vector2 = Vector2.ZERO
@@ -16,6 +17,7 @@ onready var current_tool = $tool
 onready var current_grid = get_node(grid_path)
 onready var current_sketch = get_node(sketch_path)
 onready var selectangle = get_node(selectangle_path)
+onready var selection = get_node(selection_path)
 
 func set_tool_script(ts:Script):
 	if ts == null: ts = load('res://gs_tools/GsMouseTool.gd')

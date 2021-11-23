@@ -16,4 +16,28 @@ func _drag_step(mouse):
 
 func _drag_end(mouse):
 	if mouse.subject: mouse.subject._drag_end()
-	else: mouse.selectangle.visible = false
+	else:
+		mouse.selectangle.visible = false
+		var csk = mouse.current_sketch
+		var rect = mouse.selectangle.get_rect()
+		var xy0 = Vector2.INF; var xy1 = -Vector2.INF
+		var selection = []
+
+		for c in csk.get_children():
+			if not c is GsBase: continue
+			var r:Rect2 = c.get_rect()
+			if r.intersects(rect):
+				c.selected = true
+				selection.append(c)
+				xy0.x = min(xy0.x, r.position.x)
+				xy0.y = min(xy0.y, r.position.y)
+				xy1.x = max(xy1.x, r.end.x)
+				xy1.y = max(xy1.y, r.end.y)
+			else: c.selected = false
+
+		var s:Control = mouse.selection
+		if selection.size():
+			s.rect_position = xy0 - Vector2(5,5)
+			s.rect_size = (xy1 - xy0) + Vector2(10,10)
+			s.visible = true
+		else: s.visible = false

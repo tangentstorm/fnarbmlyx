@@ -1,6 +1,7 @@
 class_name GsBase extends Control
 
 export var draggable : bool = true setget set_draggable
+export var selected : bool = false setget set_selected
 
 func _get_mouse():
 	return $"/root/app/mouse"
@@ -19,3 +20,7 @@ func _drag_step(xy, mtool):
 
 func _drag_end():
 	pass
+
+func set_selected(v):
+	selected = v
+	update()

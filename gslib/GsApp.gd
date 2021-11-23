@@ -8,6 +8,7 @@ var current_text_color : Color = Color.black
 var selection : Array = [] setget _set_selection
 
 const SELECTANGLE_PADDING = Vector2(5,5)
+const DEFAULT_NODE_SIZE = Vector2(32, 32)
 
 func _ready():
 	GsLib.app = self

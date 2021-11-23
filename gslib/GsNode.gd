@@ -8,7 +8,7 @@ export(SHAPE) var shape = SHAPE.RECT setget _set_shape
 export var fill_color : Color = Color.white setget _set_fill_color
 export var line_color : Color = Color.black setget _set_line_color
 export var text_color : Color = Color.black setget _set_text_color
-export var text : String = "Node" setget _set_text
+export var text : String = '' setget _set_text
 export var font : Font = NOTO setget _set_font
 
 func _ready():
@@ -65,6 +65,10 @@ func _draw():
 		var pad = Vector2(5,5)
 		draw_rect(Rect2(-pad, rect_size + 2*pad), Color(0xffffff66), true)
 
-func link_point(_i:int=0):
+func link_offset(_i:int=0):
 	# link_point 0 = center. others can be added later
-	return Vector2(rect_size.x, rect_min_size.y) * 0.5
+	return Vector2(rect_size.x, rect_size.y) * 0.5
+
+func link_point(i:int):
+	# link_point 0 = center. others can be added later
+	return rect_position + link_offset(i)

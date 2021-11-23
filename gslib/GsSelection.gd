@@ -1,7 +1,8 @@
-tool extends ReferenceRect
+tool extends GsBase
 func get_class_name(): return "GsSelection"
 
 func _ready():
+	self.draggable = true
 	connect("resized", self, "_resized")
 	_resized()
 	
@@ -17,3 +18,11 @@ func _resized():
 	$W.rect_position = Vector2(0,h/2)
 	for c in get_children():
 		c.rect_position -= c.rect_size/2
+
+func _drag_step(xy, mtool):
+	var dxy = xy - rect_position
+	._drag_step(xy, mtool)
+	for child in _get_mouse().current_sketch.get_children():
+		if not child is GsBase: continue
+		if child.selected:
+			child.rect_position += dxy

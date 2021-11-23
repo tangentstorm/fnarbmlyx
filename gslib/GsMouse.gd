@@ -56,7 +56,9 @@ func _leave(c:Control):
 	self.subject = null
 
 func _process(_dt):
-	var t = '[ ' + ($tool._name() + ' ' if $tool.script else '') +'] '
+	var t = ''
+	if subject: t += '<' + str(subject) + '>'
+	t = '[ ' + ($tool._name() + ' ' if $tool.script else '') +'] '
 	t += "(" + str(int(position.x)) + "," + str(int(position.y)) + ")"
 	if dragging: t += " dragging"
 	text = t

@@ -3,6 +3,14 @@ class_name GsBase extends Control
 export var draggable : bool = true setget set_draggable
 export var selected : bool = false setget set_selected
 
+func _enter_tree():
+	mouse_filter = Control.MOUSE_FILTER_PASS
+
+func _gui_input(e):
+	if e is InputEventMouse:
+		e.position = e.global_position
+		_get_mouse().handle(e)
+
 func _get_mouse():
 	return $"/root/app/mouse"
 

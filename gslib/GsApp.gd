@@ -1,10 +1,12 @@
 class_name GsApp extends ColorRect
 func get_class_name(): return "GsApp"
 
+var ignore_mouse : int = 0
+
 func _input(e):
-	if $fog.visible: pass
-	elif e is InputEventMouse:
-		$mouse.handle(e)
+	if e is InputEventMouse and not ignore_mouse:
+		if $toolbar.get_rect().has_point(e.position): pass
+		else: $mouse.handle(e)
 
 func _on_load_pressed():
 	$FileDialog.current_dir = 'user://'
@@ -48,3 +50,15 @@ func _on_FileDialog_file_selected(path):
 
 func _on_clear_pressed():
 	$sketch.clear()
+
+func _on_color_color_changed(color):
+	print("new color:", color)
+	for c in $sketch.get_children():
+		if c is GsBase and c.selected:
+			c.fill_color = color
+
+func _on_color_pressed():
+	ignore_mouse += 1
+
+func _on_color_popup_closed():
+	ignore_mouse -= 1

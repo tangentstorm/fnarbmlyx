@@ -16,6 +16,7 @@
 [node name="app" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 0.2, 0.2, 0.298039, 1 )
 script = ExtResource( 8 )
 __meta__ = {
@@ -28,13 +29,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
 margin_right = 1.0
-mouse_filter = 1
+mouse_filter = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 color = Color( 0.227451, 0.266667, 0.333333, 1 )
+
+[node name="mouse" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 0
+align = 2
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tool" type="Node" parent="mouse"]
+script = ExtResource( 6 )
 
 [node name="sketch" type="Control" parent="."]
 anchor_right = 1.0
@@ -169,8 +183,9 @@ __meta__ = {
 }
 
 [node name="toolbar" type="PanelContainer" parent="."]
-margin_right = 384.0
+margin_right = 539.0
 margin_bottom = 38.0
+input_pass_on_modal_close_click = false
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -245,6 +260,7 @@ hint_tooltip = "Fill  Color"
 size_flags_horizontal = 0
 text = "BG"
 flat = true
+color = Color( 0.933333, 0.933333, 0.933333, 1 )
 
 [node name="grid" type="CheckBox" parent="toolbar/hbox"]
 margin_left = 315.0
@@ -277,31 +293,17 @@ margin_bottom = 24.0
 text = "CLEAR"
 flat = true
 
-[node name="mouse" type="Label" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -320.0
-margin_bottom = 39.0
-align = 2
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="tool" type="Node" parent="mouse"]
-script = ExtResource( 6 )
-
 [node name="fog" type="ColorRect" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 1, 1, 1, 0.2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="FileDialog" type="FileDialog" parent="."]
-visible = true
 margin_left = 786.562
 margin_top = 260.0
 margin_right = 1102.56
@@ -318,6 +320,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="color_changed" from="toolbar/hbox/color" to="." method="_on_color_color_changed"]
+[connection signal="popup_closed" from="toolbar/hbox/color" to="." method="_on_color_popup_closed"]
+[connection signal="pressed" from="toolbar/hbox/color" to="." method="_on_color_pressed"]
 [connection signal="toggled" from="toolbar/hbox/grid" to="grid" method="_on_grid_toggled"]
 [connection signal="pressed" from="toolbar/hbox/load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="toolbar/hbox/save" to="." method="_on_save_pressed"]

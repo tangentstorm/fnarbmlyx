@@ -16,7 +16,6 @@
 [node name="app" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
 color = Color( 0.2, 0.2, 0.298039, 1 )
 script = ExtResource( 8 )
 __meta__ = {
@@ -180,7 +179,7 @@ __meta__ = {
 [node name="hbox" type="HBoxContainer" parent="toolbar"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 432.0
+margin_right = 532.0
 margin_bottom = 31.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -257,9 +256,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="clear" type="Button" parent="toolbar/hbox"]
+[node name="load" type="Button" parent="toolbar/hbox"]
 margin_left = 374.0
-margin_right = 425.0
+margin_right = 423.0
+margin_bottom = 24.0
+text = "LOAD"
+flat = true
+
+[node name="save" type="Button" parent="toolbar/hbox"]
+margin_left = 427.0
+margin_right = 470.0
+margin_bottom = 24.0
+text = "SAVE"
+flat = true
+
+[node name="clear" type="Button" parent="toolbar/hbox"]
+margin_left = 474.0
+margin_right = 525.0
 margin_bottom = 24.0
 text = "CLEAR"
 flat = true
@@ -278,5 +291,38 @@ __meta__ = {
 [node name="tool" type="Node" parent="mouse"]
 script = ExtResource( 6 )
 
+[node name="fog" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0.2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FileDialog" type="FileDialog" parent="."]
+visible = true
+margin_left = 786.562
+margin_top = 260.0
+margin_right = 1102.56
+margin_bottom = 721.0
+rect_min_size = Vector2( 300, 105 )
+popup_exclusive = true
+window_title = "Open a File"
+mode = 0
+access = 1
+filters = PoolStringArray( "*.tscn" )
+current_dir = "user://d:/ver/fnarbmlyx"
+current_path = "user://d:/ver/fnarbmlyx/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="toggled" from="toolbar/hbox/grid" to="grid" method="_on_grid_toggled"]
-[connection signal="pressed" from="toolbar/hbox/clear" to="sketch" method="clear"]
+[connection signal="pressed" from="toolbar/hbox/load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="toolbar/hbox/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="toolbar/hbox/clear" to="." method="_on_clear_pressed"]
+[connection signal="about_to_show" from="FileDialog" to="." method="_on_FileDialog_about_to_show"]
+[connection signal="confirmed" from="FileDialog" to="." method="_on_FileDialog_confirmed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]
+[connection signal="popup_hide" from="FileDialog" to="." method="_on_FileDialog_popup_hide"]

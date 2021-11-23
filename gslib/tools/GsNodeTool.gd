@@ -8,6 +8,7 @@ func _drag_start(mouse):
 	node.text = 'Node'
 	node.rect_position = mouse.origin
 	mouse.current_sketch.add_child(node)
+	node.set_owner(mouse.current_sketch)
 
 func _drag_step(mouse):
 	var r : Rect2 = mouse.drag_rect().abs()

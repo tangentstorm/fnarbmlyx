@@ -1,4 +1,4 @@
-class_name GsNode tool extends GsBase
+tool class_name GsNode extends GsBase
 func get_class_name(): return "GsNode"
 
 const NOTO = preload("res://fonts/noto_font.tres")

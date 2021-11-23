@@ -27,7 +27,8 @@ func drag_rect() -> Rect2:
 
 func handle(e:InputEventMouse):
 	position = e.position
-	if current_grid.snap: position -= position.posmodv(current_grid.spacing)
+	if current_grid and current_grid.snap:
+		position -= position.posmodv(current_grid.spacing)
 	if e is InputEventMouseButton:
 		if e.pressed:
 			if e.button_index == 1:

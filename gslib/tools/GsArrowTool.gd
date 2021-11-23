@@ -8,7 +8,6 @@ func _drag_start(mouse):
 
 func _drag_step(mouse):
 	if mouse.subject:
-		print("dragging subject:", mouse.subject)
 		mouse.subject._drag_step(mouse.position + mouse.offset, self)
 	else:
 		var r : Rect2 = mouse.drag_rect().abs()

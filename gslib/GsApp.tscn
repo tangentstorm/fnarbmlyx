@@ -24,19 +24,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="mouse" type="Label" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -320.0
-align = 2
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="tool" type="Node" parent="mouse"]
-script = ExtResource( 6 )
-
 [node name="grid" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -61,10 +48,11 @@ __meta__ = {
 }
 
 [node name="selection" type="ReferenceRect" parent="."]
-margin_left = 128.0
+visible = false
+margin_left = 224.0
 margin_top = 128.0
-margin_right = 220.0
-margin_bottom = 220.0
+margin_right = 352.0
+margin_bottom = 256.0
 mouse_filter = 2
 border_color = Color( 0.580392, 0.831373, 0.968627, 1 )
 border_width = 2.5
@@ -86,9 +74,9 @@ __meta__ = {
 }
 
 [node name="N" type="ColorRect" parent="selection"]
-margin_left = 42.0
+margin_left = 60.0
 margin_top = -4.0
-margin_right = 50.0
+margin_right = 68.0
 margin_bottom = 4.0
 rect_min_size = Vector2( 8, 8 )
 script = ExtResource( 10 )
@@ -97,9 +85,9 @@ __meta__ = {
 }
 
 [node name="NE" type="ColorRect" parent="selection"]
-margin_left = 88.0
+margin_left = 124.0
 margin_top = -4.0
-margin_right = 96.0
+margin_right = 132.0
 margin_bottom = 4.0
 rect_min_size = Vector2( 8, 8 )
 script = ExtResource( 10 )
@@ -108,10 +96,10 @@ __meta__ = {
 }
 
 [node name="E" type="ColorRect" parent="selection"]
-margin_left = 88.0
-margin_top = 42.0
-margin_right = 96.0
-margin_bottom = 50.0
+margin_left = 124.0
+margin_top = 60.0
+margin_right = 132.0
+margin_bottom = 68.0
 rect_min_size = Vector2( 8, 8 )
 script = ExtResource( 10 )
 __meta__ = {
@@ -119,10 +107,10 @@ __meta__ = {
 }
 
 [node name="SE" type="ColorRect" parent="selection"]
-margin_left = 88.0
-margin_top = 88.0
-margin_right = 96.0
-margin_bottom = 96.0
+margin_left = 124.0
+margin_top = 124.0
+margin_right = 132.0
+margin_bottom = 132.0
 rect_min_size = Vector2( 8, 8 )
 script = ExtResource( 10 )
 __meta__ = {
@@ -130,10 +118,10 @@ __meta__ = {
 }
 
 [node name="S" type="ColorRect" parent="selection"]
-margin_left = 42.0
-margin_top = 88.0
-margin_right = 50.0
-margin_bottom = 96.0
+margin_left = 60.0
+margin_top = 124.0
+margin_right = 68.0
+margin_bottom = 132.0
 rect_min_size = Vector2( 8, 8 )
 script = ExtResource( 10 )
 __meta__ = {
@@ -142,9 +130,9 @@ __meta__ = {
 
 [node name="SW" type="ColorRect" parent="selection"]
 margin_left = -4.0
-margin_top = 88.0
+margin_top = 124.0
 margin_right = 4.0
-margin_bottom = 96.0
+margin_bottom = 132.0
 rect_min_size = Vector2( 8, 8 )
 script = ExtResource( 10 )
 __meta__ = {
@@ -153,9 +141,9 @@ __meta__ = {
 
 [node name="W" type="ColorRect" parent="selection"]
 margin_left = -4.0
-margin_top = 42.0
+margin_top = 60.0
 margin_right = 4.0
-margin_bottom = 50.0
+margin_bottom = 68.0
 rect_min_size = Vector2( 8, 8 )
 script = ExtResource( 10 )
 __meta__ = {
@@ -163,7 +151,12 @@ __meta__ = {
 }
 
 [node name="selectangle" type="ReferenceRect" parent="."]
-border_color = Color( 0.611765, 0.843137, 0.972549, 1 )
+visible = false
+margin_left = 456.0
+margin_top = 128.0
+margin_right = 584.0
+margin_bottom = 256.0
+border_color = Color( 0.396078, 0.541176, 0.623529, 1 )
 editor_only = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -178,7 +171,7 @@ __meta__ = {
 }
 
 [node name="toolbar" type="PanelContainer" parent="."]
-margin_right = 371.0
+margin_right = 384.0
 margin_bottom = 38.0
 __meta__ = {
 "_edit_lock_": true,
@@ -264,5 +257,22 @@ text = "Grid"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="mouse" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -320.0
+margin_bottom = 39.0
+align = 2
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+sketch_path = NodePath("../sketch")
+grid_path = NodePath("../grid")
+selectangle_path = NodePath("../selectangle")
+
+[node name="tool" type="Node" parent="mouse"]
+script = ExtResource( 6 )
 
 [connection signal="toggled" from="toolbar/hbox/grid" to="grid" method="_on_grid_toggled"]

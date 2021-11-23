@@ -17,5 +17,6 @@ func add_rect(xy:Vector2, wh=null, fill_color=null, select:bool=false)->GsNode:
 	n.fill_color = fill_color if fill_color else app.current_fill_color
 	return add_node(n, select)
 
-func add_edge(src:GsNode, dst:GsNode, curve:GsCurve):
-	pass
+func add_edge(src:GsNode, dst:GsNode, edge:GsEdge):
+	src.add_edge(edge); edge.src = src
+	dst.add_edge(edge); edge.dst = dst

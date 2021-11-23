@@ -3,6 +3,8 @@ class_name GsBase extends Control
 export var draggable : bool = true setget set_draggable
 export var selected : bool = false setget set_selected
 
+signal moved(node, dxy)
+
 func _enter_tree():
 	mouse_filter = Control.MOUSE_FILTER_PASS
 
@@ -24,7 +26,9 @@ func set_draggable(v):
 		disconnect("mouse_exited",  m, "_leave")
 
 func _drag_step(xy, mtool):
+	var dxy = xy - rect_position
 	rect_position = xy
+	emit_signal('moved', self, dxy)
 
 func _drag_end():
 	pass

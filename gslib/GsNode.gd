@@ -10,6 +10,8 @@ export var line_color : Color = Color.black setget _set_line_color
 export var text_color : Color = Color.black setget _set_text_color
 export var text : String = '' setget _set_text
 export var font : Font = NOTO setget _set_font
+export (Array, NodePath) var edge_refs : Array = [] setget _set_edge_refs
+var edges : Array = [] # Array[GsEdge]
 
 func _ready():
 	self.draggable = true
@@ -35,6 +37,20 @@ func _set_text(v):
 	rect_min_size.x = max(rect_min_size.x, size.x)
 	rect_min_size.y = max(rect_min_size.y, size.y)
 	update()
+
+func _clear_edges():
+	edges = [];	edge_refs = []
+
+func _set_edge_refs(vs):
+	_clear_edges()
+	for v in vs: add_edge_ref(v)
+
+func add_edge(e):
+	edge_refs.append(e.get_path()); edges.append(e)
+	connect("moved", e, '_on_node_moved')
+
+func add_edge_ref(ref):
+	add_edge(get_node(ref))
 
 func _draw():
 	var center = link_point(0)

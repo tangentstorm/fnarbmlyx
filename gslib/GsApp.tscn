@@ -292,7 +292,7 @@ hint_tooltip = "Fill  Color"
 size_flags_horizontal = 0
 text = "BG"
 flat = true
-color = Color( 0.933333, 0.933333, 0.933333, 1 )
+color = Color( 0.866667, 0.8, 0.6, 1 )
 
 [node name="grid" type="CheckBox" parent="toolbar/hbox"]
 margin_left = 219.0

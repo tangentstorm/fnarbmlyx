@@ -4,7 +4,7 @@ class_name GsEdgeTool extends GsArrowTool
 func get_class_name(): return "GsEdgeTool"
 
 var src setget _set_src
-var edge : GsCurve
+var edge : GsEdge
 var curve : Curve2D
 var offset : Vector2
 
@@ -14,7 +14,7 @@ func _set_src(v):
 		curve = Curve2D.new()
 		curve.add_point(Vector2.ZERO)
 		curve.add_point(Vector2.ZERO)
-		edge = GsCurve.new(); edge.curve = curve
+		edge = GsEdge.new(); edge.curve = curve
 		offset = src.link_offset(0)
 		edge.rect_position = src.rect_position + offset
 		var sketch : GsSketch = GsLib.mouse.current_sketch

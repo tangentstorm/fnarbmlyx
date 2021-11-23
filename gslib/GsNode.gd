@@ -1,4 +1,4 @@
-class_name GsNode tool extends Control
+class_name GsNode tool extends GsBase
 func get_class_name(): return "GsNode"
 
 const NOTO = preload("res://fonts/noto_font.tres")
@@ -11,12 +11,8 @@ export var text_color : Color = Color.black setget _set_text_color
 export var text : String = "Node" setget _set_text
 export var font : Font = NOTO setget _set_font
 
-func _set_mouse(mouse):
-	connect("mouse_entered", mouse, "_enter", [self])
-	connect("mouse_exited",  mouse, "_leave", [self])
-
 func _ready():
-	_set_mouse($"/root/app/mouse")
+	self.draggable = true
 
 func _set_shape(v):
 	shape = v; update()

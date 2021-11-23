@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://gslib/GsGrid.gd" type="Script" id=1]
 [ext_resource path="res://gslib/GsSketch.gd" type="Script" id=2]
@@ -6,10 +6,12 @@
 [ext_resource path="res://gslib/tools/GsNodeTool.gd" type="Script" id=4]
 [ext_resource path="res://gslib/GsMouse.gd" type="Script" id=5]
 [ext_resource path="res://gslib/tools/GsArrowTool.gd" type="Script" id=6]
+[ext_resource path="res://gslib/GsSelection.gd" type="Script" id=7]
 [ext_resource path="res://gslib/GsApp.gd" type="Script" id=8]
 [ext_resource path="res://gslib/tools/GsMouseToolButton.gd" type="Script" id=9]
+[ext_resource path="res://gslib/GsHandle.gd" type="Script" id=10]
 
-[sub_resource type="ButtonGroup" id=5]
+[sub_resource type="ButtonGroup" id=1]
 
 [node name="app" type="ColorRect"]
 anchor_right = 1.0
@@ -58,6 +60,108 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="selection" type="ReferenceRect" parent="."]
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 220.0
+margin_bottom = 220.0
+mouse_filter = 2
+border_color = Color( 0.580392, 0.831373, 0.968627, 1 )
+border_width = 2.5
+editor_only = false
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NW" type="ColorRect" parent="selection"]
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 8, 8 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="N" type="ColorRect" parent="selection"]
+margin_left = 42.0
+margin_top = -4.0
+margin_right = 50.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 8, 8 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NE" type="ColorRect" parent="selection"]
+margin_left = 88.0
+margin_top = -4.0
+margin_right = 96.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 8, 8 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="E" type="ColorRect" parent="selection"]
+margin_left = 88.0
+margin_top = 42.0
+margin_right = 96.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 8, 8 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SE" type="ColorRect" parent="selection"]
+margin_left = 88.0
+margin_top = 88.0
+margin_right = 96.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 8, 8 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="S" type="ColorRect" parent="selection"]
+margin_left = 42.0
+margin_top = 88.0
+margin_right = 50.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 8, 8 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SW" type="ColorRect" parent="selection"]
+margin_left = -4.0
+margin_top = 88.0
+margin_right = 4.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 8, 8 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="W" type="ColorRect" parent="selection"]
+margin_left = -4.0
+margin_top = 42.0
+margin_right = 4.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 8, 8 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="selectangle" type="ReferenceRect" parent="."]
 border_color = Color( 0.611765, 0.843137, 0.972549, 1 )
 editor_only = false
@@ -93,7 +197,7 @@ __meta__ = {
 [node name="arrow" type="ToolButton" parent="toolbar/hbox"]
 margin_right = 61.0
 margin_bottom = 24.0
-group = SubResource( 5 )
+group = SubResource( 1 )
 text = "ARROW"
 script = ExtResource( 9 )
 __meta__ = {

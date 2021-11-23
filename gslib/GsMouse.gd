@@ -47,11 +47,9 @@ func handle(e:InputEventMouse):
 			dragging = true
 			
 func _enter(c:Control):
-	print("enter:", c)
 	self.subject = c
 
 func _leave(c:Control):
-	print("leave:", c)
 	self.subject = null
 
 func _process(_dt):

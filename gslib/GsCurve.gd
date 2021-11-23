@@ -13,7 +13,6 @@ func _ready():
 
 func add_point(xy):
 	curve.add_point(xy)
-	print("adding point:", xy, " len: ", curve.get_baked_length())
 	update()
 
 func _draw():

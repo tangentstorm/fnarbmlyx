@@ -35,6 +35,11 @@ _global_script_classes=[ {
 "path": "res://gslib/GsApp.gd"
 }, {
 "base": "Control",
+"class": "GsBase",
+"language": "GDScript",
+"path": "res://gslib/GsBase.gd"
+}, {
+"base": "Control",
 "class": "GsCurve",
 "language": "GDScript",
 "path": "res://gslib/GsCurve.gd"
@@ -90,6 +95,7 @@ _global_script_class_icons={
 "BinaryTree": "",
 "Circle": "",
 "GsApp": "",
+"GsBase": "",
 "GsCurve": "",
 "GsMouse": "",
 "GsMouseTool": "",

@@ -9,14 +9,12 @@ func _drag_start(mouse):
 func _drag_step(mouse):
 	if mouse.subject:
 		print("dragging subject:", mouse.subject)
-		mouse.subject.rect_position = mouse.position + mouse.offset
-		mouse.subject.update()
+		mouse.subject._drag_step(mouse.position + mouse.offset, self)
 	else:
 		var r : Rect2 = mouse.drag_rect().abs()
 		mouse.selectangle.rect_position = r.position
 		mouse.selectangle.rect_size = r.size
 
 func _drag_end(mouse):
-	if mouse.subject: mouse.subject._set_mouse(mouse)
+	if mouse.subject: mouse.subject._drag_end()
 	else: mouse.selectangle.visible = false
-

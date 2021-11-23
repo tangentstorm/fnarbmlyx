@@ -20,3 +20,8 @@ func add_rect(xy:Vector2, wh=null, fill_color=null, select:bool=false)->GsNode:
 func add_edge(src:GsNode, dst:GsNode, edge:GsEdge):
 	src.add_edge(edge); edge.src = src
 	dst.add_edge(edge); edge.dst = dst
+	var sp = src.get_parent()
+	if edge.get_parent() != sp:
+		sp.add_child(edge); edge.set_owner(sp)
+	var ix = min(src.get_index(), dst.get_index())
+	if edge.get_index() > ix: sp.move_child(edge, min(0, ix-1))

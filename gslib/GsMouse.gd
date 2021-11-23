@@ -65,3 +65,13 @@ func _process(_dt):
 	t += "(" + str(int(position.x)) + "," + str(int(position.y)) + ")"
 	if dragging: t += " dragging"
 	text = t
+
+func find_new_subject(xy=null):
+	if xy == null: xy = position
+	var ns = current_sketch.get_children()
+	self.subject = null
+	for i in range(len(ns)-1, 0, -1):
+		if ns[i] is GsNode and ns[i].get_rect().has_point(position):
+			self.subject = ns[i]
+			break
+	return subject

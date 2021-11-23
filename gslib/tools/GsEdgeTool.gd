@@ -23,14 +23,16 @@ func _set_src(v):
 
 func _click(mouse):
 	if GsLib.app.selection.size(): ._click(mouse)
-	elif mouse.subject is GsNode:
+	elif mouse.find_new_subject() is GsNode:
 		if src: _drag_end(mouse)
 		else: self.src = mouse.subject
 	else: self.src = GsLib.add_rect(mouse.position)
 
 func _drag_start(mouse):
 	if GsLib.app.selection.size(): ._drag_start(mouse)
-	elif mouse.subject is GsNode: self.src = mouse.subject
+	elif mouse.find_new_subject() is GsNode:
+		self.src = mouse.subject
+		mouse.subject = null
 	else: self.src = GsLib.add_rect(mouse.position)
 
 func _drag_step(mouse):
@@ -43,7 +45,10 @@ func _drag_end(mouse):
 	if GsLib.app.selection.size(): ._drag_end(mouse)
 	else:
 		var dst = mouse.subject
+		if dst == null: dst = mouse.find_new_subject()
 		if dst is GsNode and dst != src: pass
-		else: dst = GsLib.add_rect(mouse.position)
+		else:
+			print("ADDING RECT")
+			dst = GsLib.add_rect(mouse.position)
 		GsLib.add_edge(src, dst, edge)
 		self.src = null

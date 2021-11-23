@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://gslib/GsGrid.gd" type="Script" id=1]
 [ext_resource path="res://gslib/GsSketch.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://fonts/fa-regular-font.tres" type="DynamicFont" id=11]
 [ext_resource path="res://fonts/fa-solid-font.tres" type="DynamicFont" id=12]
 [ext_resource path="res://gslib/tools/GsSelectionDragHelper.gd" type="Script" id=13]
+[ext_resource path="res://gslib/tools/GsEdgeTool.gd" type="Script" id=14]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -203,7 +204,7 @@ __meta__ = {
 [node name="hbox" type="HBoxContainer" parent="toolbar"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 419.0
+margin_right = 455.0
 margin_bottom = 31.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -235,9 +236,22 @@ __meta__ = {
 }
 tool_script = ExtResource( 4 )
 
-[node name="pencil" type="ToolButton" parent="toolbar/hbox"]
+[node name="build" type="ToolButton" parent="toolbar/hbox"]
 margin_left = 56.0
-margin_right = 84.0
+margin_right = 88.0
+margin_bottom = 24.0
+hint_tooltip = "Node tool"
+custom_fonts/font = ExtResource( 12 )
+text = ""
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+tool_script = ExtResource( 14 )
+
+[node name="pencil" type="ToolButton" parent="toolbar/hbox"]
+margin_left = 92.0
+margin_right = 120.0
 margin_bottom = 24.0
 hint_tooltip = "Pencil tool"
 custom_fonts/font = ExtResource( 12 )
@@ -249,8 +263,8 @@ __meta__ = {
 tool_script = ExtResource( 3 )
 
 [node name="hand" type="ToolButton" parent="toolbar/hbox"]
-margin_left = 88.0
-margin_right = 114.0
+margin_left = 124.0
+margin_right = 150.0
 margin_bottom = 24.0
 hint_tooltip = "Hand tool"
 custom_fonts/font = ExtResource( 12 )
@@ -259,8 +273,8 @@ text = ""
 script = ExtResource( 9 )
 
 [node name="text" type="ToolButton" parent="toolbar/hbox"]
-margin_left = 118.0
-margin_right = 144.0
+margin_left = 154.0
+margin_right = 180.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 12 )
 disabled = true
@@ -271,8 +285,8 @@ __meta__ = {
 }
 
 [node name="color" type="ColorPickerButton" parent="toolbar/hbox"]
-margin_left = 148.0
-margin_right = 179.0
+margin_left = 184.0
+margin_right = 215.0
 margin_bottom = 24.0
 hint_tooltip = "Fill  Color"
 size_flags_horizontal = 0
@@ -281,8 +295,8 @@ flat = true
 color = Color( 0.933333, 0.933333, 0.933333, 1 )
 
 [node name="grid" type="CheckBox" parent="toolbar/hbox"]
-margin_left = 183.0
-margin_right = 238.0
+margin_left = 219.0
+margin_right = 274.0
 margin_bottom = 24.0
 pressed = true
 text = "Grid"
@@ -291,16 +305,16 @@ __meta__ = {
 }
 
 [node name="clear" type="Button" parent="toolbar/hbox"]
-margin_left = 242.0
-margin_right = 266.0
+margin_left = 278.0
+margin_right = 302.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 12 )
 text = ""
 flat = true
 
 [node name="load" type="Button" parent="toolbar/hbox"]
-margin_left = 270.0
-margin_right = 300.0
+margin_left = 306.0
+margin_right = 336.0
 margin_bottom = 24.0
 hint_tooltip = "Load"
 custom_fonts/font = ExtResource( 12 )
@@ -308,8 +322,8 @@ text = ""
 flat = true
 
 [node name="save" type="Button" parent="toolbar/hbox"]
-margin_left = 304.0
-margin_right = 330.0
+margin_left = 340.0
+margin_right = 366.0
 margin_bottom = 24.0
 hint_tooltip = "Save"
 custom_fonts/font = ExtResource( 12 )
@@ -317,8 +331,8 @@ text = ""
 flat = true
 
 [node name="delete" type="Button" parent="toolbar/hbox"]
-margin_left = 334.0
-margin_right = 360.0
+margin_left = 370.0
+margin_right = 396.0
 margin_bottom = 24.0
 hint_tooltip = "delete"
 custom_fonts/font = ExtResource( 12 )
@@ -326,8 +340,8 @@ text = ""
 flat = true
 
 [node name="to_front" type="Button" parent="toolbar/hbox"]
-margin_left = 364.0
-margin_right = 386.0
+margin_left = 400.0
+margin_right = 422.0
 margin_bottom = 24.0
 hint_tooltip = "move to front"
 custom_fonts/font = ExtResource( 12 )
@@ -335,8 +349,8 @@ text = ""
 flat = true
 
 [node name="to_back" type="Button" parent="toolbar/hbox"]
-margin_left = 390.0
-margin_right = 412.0
+margin_left = 426.0
+margin_right = 448.0
 margin_bottom = 24.0
 hint_tooltip = "move to back"
 custom_fonts/font = ExtResource( 12 )

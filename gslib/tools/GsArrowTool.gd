@@ -1,4 +1,4 @@
-extends GsMouseTool
+class_name GsArrowTool extends GsMouseTool
 func get_class_name(): return "GsArrowTool"
 
 func _drag_start(mouse):
@@ -20,7 +20,6 @@ func _drag_end(mouse):
 		mouse.selectangle.visible = false
 		var csk = mouse.current_sketch
 		var rect = mouse.selectangle.get_rect()
-		var xy0 = Vector2.INF; var xy1 = -Vector2.INF
 		var selection = []
 
 		for c in csk.get_children():
@@ -29,35 +28,12 @@ func _drag_end(mouse):
 			if r.intersects(rect):
 				c.selected = true
 				selection.append(c)
-				xy0.x = min(xy0.x, r.position.x)
-				xy0.y = min(xy0.y, r.position.y)
-				xy1.x = max(xy1.x, r.end.x)
-				xy1.y = max(xy1.y, r.end.y)
 			else: c.selected = false
-
-		var s:Control = mouse.selection
-		if selection.size():
-			s.rect_position = xy0 - Vector2(5,5)
-			s.rect_size = (xy1 - xy0) + Vector2(10,10)
-			s.visible = true
-			for c in selection:
-				if c is GsNode:
-					$"/root/app".current_fill_color = c.fill_color
-					break
-		else: s.visible = false
+		GsLib.app.selection = selection
 
 func _click(mouse):
 	if mouse.subject == mouse.selection.get_node('drag_helper'):
 		return  # TODO: what should happen?
 	if mouse.subject is GsHandle: return
-	for c in mouse.current_sketch.get_children():
-		if c is GsBase: c.selected = false
-	if mouse.subject:
-		mouse.subject.selected = true
-		if mouse.subject is GsNode:
-			$"/root/app".current_fill_color = mouse.subject.fill_color
-		var s:Control = mouse.selection
-		s.rect_position = mouse.subject.rect_position - Vector2(5,5)
-		s.rect_size = mouse.subject.rect_size + Vector2(10,10)
-		s.visible = true
-	else: mouse.selection.visible = false
+	if mouse.subject: GsLib.app.selection = [mouse.subject]
+	else: GsLib.app.selection = []

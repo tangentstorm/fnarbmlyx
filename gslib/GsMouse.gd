@@ -19,6 +19,9 @@ onready var current_sketch = get_node(sketch_path)
 onready var selectangle = get_node(selectangle_path)
 onready var selection = get_node(selection_path)
 
+func _ready():
+	GsLib.mouse = self
+
 func set_tool_script(ts:Script):
 	if ts == null: ts = load('res://gs_tools/GsMouseTool.gd')
 	current_tool.script = ts

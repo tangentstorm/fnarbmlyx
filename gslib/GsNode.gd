@@ -55,7 +55,7 @@ func _draw():
 				pts.push_back(center + Vector2(cos(t), sin(t)) * radius)
 			for i in range(num):
 				draw_line(pts[i], pts[i+1], line_color, 1.0, true)
-	
+
 	var baseline = font.get_ascent() - 2
 	var text_size = font.get_string_size(text)
 	var xy = Vector2(center.x - (text_size.x * 0.5), baseline)

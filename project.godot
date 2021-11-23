@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://gslib/GsApp.gd"
 }, {
+"base": "GsMouseTool",
+"class": "GsArrowTool",
+"language": "GDScript",
+"path": "res://gslib/tools/GsArrowTool.gd"
+}, {
 "base": "Control",
 "class": "GsBase",
 "language": "GDScript",
@@ -43,6 +48,11 @@ _global_script_classes=[ {
 "class": "GsCurve",
 "language": "GDScript",
 "path": "res://gslib/GsCurve.gd"
+}, {
+"base": "GsArrowTool",
+"class": "GsEdgeTool",
+"language": "GDScript",
+"path": "res://gslib/tools/GsEdgeTool.gd"
 }, {
 "base": "GsBase",
 "class": "GsHandle",
@@ -100,8 +110,10 @@ _global_script_class_icons={
 "BinaryTree": "",
 "Circle": "",
 "GsApp": "",
+"GsArrowTool": "",
 "GsBase": "",
 "GsCurve": "",
+"GsEdgeTool": "",
 "GsHandle": "",
 "GsMouse": "",
 "GsMouseTool": "",
@@ -125,6 +137,10 @@ config/icon="res://icon.png"
 [audio]
 
 enable_audio_input=true
+
+[autoload]
+
+GsLib="*res://gslib/GsLib.gd"
 
 [display]
 

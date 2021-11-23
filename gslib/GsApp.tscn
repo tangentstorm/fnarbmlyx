@@ -181,7 +181,7 @@ __meta__ = {
 [node name="hbox" type="HBoxContainer" parent="toolbar"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 377.0
+margin_right = 432.0
 margin_bottom = 31.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -258,6 +258,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="clear" type="Button" parent="toolbar/hbox"]
+margin_left = 374.0
+margin_right = 425.0
+margin_bottom = 24.0
+text = "CLEAR"
+flat = true
+
 [node name="mouse" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -273,3 +280,4 @@ __meta__ = {
 script = ExtResource( 6 )
 
 [connection signal="toggled" from="toolbar/hbox/grid" to="grid" method="_on_grid_toggled"]
+[connection signal="pressed" from="toolbar/hbox/clear" to="sketch" method="clear"]

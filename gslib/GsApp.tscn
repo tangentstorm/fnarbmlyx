@@ -196,7 +196,7 @@ __meta__ = {
 [node name="hbox" type="HBoxContainer" parent="toolbar"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 367.0
+margin_right = 427.0
 margin_bottom = 31.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -318,6 +318,24 @@ custom_fonts/font = ExtResource( 12 )
 text = ""
 flat = true
 
+[node name="to_front" type="Button" parent="toolbar/hbox"]
+margin_left = 364.0
+margin_right = 386.0
+margin_bottom = 24.0
+hint_tooltip = "move to front"
+custom_fonts/font = ExtResource( 12 )
+text = ""
+flat = true
+
+[node name="to_back" type="Button" parent="toolbar/hbox"]
+margin_left = 390.0
+margin_right = 412.0
+margin_bottom = 24.0
+hint_tooltip = "move to back"
+custom_fonts/font = ExtResource( 12 )
+text = ""
+flat = true
+
 [node name="fog" type="ColorRect" parent="."]
 visible = false
 anchor_right = 1.0
@@ -353,6 +371,8 @@ __meta__ = {
 [connection signal="pressed" from="toolbar/hbox/load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="toolbar/hbox/save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="toolbar/hbox/delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="toolbar/hbox/to_front" to="." method="_on_to_front_pressed"]
+[connection signal="pressed" from="toolbar/hbox/to_back" to="." method="_on_to_back_pressed"]
 [connection signal="about_to_show" from="FileDialog" to="." method="_on_FileDialog_about_to_show"]
 [connection signal="confirmed" from="FileDialog" to="." method="_on_FileDialog_confirmed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]

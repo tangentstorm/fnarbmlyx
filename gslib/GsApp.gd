@@ -75,3 +75,17 @@ func _on_color_pressed():
 
 func _on_color_popup_closed():
 	ignore_mouse -= 1
+
+
+func _on_to_front_pressed():
+	var n = $sketch.get_child_count()
+	for c in $sketch.get_children():
+		if c is GsBase and c.selected:
+			$sketch.move_child(c, n)
+
+func _on_to_back_pressed():
+	var ch = $sketch.get_children()
+	for i in range(len(ch)):
+		var c : Control = ch[i]
+		if c is GsBase and c.selected:
+			$sketch.move_child(c, 0)

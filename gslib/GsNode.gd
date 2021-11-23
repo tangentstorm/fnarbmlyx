@@ -77,7 +77,7 @@ func _draw():
 	var xy = Vector2(center.x - (text_size.x * 0.5), baseline)
 	draw_string(font, xy, text, text_color)
 
-	if selected:
+	if selected and GsLib.app.selection.size() > 1:
 		var pad = Vector2(5,5)
 		draw_rect(Rect2(-pad, rect_size + 2*pad), Color(0xffffff66), true)
 

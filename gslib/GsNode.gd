@@ -1,7 +1,7 @@
 tool class_name GsNode extends GsBase
 func get_class_name(): return "GsNode"
 
-const NOTO = preload("res://fonts/noto_font.tres")
+const NOTO = preload("res://fonts/noto-font.tres")
 
 enum SHAPE { DISK, RECT }
 export(SHAPE) var shape = SHAPE.RECT setget _set_shape

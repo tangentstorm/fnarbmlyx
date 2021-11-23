@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://gslib/GsGrid.gd" type="Script" id=1]
 [ext_resource path="res://gslib/GsSketch.gd" type="Script" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://gslib/GsApp.gd" type="Script" id=8]
 [ext_resource path="res://gslib/tools/GsMouseToolButton.gd" type="Script" id=9]
 [ext_resource path="res://gslib/GsHandle.gd" type="Script" id=10]
+[ext_resource path="res://fonts/fa-regular-font.tres" type="DynamicFont" id=11]
+[ext_resource path="res://fonts/fa-solid-font.tres" type="DynamicFont" id=12]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -183,7 +185,7 @@ __meta__ = {
 }
 
 [node name="toolbar" type="PanelContainer" parent="."]
-margin_right = 539.0
+margin_right = 374.0
 margin_bottom = 38.0
 input_pass_on_modal_close_click = false
 __meta__ = {
@@ -194,17 +196,19 @@ __meta__ = {
 [node name="hbox" type="HBoxContainer" parent="toolbar"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 593.0
+margin_right = 367.0
 margin_bottom = 31.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="arrow" type="ToolButton" parent="toolbar/hbox"]
-margin_right = 61.0
+margin_right = 22.0
 margin_bottom = 24.0
+hint_tooltip = "Arrow tool"
+custom_fonts/font = ExtResource( 12 )
 group = SubResource( 1 )
-text = "ARROW"
+text = ""
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -212,10 +216,12 @@ __meta__ = {
 tool_script = ExtResource( 6 )
 
 [node name="node" type="ToolButton" parent="toolbar/hbox"]
-margin_left = 65.0
-margin_right = 115.0
+margin_left = 26.0
+margin_right = 52.0
 margin_bottom = 24.0
-text = "NODE"
+hint_tooltip = "Node tool"
+custom_fonts/font = ExtResource( 11 )
+text = ""
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -223,10 +229,12 @@ __meta__ = {
 tool_script = ExtResource( 4 )
 
 [node name="pencil" type="ToolButton" parent="toolbar/hbox"]
-margin_left = 119.0
-margin_right = 176.0
+margin_left = 56.0
+margin_right = 84.0
 margin_bottom = 24.0
-text = "PENCIL"
+hint_tooltip = "Pencil tool"
+custom_fonts/font = ExtResource( 12 )
+text = ""
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -234,27 +242,30 @@ __meta__ = {
 tool_script = ExtResource( 3 )
 
 [node name="hand" type="ToolButton" parent="toolbar/hbox"]
-margin_left = 180.0
-margin_right = 231.0
+margin_left = 88.0
+margin_right = 114.0
 margin_bottom = 24.0
+hint_tooltip = "Hand tool"
+custom_fonts/font = ExtResource( 12 )
 disabled = true
-text = "HAND"
+text = ""
 script = ExtResource( 9 )
 
 [node name="text" type="ToolButton" parent="toolbar/hbox"]
-margin_left = 235.0
-margin_right = 276.0
+margin_left = 118.0
+margin_right = 144.0
 margin_bottom = 24.0
+custom_fonts/font = ExtResource( 12 )
 disabled = true
-text = "TEXT"
+text = ""
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="color" type="ColorPickerButton" parent="toolbar/hbox"]
-margin_left = 280.0
-margin_right = 311.0
+margin_left = 148.0
+margin_right = 179.0
 margin_bottom = 24.0
 hint_tooltip = "Fill  Color"
 size_flags_horizontal = 0
@@ -263,8 +274,8 @@ flat = true
 color = Color( 0.933333, 0.933333, 0.933333, 1 )
 
 [node name="grid" type="CheckBox" parent="toolbar/hbox"]
-margin_left = 315.0
-margin_right = 370.0
+margin_left = 183.0
+margin_right = 238.0
 margin_bottom = 24.0
 pressed = true
 text = "Grid"
@@ -272,32 +283,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="load" type="Button" parent="toolbar/hbox"]
-margin_left = 374.0
-margin_right = 423.0
+[node name="clear" type="Button" parent="toolbar/hbox"]
+margin_left = 242.0
+margin_right = 266.0
 margin_bottom = 24.0
-text = "LOAD"
+custom_fonts/font = ExtResource( 12 )
+text = ""
+flat = true
+
+[node name="load" type="Button" parent="toolbar/hbox"]
+margin_left = 270.0
+margin_right = 300.0
+margin_bottom = 24.0
+hint_tooltip = "Load"
+custom_fonts/font = ExtResource( 12 )
+text = ""
 flat = true
 
 [node name="save" type="Button" parent="toolbar/hbox"]
-margin_left = 427.0
-margin_right = 470.0
+margin_left = 304.0
+margin_right = 330.0
 margin_bottom = 24.0
-text = "SAVE"
-flat = true
-
-[node name="clear" type="Button" parent="toolbar/hbox"]
-margin_left = 474.0
-margin_right = 525.0
-margin_bottom = 24.0
-text = "CLEAR"
+hint_tooltip = "Save"
+custom_fonts/font = ExtResource( 12 )
+text = ""
 flat = true
 
 [node name="delete" type="Button" parent="toolbar/hbox"]
-margin_left = 529.0
-margin_right = 586.0
+margin_left = 334.0
+margin_right = 360.0
 margin_bottom = 24.0
-text = "DELETE"
+hint_tooltip = "delete"
+custom_fonts/font = ExtResource( 12 )
+text = ""
 flat = true
 
 [node name="fog" type="ColorRect" parent="."]
@@ -331,9 +349,9 @@ __meta__ = {
 [connection signal="popup_closed" from="toolbar/hbox/color" to="." method="_on_color_popup_closed"]
 [connection signal="pressed" from="toolbar/hbox/color" to="." method="_on_color_pressed"]
 [connection signal="toggled" from="toolbar/hbox/grid" to="grid" method="_on_grid_toggled"]
+[connection signal="pressed" from="toolbar/hbox/clear" to="." method="_on_clear_pressed"]
 [connection signal="pressed" from="toolbar/hbox/load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="toolbar/hbox/save" to="." method="_on_save_pressed"]
-[connection signal="pressed" from="toolbar/hbox/clear" to="." method="_on_clear_pressed"]
 [connection signal="pressed" from="toolbar/hbox/delete" to="." method="_on_delete_pressed"]
 [connection signal="about_to_show" from="FileDialog" to="." method="_on_FileDialog_about_to_show"]
 [connection signal="confirmed" from="FileDialog" to="." method="_on_FileDialog_confirmed"]

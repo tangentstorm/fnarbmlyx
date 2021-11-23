@@ -1,0 +1,6 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://fonts/Font Awesome 5 Free-Solid-900.otf" type="DynamicFontData" id=1]
+
+[resource]
+font_data = ExtResource( 1 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://gslib/GsGrid.gd" type="Script" id=1]
 [ext_resource path="res://gslib/GsSketch.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://gslib/GsHandle.gd" type="Script" id=10]
 [ext_resource path="res://fonts/fa-regular-font.tres" type="DynamicFont" id=11]
 [ext_resource path="res://fonts/fa-solid-font.tres" type="DynamicFont" id=12]
+[ext_resource path="res://gslib/tools/GsSelectionDragHelper.gd" type="Script" id=13]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -68,6 +69,7 @@ margin_left = 224.0
 margin_top = 128.0
 margin_right = 352.0
 margin_bottom = 256.0
+mouse_filter = 1
 border_color = Color( 0.580392, 0.831373, 0.968627, 1 )
 border_width = 2.5
 editor_only = false
@@ -164,6 +166,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="drag_helper" type="Control" parent="selection"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 13 )
+
 [node name="selectangle" type="ReferenceRect" parent="."]
 visible = false
 margin_left = 456.0
@@ -196,7 +203,7 @@ __meta__ = {
 [node name="hbox" type="HBoxContainer" parent="toolbar"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 427.0
+margin_right = 419.0
 margin_bottom = 31.0
 __meta__ = {
 "_edit_use_anchors_": false

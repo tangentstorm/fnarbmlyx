@@ -1,4 +1,4 @@
-extends GsBase
+class_name GsHandle extends GsBase
 func get_class_name(): return "GsHandle"
 
 func _ready():

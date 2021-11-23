@@ -47,10 +47,12 @@ func _drag_end(mouse):
 		else: s.visible = false
 
 func _click(mouse):
+	if mouse.subject == mouse.selection.get_node('drag_helper'):
+		return  # TODO: what should happen?
+	if mouse.subject is GsHandle: return
 	for c in mouse.current_sketch.get_children():
 		if c is GsBase: c.selected = false
-	if mouse.subject == mouse.selection: pass # TODO: what should happen?
-	elif mouse.subject:
+	if mouse.subject:
 		mouse.subject.selected = true
 		if mouse.subject is GsNode:
 			$"/root/app".current_fill_color = mouse.subject.fill_color

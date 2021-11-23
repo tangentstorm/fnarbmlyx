@@ -44,12 +44,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://gslib/GsCurve.gd"
 }, {
+"base": "GsBase",
+"class": "GsHandle",
+"language": "GDScript",
+"path": "res://gslib/GsHandle.gd"
+}, {
 "base": "Label",
 "class": "GsMouse",
 "language": "GDScript",
 "path": "res://gslib/GsMouse.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "GsMouseTool",
 "language": "GDScript",
 "path": "res://gslib/tools/GsMouseTool.gd"
@@ -97,6 +102,7 @@ _global_script_class_icons={
 "GsApp": "",
 "GsBase": "",
 "GsCurve": "",
+"GsHandle": "",
 "GsMouse": "",
 "GsMouseTool": "",
 "GsNode": "",

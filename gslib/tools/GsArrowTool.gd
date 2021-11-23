@@ -41,3 +41,15 @@ func _drag_end(mouse):
 			s.rect_size = (xy1 - xy0) + Vector2(10,10)
 			s.visible = true
 		else: s.visible = false
+
+func _click(mouse):
+	for c in mouse.current_sketch.get_children():
+		if c is GsBase: c.selected = false
+	if mouse.subject == mouse.selection: pass # TODO: what should happen?
+	elif mouse.subject:
+		mouse.subject.selected = true
+		var s:Control = mouse.selection
+		s.rect_position = mouse.subject.rect_position - Vector2(5,5)
+		s.rect_size = mouse.subject.rect_size + Vector2(10,10)
+		s.visible = true
+	else: mouse.selection.visible = false

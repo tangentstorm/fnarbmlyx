@@ -1,6 +1,6 @@
 extends ToolButton
 
-export (Script) var tool_script = load('res://gslib/GsMouseTool.gd')
+export (Script) var tool_script = load('res://gslib/tools/GsMouseTool.gd')
 
 func _ready():
 	self.connect('pressed', self, '_click')

@@ -1,22 +1,24 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://gslib/GsMouseToolButton.gd" type="Script" id=1]
-[ext_resource path="res://gslib/GsPencilTool.gd" type="Script" id=2]
-[ext_resource path="res://gslib/GsMouse.gd" type="Script" id=3]
-[ext_resource path="res://gslib/GsArrowTool.gd" type="Script" id=4]
-[ext_resource path="res://gslib/GameSketchApp.gd" type="Script" id=5]
-[ext_resource path="res://gslib/GsGrid.gd" type="Script" id=6]
-[ext_resource path="res://gslib/GsNodeTool.gd" type="Script" id=7]
+[ext_resource path="res://gslib/GsGrid.gd" type="Script" id=1]
+[ext_resource path="res://gslib/GsSketch.gd" type="Script" id=2]
+[ext_resource path="res://gslib/tools/GsPencilTool.gd" type="Script" id=3]
+[ext_resource path="res://gslib/tools/GsNodeTool.gd" type="Script" id=4]
+[ext_resource path="res://gslib/GsMouse.gd" type="Script" id=5]
+[ext_resource path="res://gslib/tools/GsArrowTool.gd" type="Script" id=6]
+[ext_resource path="res://gslib/GsApp.gd" type="Script" id=8]
+[ext_resource path="res://gslib/tools/GsMouseToolButton.gd" type="Script" id=9]
 
-[sub_resource type="ButtonGroup" id=1]
+[sub_resource type="ButtonGroup" id=5]
 
 [node name="app" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0.2, 0.2, 0.298039, 1 )
-script = ExtResource( 5 )
+script = ExtResource( 8 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -25,13 +27,13 @@ anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -320.0
 align = 2
-script = ExtResource( 3 )
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="tool" type="Node" parent="mouse"]
-script = ExtResource( 4 )
+script = ExtResource( 6 )
 
 [node name="grid" type="Control" parent="."]
 anchor_right = 1.0
@@ -39,8 +41,9 @@ anchor_bottom = 1.0
 margin_left = 1.0
 margin_right = 1.0
 mouse_filter = 1
-script = ExtResource( 6 )
+script = ExtResource( 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 color = Color( 0.227451, 0.266667, 0.333333, 1 )
@@ -49,12 +52,14 @@ color = Color( 0.227451, 0.266667, 0.333333, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
+script = ExtResource( 2 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="selectangle" type="ReferenceRect" parent="."]
-border_color = Color( 0.972549, 0.984314, 0.984314, 1 )
+border_color = Color( 0.611765, 0.843137, 0.972549, 1 )
 editor_only = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -72,6 +77,7 @@ __meta__ = {
 margin_right = 371.0
 margin_bottom = 38.0
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -87,35 +93,35 @@ __meta__ = {
 [node name="arrow" type="ToolButton" parent="toolbar/hbox"]
 margin_right = 61.0
 margin_bottom = 24.0
-group = SubResource( 1 )
+group = SubResource( 5 )
 text = "ARROW"
-script = ExtResource( 1 )
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-tool_script = ExtResource( 4 )
+tool_script = ExtResource( 6 )
 
 [node name="node" type="ToolButton" parent="toolbar/hbox"]
 margin_left = 65.0
 margin_right = 115.0
 margin_bottom = 24.0
 text = "NODE"
-script = ExtResource( 1 )
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-tool_script = ExtResource( 7 )
+tool_script = ExtResource( 4 )
 
 [node name="pencil" type="ToolButton" parent="toolbar/hbox"]
 margin_left = 119.0
 margin_right = 176.0
 margin_bottom = 24.0
 text = "PENCIL"
-script = ExtResource( 1 )
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-tool_script = ExtResource( 2 )
+tool_script = ExtResource( 3 )
 
 [node name="hand" type="ToolButton" parent="toolbar/hbox"]
 margin_left = 180.0
@@ -123,7 +129,7 @@ margin_right = 231.0
 margin_bottom = 24.0
 disabled = true
 text = "HAND"
-script = ExtResource( 1 )
+script = ExtResource( 9 )
 
 [node name="text" type="ToolButton" parent="toolbar/hbox"]
 margin_left = 235.0
@@ -131,7 +137,7 @@ margin_right = 276.0
 margin_bottom = 24.0
 disabled = true
 text = "TEXT"
-script = ExtResource( 1 )
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

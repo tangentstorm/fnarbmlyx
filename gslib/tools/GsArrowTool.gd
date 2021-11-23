@@ -19,3 +19,4 @@ func _drag_step(mouse):
 func _drag_end(mouse):
 	if mouse.subject: mouse.subject._set_mouse(mouse)
 	else: mouse.selectangle.visible = false
+

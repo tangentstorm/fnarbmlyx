@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Circle.gd"
 }, {
+"base": "ColorRect",
+"class": "GsApp",
+"language": "GDScript",
+"path": "res://gslib/GsApp.gd"
+}, {
 "base": "Control",
 "class": "GsCurve",
 "language": "GDScript",
@@ -39,20 +44,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://gslib/GsMouse.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "GsMouseTool",
 "language": "GDScript",
-"path": "res://gslib/GsMouseTool.gd"
+"path": "res://gslib/tools/GsMouseTool.gd"
 }, {
-"base": "Control",
+"base": "GsBase",
 "class": "GsNode",
 "language": "GDScript",
 "path": "res://gslib/GsNode.gd"
 }, {
-"base": "GsMouseTool",
+"base": "Reference",
 "class": "GsNodeTool",
 "language": "GDScript",
-"path": "res://gslib/GsNodeTool.gd"
+"path": "res://gslib/tools/GsNodeTool.gd"
 }, {
 "base": "Control",
 "class": "GsSketch",
@@ -84,6 +89,7 @@ _global_script_class_icons={
 "ASTNodeDemo": "",
 "BinaryTree": "",
 "Circle": "",
+"GsApp": "",
 "GsCurve": "",
 "GsMouse": "",
 "GsMouseTool": "",
@@ -99,7 +105,7 @@ _global_script_class_icons={
 [application]
 
 config/name="fnarbmlyx"
-run/main_scene="res://gslib/GameSketchApp.tscn"
+run/main_scene="res://gslib/GsApp.tscn"
 config/icon="res://icon.png"
 
 [audio]

@@ -1,7 +1,10 @@
 class_name GsApp extends ColorRect
 func get_class_name(): return "GsApp"
 
-var ignore_mouse : int = 0
+var ignore_mouse  : int = 0
+var current_fill_color : Color = Color.white setget _set_fill_color
+var current_line_color : Color = Color.black
+var current_text_color : Color = Color.black
 
 func _input(e):
 	if e is InputEventMouse and not ignore_mouse:
@@ -51,8 +54,18 @@ func _on_FileDialog_file_selected(path):
 func _on_clear_pressed():
 	$sketch.clear()
 
+func _on_delete_pressed():
+	for c in $sketch.get_children():
+		if c is GsBase and c.selected:
+			c.queue_free()
+	$selection.visible = false
+
+func _set_fill_color(v):
+	current_fill_color = v
+	$toolbar/hbox/color.color = v
+
 func _on_color_color_changed(color):
-	print("new color:", color)
+	current_fill_color = color
 	for c in $sketch.get_children():
 		if c is GsBase and c.selected:
 			c.fill_color = color

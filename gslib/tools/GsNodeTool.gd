@@ -5,7 +5,8 @@ var node : GsNode
 
 func _drag_start(mouse):
 	node = GsNode.new()
-	node.text = 'Node'
+	node.text = ''
+	node.fill_color = $"/root/app".current_fill_color
 	node.rect_position = mouse.origin
 	mouse.current_sketch.add_child(node)
 	node.set_owner(mouse.current_sketch)

@@ -15,6 +15,7 @@ var edges : Array = [] # Array[GsEdge]
 
 func _ready():
 	self.draggable = true
+	self.edge_refs = edge_refs # defer connections until ready
 
 func _set_shape(v):
 	shape = v; update()
@@ -42,8 +43,10 @@ func _clear_edges():
 	edges = [];	edge_refs = []
 
 func _set_edge_refs(vs):
-	_clear_edges()
-	for v in vs: add_edge_ref(v)
+	if is_inside_tree():
+		_clear_edges()
+		for v in vs: add_edge_ref(v)
+	else: edge_refs = vs
 
 func add_edge(e):
 	edge_refs.append(e.get_path()); edges.append(e)

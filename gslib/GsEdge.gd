@@ -8,8 +8,8 @@ func get_class_name(): return 'GsEdge'
 export var src_path : NodePath setget _set_src_path
 export var dst_path : NodePath setget _set_dst_path
 
-var src = null setget _set_src
-var dst = null setget _set_dst
+onready var src = get_node(src_path) setget _set_src
+onready var dst = get_node(dst_path) setget _set_dst
 
 func _set_src_path(v):
 	src_path = v; src = get_node(v)

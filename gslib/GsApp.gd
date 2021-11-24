@@ -33,7 +33,7 @@ func _set_selection(nodes:Array):
 		var s = $selection; s.visible = true
 		var padding = SELECTANGLE_PADDING if nodes.size() > 1 else Vector2.ZERO
 		s.rect_position = xy0 - padding; s.rect_size = (xy1 - xy0) + 2 * padding
-		self.current_fill_color = fill
+		_set_fill_color(fill, true, false)
 
 func _input(e):
 	if e is InputEventMouse and not ignore_mouse:
@@ -89,16 +89,16 @@ func _on_delete_pressed():
 			c.queue_free()
 	$selection.visible = false
 
-func _set_fill_color(v):
+func _set_fill_color(v, tell_ui=true, paint_selection=true):
 	current_fill_color = v
 	if is_inside_tree():
-		$toolbar/hbox/color.color = v
+		if tell_ui: $toolbar/hbox/color.color = v
+		if paint_selection:
+			for c in selection:
+				if c is GsNode: c.fill_color = v
 
 func _on_color_color_changed(color):
-	current_fill_color = color
-	for c in $sketch.get_children():
-		if c is GsBase and c.selected:
-			c.fill_color = color
+	_set_fill_color(color, false)
 
 func _on_color_pressed():
 	ignore_mouse += 1
@@ -119,3 +119,6 @@ func _on_to_back_pressed():
 		var c : Control = ch[i]
 		if c is GsBase and c.selected:
 			$sketch.move_child(c, 0)
+
+func _on_palette_clicked(node, x, y, i, color):
+	_set_fill_color(color)

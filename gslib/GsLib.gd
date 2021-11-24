@@ -5,8 +5,8 @@ var app : GsApp
 var mouse : GsMouse
 
 func add_node(n:GsNode, select:bool=true)->GsNode:
-	n.set_owner(mouse.current_sketch)
 	mouse.current_sketch.add_child(n)
+	n.set_owner(mouse.current_sketch)
 	if select: app.selection = [n]
 	return n
 

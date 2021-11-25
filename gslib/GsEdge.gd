@@ -25,11 +25,9 @@ func _set_dst(v):
 	dst = v
 	if v: dst_path = v.get_path()
 
-func _on_node_moved(node:GsNode, dxy:Vector2):
-	var p = curve.get_point_position(1)
-	if node == src:
-		rect_position += dxy
-		curve.set_point_position(1, p - dxy)
-	if node == dst:  # could be both src and dst!
-		curve.set_point_position(1, p + dxy)
+func _on_node_moved():
+	var a = src.link_point(0)
+	var b = dst.link_point(0) - a
+	rect_position = a
+	curve.set_point_position(1, b)
 	update()

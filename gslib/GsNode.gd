@@ -52,13 +52,13 @@ func _set_edge_refs(vs):
 
 func add_edge(e):
 	edge_refs.append(e.get_path()); edges.append(e)
-	connect("moved", e, '_on_node_moved')
+	connect("item_rect_changed", e, '_on_node_moved')
 
 func add_edge_ref(ref):
 	add_edge(get_node(ref))
 
 func _draw():
-	var center = link_point(0)
+	var center = link_offset(0)
 	var radius = rect_min_size.x * 0.5
 
 	for c in get_children():

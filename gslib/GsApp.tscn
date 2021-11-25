@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://gslib/GsGrid.gd" type="Script" id=1]
 [ext_resource path="res://gslib/GsSketch.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://gslib/tools/GsSelectionDragHelper.gd" type="Script" id=13]
 [ext_resource path="res://gslib/tools/GsEdgeTool.gd" type="Script" id=14]
 [ext_resource path="res://gslib/GsIndexedImage.gd" type="Script" id=15]
+[ext_resource path="res://gslib/scripts/gs-rnd-ast.gd" type="Script" id=16]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -397,6 +398,14 @@ current_path = "user://d:/ver/fnarbmlyx/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="script" type="Node2D" parent="."]
+position = Vector2( 64, 96 )
+script = ExtResource( 16 )
+
+[node name="Timer" type="Timer" parent="script"]
+wait_time = 0.056
+autostart = true
 
 [connection signal="toggled" from="toolbar/hbox/grid" to="grid" method="_on_grid_toggled"]
 [connection signal="pressed" from="toolbar/hbox/clear" to="." method="_on_clear_pressed"]

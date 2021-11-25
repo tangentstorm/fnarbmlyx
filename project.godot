@@ -74,7 +74,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://gslib/GsMouse.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "GsMouseTool",
 "language": "GDScript",
 "path": "res://gslib/tools/GsMouseTool.gd"

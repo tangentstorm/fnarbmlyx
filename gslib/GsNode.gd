@@ -34,9 +34,11 @@ func _set_font(v):
 
 func _set_text(v):
 	text = v
-	var size = font.get_string_size(text)
-	rect_min_size.x = max(rect_min_size.x, size.x)
-	rect_min_size.y = max(rect_min_size.y, size.y)
+	if text == '': rect_min_size = Vector2.ZERO
+	else:
+		var size = font.get_string_size(text)
+		rect_min_size.x = max(rect_min_size.x, size.x)
+		rect_min_size.y = max(rect_min_size.y, size.y)
 	update()
 
 func _clear_edges():

@@ -24,4 +24,4 @@ func add_edge(src:GsNode, dst:GsNode, edge:GsEdge):
 	if edge.get_parent() != sp:
 		sp.add_child(edge); edge.set_owner(sp)
 	var ix = min(src.get_index(), dst.get_index())
-	if edge.get_index() > ix: sp.move_child(edge, min(0, ix-1))
+	if edge.get_index() > ix: sp.move_child(edge, max(0, ix-1))

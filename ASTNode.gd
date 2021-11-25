@@ -19,11 +19,11 @@ func _set_op(v):
 	op = v
 	if (op == OP.NONE) or (op == null): return # update()
 	text = op_text[op]
-	text_color = Color.white if op == OP.I or op < OP.O else Color.black
+	text_color = Color.white if op <= OP.O else Color.black
 	shape = SHAPE.DISK if op > OP.I else SHAPE.RECT
 	match op:
-		OP.I: fill_color = Color('222')
-		OP.O: fill_color = Color('eee')
+		OP.I: fill_color = Color('eee')
+		OP.O: fill_color = Color('222')
 		OP.X0, OP.X1, OP.X2, OP.X3, OP.X4:
 			# text = OP.keys()[op].to_lower()
 			fill_color = Color('597dce')

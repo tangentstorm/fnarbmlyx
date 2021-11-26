@@ -19,11 +19,11 @@ func _set_dst_path(v):
 
 func _set_src(v):
 	src = v
-	if v: src_path = v.get_path()
+	if v != null: src_path = v.get_path()
 
 func _set_dst(v):
 	dst = v
-	if v: dst_path = v.get_path()
+	if v != null: dst_path = v.get_path()
 
 func _on_node_moved():
 	var a = src.link_point(0)

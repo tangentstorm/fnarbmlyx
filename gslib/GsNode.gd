@@ -10,12 +10,11 @@ export var line_color : Color = Color.black setget _set_line_color
 export var text_color : Color = Color.black setget _set_text_color
 export var text : String = '' setget _set_text
 export var font : Font = NOTO setget _set_font
-export (Array, NodePath) var edge_refs : Array = [] setget _set_edge_refs
-var edges : Array = [] # Array[GsEdge]
+export (Array, NodePath) var edge_refs : Array setget _set_edge_refs
+var edges : Array # Array[GsEdge]
 
 func _ready():
 	self.draggable = true
-	self.edge_refs = edge_refs # defer connections until ready
 
 func _set_shape(v):
 	shape = v; update()
@@ -42,9 +41,14 @@ func _set_text(v):
 	update()
 
 func _clear_edges():
-	edges = [];	edge_refs = []
+	edges = []; edge_refs = []
 
 func _set_edge_refs(vs):
+	# wait until all nodes are loaded before attempting to
+	# re-establish connections (else it may fail when re-loading a graph)
+	call_deferred('_set_edge_refs_deferred', vs)
+
+func _set_edge_refs_deferred(vs):
 	if is_inside_tree():
 		_clear_edges()
 		for v in vs: add_edge_ref(v)

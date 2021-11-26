@@ -404,7 +404,7 @@ position = Vector2( 64, 96 )
 script = ExtResource( 16 )
 
 [node name="Timer" type="Timer" parent="script"]
-wait_time = 0.056
+wait_time = 0.01
 autostart = true
 
 [connection signal="toggled" from="toolbar/hbox/grid" to="grid" method="_on_grid_toggled"]

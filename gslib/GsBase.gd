@@ -25,9 +25,8 @@ func set_draggable(v):
 		disconnect("mouse_entered", m, "_enter")
 		disconnect("mouse_exited",  m, "_leave")
 
-func _drag_step(xy, mtool):
-	var dxy = xy - rect_position
-	rect_position = xy
+func _drag_step(dxy):
+	rect_position += dxy
 	emit_signal('moved', self, dxy)
 
 func _drag_end():

@@ -7,9 +7,8 @@ func get_class_name(): return "GsSelectionDragHelper"
 func _ready():
 	self.draggable = true
 
-func _drag_step(xy, mtool):
-	var dxy = xy - rect_position
-	_get_mouse().offset -= dxy
+func _drag_step(dxy):
 	get_parent().rect_position += dxy
 	for c in GsLib.app.selection:
-		c._drag_step(c.rect_position + dxy, mtool)
+		if c == self: continue # just in case
+		c._drag_step(dxy)

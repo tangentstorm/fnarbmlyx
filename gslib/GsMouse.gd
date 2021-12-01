@@ -8,10 +8,10 @@ export var selection_path : NodePath = '/root/app/selection'
 
 var button_state : int = 0
 var position : Vector2 = Vector2.ZERO
+var dxy : Vector2 = Vector2.ZERO
 var dragging : bool = false
 var origin : Vector2 = Vector2.ZERO
 var subject : Control
-var offset : Vector2 = Vector2.ZERO
 
 onready var current_tool = $tool
 onready var current_grid = get_node(grid_path)
@@ -31,15 +31,15 @@ func drag_rect() -> Rect2:
 	return Rect2(origin, position-origin)
 
 func handle(e:InputEventMouse):
-	position = e.position
 	if current_grid and current_grid.snap:
-		position -= position.posmodv(current_grid.spacing)
+		e.position -= e.position.posmodv(current_grid.spacing)
+	dxy = e.position - position
+	position = e.position
 	if e is InputEventMouseButton:
 		if e.pressed:
 			if e.button_index == 1:
 				origin = position
-				if subject:
-					offset = subject.rect_position - origin 
+				#if subject: offset = subject.rect_position - origin 
 		elif dragging:
 			dragging = false
 			current_tool._drag_end(self)
@@ -51,7 +51,7 @@ func handle(e:InputEventMouse):
 		elif e.button_mask & BUTTON_LEFT:
 			current_tool._drag_start(self)
 			dragging = true
-			
+
 func _enter(c:Control):
 	self.subject = c
 

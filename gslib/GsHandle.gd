@@ -14,7 +14,7 @@ func _dwh(dwh):
 	if GsLib.app.selection.size() == 1:
 		GsLib.app.selection[0].rect_size += dwh
 
-func _drag_step(xy, _mtool):
+func _drag_step(dxy):
 	# dragging a handle resizes the control, leaving
 	# the other handles in place globally. This means
 	# handles on the bottom/right (south/east) can
@@ -24,7 +24,6 @@ func _drag_step(xy, _mtool):
 	# opposite direction to compensate.
 	# Since the handle is a child of the selection, we
 	# have to tell the mouse to update our offset.
-	var dxy = xy - rect_position
 	var m = _get_mouse()
 	var p = get_parent()
 	var name = get_name()

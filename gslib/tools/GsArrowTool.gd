@@ -8,7 +8,7 @@ func _drag_start(mouse):
 
 func _drag_step(mouse):
 	if mouse.subject:
-		mouse.subject._drag_step(mouse.position + mouse.offset, self)
+		mouse.subject._drag_step(mouse.dxy)
 	else:
 		var r : Rect2 = mouse.drag_rect().abs()
 		mouse.selectangle.rect_position = r.position

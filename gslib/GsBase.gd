@@ -1,9 +1,20 @@
 class_name GsBase extends Control
+func get_class_name(): return 'GsBase'
 
 export var draggable : bool = true setget set_draggable
 export var selected : bool = false setget set_selected
+onready var _cloning : bool = false
 
 signal moved(node, dxy)
+
+func clone()->Node:
+	_cloning = true
+	var copy = self._clone()
+	_cloning = false
+	return copy
+
+func _clone()->Node:
+	return .duplicate()
 
 func _enter_tree():
 	mouse_filter = Control.MOUSE_FILTER_PASS
@@ -38,3 +49,6 @@ func set_selected(v):
 
 func _click(xy):
 	GsLib.app.selection = [self]
+
+func get_info():
+	return get_class_name()

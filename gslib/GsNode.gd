@@ -13,6 +13,14 @@ export var font : Font = NOTO setget _set_font
 export (Array, NodePath) var edge_refs : Array setget _set_edge_refs
 var edges : Array # Array[GsEdge]
 
+func _clone():
+	var c = .duplicate(0)
+	for slot in get_property_list():
+		var k = slot['name']
+		if not k in ['edges', 'edge_refs']:
+			c.set(k, get(k))
+	return c
+
 func _ready():
 	self.draggable = true
 
@@ -33,11 +41,11 @@ func _set_font(v):
 
 func _set_text(v):
 	text = v
-	if text == '': rect_min_size = Vector2.ZERO
+	if text == '': rect_min_size = Vector2.ONE * 32
 	else:
 		var size = font.get_string_size(text)
-		rect_min_size.x = max(rect_min_size.x, size.x)
-		rect_min_size.y = max(rect_min_size.y, size.y)
+		rect_min_size.x = max(32, size.x)
+		rect_min_size.y = max(32, size.y)
 	update()
 
 func _clear_edges():
@@ -46,7 +54,8 @@ func _clear_edges():
 func _set_edge_refs(vs):
 	# wait until all nodes are loaded before attempting to
 	# re-establish connections (else it may fail when re-loading a graph)
-	call_deferred('_set_edge_refs_deferred', vs)
+	if not _cloning:
+		call_deferred('_set_edge_refs_deferred', vs)
 
 func _set_edge_refs_deferred(vs):
 	if is_inside_tree():
@@ -56,7 +65,16 @@ func _set_edge_refs_deferred(vs):
 
 func add_edge(e):
 	edge_refs.append(e.get_path()); edges.append(e)
+	print("CONNECT: ", self.get_name(), " -> ", e.get_name())
 	connect("item_rect_changed", e, '_on_node_moved')
+
+func rm_edge(e):
+	print('rm_edge:', e)
+	var ix = edges.find(e)
+	if ix > -1:
+		edges.remove(ix); edge_refs.remove(ix)
+		print("DISCONNECT: ", self.get_name(), " -> ", e.get_name())
+		disconnect("item_rect_changed", e, '_on_node_moved')
 
 func add_edge_ref(ref):
 	add_edge(get_node(ref))

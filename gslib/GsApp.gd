@@ -34,6 +34,8 @@ func _set_selection(nodes:Array):
 		var padding = SELECTANGLE_PADDING if nodes.size() > 1 else Vector2.ZERO
 		s.rect_position = xy0 - padding; s.rect_size = (xy1 - xy0) + 2 * padding
 		_set_fill_color(fill, true, false)
+	if nodes.size() == 1:
+		$inspector.set_item(nodes[0])
 
 func _input(e):
 	if e is InputEventMouse and not ignore_mouse:
@@ -125,14 +127,48 @@ func _on_palette_clicked(node, x, y, i, color):
 
 
 ## context menu
-enum CMD { DELETE, GROUP, UNGROUP, ARRANGE_ROW, ARRANGE_COL }
-const CMDS = ['Delete', 'Group', 'Ungroup', 'Row', 'Column']
+enum CMD { DELETE, DUPLICATE, GROUP, UNGROUP, ARRANGE_ROW, ARRANGE_COL }
+const CMDS = ['Delete', 'Duplicate', 'Group', 'Ungroup', 'Row', 'Column']
 
 func _on_context_menu_id_pressed(id):
 	match id:
 		CMD.DELETE: _on_delete_pressed()
+		CMD.DUPLICATE: cmd_duplicate()
 		CMD.GROUP: cmd_group()
 		CMD.UNGROUP: cmd_ungroup()
+
+const SHIFT = 16 * Vector2.ONE
+func cmd_duplicate():
+	var o2n = {}; var n2o = {}; var newsel = []
+	for o in selection:
+		var n = o.clone(); newsel.append(n); n.set_name('n_' + o.get_name())
+		if n is GsEdge:
+			n.src_path=''; n.dst_path=''; n.src = null; n.dst = null
+			n.color = Color.red
+		if n is GsNode:
+			n.edge_refs = []; n.edges = []
+		$sketch.add_child(n); n.set_owner($sketch)
+		o2n[o.get_name()] = n; n2o[n.get_name()] = o
+
+	# it duplicates the connections so remove old connections to new edges
+	for o in selection:
+		if o is GsNode:
+			for e in o.edges:
+				if e and n2o.has(e.get_name()):
+					o.rm_edge(n2o[e.get_name()])
+
+#	for e in newsel:
+#		if e is GsEdge:
+#			if e.src and map.has(e.src.get_name()):
+#				e.start += SHIFT
+#				e.src.rm_edge(map[e.get_name()])
+#				print('rm_edge:', e.src.get_name(), '->', map[e.get_name()].get_name())
+#				n = map[e.src.get_name()]; n.add_edge(e); e.src = n
+#			if e.dst and map.has(e.dst.get_name()):
+#				print('rm_edge:', e.dst.get_name(), '->', map[e.get_name()].get_name())
+#				n = map[e.dst.get_name()]; n.add_edge(e); e.dst = n
+
+	self.selection = newsel
 
 func cmd_group():
 	if selection.size():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://gslib/GsGrid.gd" type="Script" id=1]
 [ext_resource path="res://gslib/GsSketch.gd" type="Script" id=2]
@@ -7,7 +7,7 @@
 [ext_resource path="res://gslib/GsMouse.gd" type="Script" id=5]
 [ext_resource path="res://gslib/tools/GsArrowTool.gd" type="Script" id=6]
 [ext_resource path="res://gslib/GsSelection.gd" type="Script" id=7]
-[ext_resource path="res://gslib/GsApp.gd" type="Script" id=8]
+[ext_resource path="res://gslib/tools/GsInspector.gd" type="Script" id=8]
 [ext_resource path="res://gslib/tools/GsMouseToolButton.gd" type="Script" id=9]
 [ext_resource path="res://gslib/GsHandle.gd" type="Script" id=10]
 [ext_resource path="res://fonts/fa-regular-font.tres" type="DynamicFont" id=11]
@@ -17,6 +17,8 @@
 [ext_resource path="res://gslib/GsIndexedImage.gd" type="Script" id=15]
 [ext_resource path="res://gslib/scripts/gs-rnd-ast.gd" type="Script" id=16]
 [ext_resource path="res://gslib/GsGroup.gd" type="Script" id=17]
+[ext_resource path="res://gslib/GsApp.gd" type="Script" id=18]
+[ext_resource path="res://fonts/noto-font.tres" type="DynamicFont" id=19]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -25,12 +27,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0.2, 0.2, 0.298039, 1 )
-script = ExtResource( 8 )
+script = ExtResource( 18 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
-current_fill_color = Color( 0.866667, 0.8, 0.6, 1 )
 
 [node name="grid" type="Control" parent="."]
 anchor_right = 1.0
@@ -405,7 +406,7 @@ position = Vector2( 64, 96 )
 script = ExtResource( 16 )
 
 [node name="Timer" type="Timer" parent="script"]
-wait_time = 0.01
+wait_time = 0.001
 autostart = true
 
 [node name="context_menu" type="PopupMenu" parent="."]
@@ -431,6 +432,146 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="inspector" type="PanelContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -363.0
+margin_top = 31.0
+margin_right = 7.0
+margin_bottom = -1.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vbox" type="VBoxContainer" parent="inspector"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 438.0
+margin_bottom = 1041.0
+custom_constants/separation = 8
+
+[node name="fill_color" type="HBoxContainer" parent="inspector/vbox"]
+margin_right = 431.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="inspector/vbox/fill_color"]
+margin_top = 3.0
+margin_right = 363.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "fill color"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="inspector/vbox/fill_color"]
+margin_left = 367.0
+margin_right = 431.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 64, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="line_color" type="HBoxContainer" parent="inspector/vbox"]
+margin_top = 28.0
+margin_right = 431.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="inspector/vbox/line_color"]
+margin_top = 3.0
+margin_right = 363.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "line color"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="inspector/vbox/line_color"]
+margin_left = 367.0
+margin_right = 431.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 64, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text_color" type="HBoxContainer" parent="inspector/vbox"]
+margin_top = 56.0
+margin_right = 431.0
+margin_bottom = 76.0
+
+[node name="Label" type="Label" parent="inspector/vbox/text_color"]
+margin_top = 3.0
+margin_right = 363.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "text color"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="inspector/vbox/text_color"]
+margin_left = 367.0
+margin_right = 431.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 64, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shape" type="HBoxContainer" parent="inspector/vbox"]
+margin_top = 84.0
+margin_right = 431.0
+margin_bottom = 104.0
+
+[node name="Label" type="Label" parent="inspector/vbox/shape"]
+margin_top = 3.0
+margin_right = 363.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "shape"
+
+[node name="shape_picker" type="OptionButton" parent="inspector/vbox/shape"]
+margin_left = 367.0
+margin_right = 431.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 64, 0 )
+text = "DISK"
+items = [ "DISK", null, false, 0, null, "RECT", null, false, 1, null ]
+selected = 0
+
+[node name="lbl_text" type="Label" parent="inspector/vbox"]
+margin_top = 112.0
+margin_right = 431.0
+margin_bottom = 126.0
+text = "text	"
+
+[node name="text" type="LineEdit" parent="inspector/vbox"]
+margin_top = 134.0
+margin_right = 431.0
+margin_bottom = 178.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lbl_info" type="Label" parent="inspector/vbox"]
+margin_top = 186.0
+margin_right = 431.0
+margin_bottom = 200.0
+text = "info	"
+
+[node name="info" type="Panel" parent="inspector/vbox"]
+margin_top = 208.0
+margin_right = 431.0
+margin_bottom = 336.0
+rect_min_size = Vector2( 0, 128 )
+size_flags_horizontal = 3
+
+[node name="label" type="RichTextLabel" parent="inspector/vbox/info"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="toggled" from="toolbar/hbox/grid" to="grid" method="_on_grid_toggled"]
 [connection signal="pressed" from="toolbar/hbox/clear" to="." method="_on_clear_pressed"]
 [connection signal="pressed" from="toolbar/hbox/load" to="." method="_on_load_pressed"]
@@ -450,3 +591,10 @@ __meta__ = {
 [connection signal="id_pressed" from="context_menu" to="." method="_on_context_menu_id_pressed"]
 [connection signal="index_pressed" from="context_menu" to="." method="_on_context_menu_index_pressed"]
 [connection signal="popup_hide" from="context_menu" to="." method="_on_context_menu_popup_hide"]
+[connection signal="mouse_entered" from="inspector" to="inspector" method="_on_inspector_mouse_entered"]
+[connection signal="mouse_exited" from="inspector" to="inspector" method="_on_inspector_mouse_exited"]
+[connection signal="color_changed" from="inspector/vbox/fill_color/ColorPickerButton" to="inspector" method="_on_fill_color_changed"]
+[connection signal="color_changed" from="inspector/vbox/line_color/ColorPickerButton" to="inspector" method="_on_line_color_changed"]
+[connection signal="color_changed" from="inspector/vbox/text_color/ColorPickerButton" to="inspector" method="_on_text_color_changed"]
+[connection signal="item_selected" from="inspector/vbox/shape/shape_picker" to="inspector" method="_on_shape_picker_item_selected"]
+[connection signal="text_changed" from="inspector/vbox/text" to="inspector" method="_on_text_changed"]

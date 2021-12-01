@@ -130,6 +130,7 @@ const CMDS = ['Delete', 'Group', 'Ungroup', 'Row', 'Column']
 
 func _on_context_menu_id_pressed(id):
 	match id:
+		CMD.DELETE: _on_delete_pressed()
 		CMD.GROUP: cmd_group()
 		CMD.UNGROUP: cmd_ungroup()
 
@@ -153,7 +154,7 @@ func _on_context_menu_about_to_show():
 	$context_menu.clear()
 	for cmd in CMD.values():
 		$context_menu.add_item(CMDS[cmd], cmd)
-		if not (cmd==CMD.GROUP or cmd==CMD.UNGROUP):
+		if (cmd==CMD.ARRANGE_ROW or cmd==CMD.ARRANGE_COL):
 			$context_menu.set_item_disabled(cmd, true)
 
 func _on_context_menu_popup_hide():

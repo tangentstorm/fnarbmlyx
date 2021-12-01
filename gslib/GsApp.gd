@@ -5,7 +5,7 @@ var ignore_mouse  : int = 0
 export var current_fill_color : Color = Color.white setget _set_fill_color
 export var current_line_color : Color = Color.black
 export var current_text_color : Color = Color.black
-var selection : Array = [] setget _set_selection
+var selection : Array setget _set_selection
 
 const SELECTANGLE_PADDING = Vector2(5,5)
 const DEFAULT_NODE_SIZE = Vector2(32, 32)
@@ -122,3 +122,39 @@ func _on_to_back_pressed():
 
 func _on_palette_clicked(node, x, y, i, color):
 	_set_fill_color(color)
+
+
+## context menu
+enum CMD { DELETE, GROUP, UNGROUP, ARRANGE_ROW, ARRANGE_COL }
+const CMDS = ['Delete', 'Group', 'Ungroup', 'Row', 'Column']
+
+func _on_context_menu_id_pressed(id):
+	match id:
+		CMD.GROUP: cmd_group()
+		CMD.UNGROUP: cmd_ungroup()
+
+func cmd_group():
+	if selection.size():
+		var g = GsLib.add_group($selection.rect_position, $selection.rect_size)
+		for item in selection:
+			GsLib.mouse.current_sketch.remove_child(item)
+			g.add_item(item)
+		self.selection = [g]
+
+func cmd_ungroup():
+	var newsel = []
+	for x in selection:
+		if x is GsGroup: newsel.append_array(x.ungroup())
+		else: newsel.append(x)
+	self.selection = newsel
+
+func _on_context_menu_about_to_show():
+	ignore_mouse += 1
+	$context_menu.clear()
+	for cmd in CMD.values():
+		$context_menu.add_item(CMDS[cmd], cmd)
+		if not (cmd==CMD.GROUP or cmd==CMD.UNGROUP):
+			$context_menu.set_item_disabled(cmd, true)
+
+func _on_context_menu_popup_hide():
+	ignore_mouse -= 1

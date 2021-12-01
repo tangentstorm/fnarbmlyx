@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://gslib/GsGrid.gd" type="Script" id=1]
 [ext_resource path="res://gslib/GsSketch.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://gslib/tools/GsEdgeTool.gd" type="Script" id=14]
 [ext_resource path="res://gslib/GsIndexedImage.gd" type="Script" id=15]
 [ext_resource path="res://gslib/scripts/gs-rnd-ast.gd" type="Script" id=16]
+[ext_resource path="res://gslib/GsGroup.gd" type="Script" id=17]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -407,6 +408,29 @@ script = ExtResource( 16 )
 wait_time = 0.01
 autostart = true
 
+[node name="context_menu" type="PopupMenu" parent="."]
+margin_right = 20.0
+margin_bottom = 20.0
+
+[node name="proto_group" type="Control" parent="."]
+visible = false
+mouse_filter = 2
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="members" type="Control" parent="proto_group"]
+
+[node name="drag_helper" type="ColorRect" parent="proto_group"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.129412, 0.364706, 0.764706, 0.552941 )
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="toggled" from="toolbar/hbox/grid" to="grid" method="_on_grid_toggled"]
 [connection signal="pressed" from="toolbar/hbox/clear" to="." method="_on_clear_pressed"]
 [connection signal="pressed" from="toolbar/hbox/load" to="." method="_on_load_pressed"]
@@ -422,3 +446,7 @@ autostart = true
 [connection signal="confirmed" from="FileDialog" to="." method="_on_FileDialog_confirmed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]
 [connection signal="popup_hide" from="FileDialog" to="." method="_on_FileDialog_popup_hide"]
+[connection signal="about_to_show" from="context_menu" to="." method="_on_context_menu_about_to_show"]
+[connection signal="id_pressed" from="context_menu" to="." method="_on_context_menu_id_pressed"]
+[connection signal="index_pressed" from="context_menu" to="." method="_on_context_menu_index_pressed"]
+[connection signal="popup_hide" from="context_menu" to="." method="_on_context_menu_popup_hide"]

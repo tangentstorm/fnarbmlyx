@@ -32,8 +32,6 @@ func _drag_end(mouse):
 		GsLib.app.selection = selection
 
 func _click(mouse):
-	if mouse.subject == mouse.selection.get_node('drag_helper'):
-		return  # TODO: what should happen?
-	if mouse.subject is GsHandle: return
-	if mouse.subject: GsLib.app.selection = [mouse.subject]
+	if mouse.subject is GsHandle: pass
+	elif mouse.subject: mouse.subject._click(mouse.position)
 	else: GsLib.app.selection = []

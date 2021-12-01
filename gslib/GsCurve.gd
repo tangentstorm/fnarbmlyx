@@ -1,4 +1,4 @@
-tool class_name GsCurve extends Control
+tool class_name GsCurve extends GsBase
 func get_class_name(): return "GsCurve"
 
 export var curve : Curve2D

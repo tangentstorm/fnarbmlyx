@@ -35,3 +35,6 @@ func _drag_end():
 func set_selected(v):
 	selected = v
 	update()
+
+func _click(xy):
+	GsLib.app.selection = [self]

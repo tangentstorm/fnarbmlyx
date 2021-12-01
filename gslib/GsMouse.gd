@@ -30,6 +30,12 @@ func set_tool_script(ts:Script):
 func drag_rect() -> Rect2:
 	return Rect2(origin, position-origin)
 
+func context_menu(xy:Vector2):
+	var m = $"/root/app/context_menu"
+	m.rect_position = xy
+	m.popup()
+
+
 func handle(e:InputEventMouse):
 	if current_grid and current_grid.snap:
 		e.position -= e.position.posmodv(current_grid.spacing)
@@ -39,7 +45,8 @@ func handle(e:InputEventMouse):
 		if e.pressed:
 			if e.button_index == 1:
 				origin = position
-				#if subject: offset = subject.rect_position - origin 
+			elif e.button_index == BUTTON_RIGHT:
+				context_menu(e.position)
 		elif dragging:
 			dragging = false
 			current_tool._drag_end(self)
@@ -60,8 +67,8 @@ func _leave(c:Control):
 
 func _process(_dt):
 	var t = ''
-	if subject: t += '<' + str(subject) + '>'
-	t = '[ ' + ($tool._name() + ' ' if $tool.script else '') +'] '
+	if subject: t += '<'+subject.get_path()+' ('+subject.get_class_name()+')> '
+	t += '[ ' + ($tool._name() + ' ' if $tool.script else '') +'] '
 	t += "(" + str(int(position.x)) + "," + str(int(position.y)) + ")"
 	if dragging: t += " dragging"
 	text = t

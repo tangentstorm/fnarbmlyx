@@ -22,5 +22,7 @@ func _resized():
 func _drag_step(dxy):
 	rect_position += dxy
 	for c in GsLib.app.selection:
-		if c == self: continue # just in case
 		c._drag_step(dxy)
+
+func _click(xy):
+	pass # don't select anything

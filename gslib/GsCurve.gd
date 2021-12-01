@@ -44,3 +44,7 @@ func _draw():
 	draw_set_transform(-tl, 0.0, Vector2.ONE)
 	draw_polyline(points, color, width, antialised)
 	if selected: draw_polyline(points, Color(0xffffff33), width*2, antialised)
+
+
+func _drag_step(dxy):
+	start += dxy; update()

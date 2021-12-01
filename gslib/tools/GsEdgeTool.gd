@@ -16,7 +16,7 @@ func _set_src(v):
 		curve.add_point(Vector2.ZERO)
 		edge = GsEdge.new(); edge.curve = curve
 		offset = src.link_offset(0)
-		edge.rect_position = src.rect_position + offset
+		edge.start = src.rect_position + offset
 		var sketch : GsSketch = GsLib.mouse.current_sketch
 		sketch.add_child(edge); edge.set_owner(sketch)
 		sketch.move_child(edge, max(0, src.get_index()-1))
@@ -47,8 +47,6 @@ func _drag_end(mouse):
 		var dst = mouse.subject
 		if dst == null: dst = mouse.find_new_subject()
 		if dst is GsNode and dst != src: pass
-		else:
-			print("ADDING RECT")
-			dst = GsLib.add_rect(mouse.position)
+		else: dst = GsLib.add_rect(mouse.position)
 		GsLib.add_edge(src, dst, edge)
 		self.src = null

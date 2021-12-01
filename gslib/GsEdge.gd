@@ -30,6 +30,8 @@ func _set_dst(v):
 func _on_node_moved():
 	var a = src.link_point(0)
 	var b = dst.link_point(0) - a
-	rect_position = a
 	curve.set_point_position(1, b)
+	self.start = a
+
+func _drag_step(dxy):
 	update()

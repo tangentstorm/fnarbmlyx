@@ -18,3 +18,9 @@ func _resized():
 	for c in get_children():
 		if c.get_name() == 'drag_helper': continue
 		c.rect_position -= c.rect_size/2
+
+func _drag_step(dxy):
+	rect_position += dxy
+	for c in GsLib.app.selection:
+		if c == self: continue # just in case
+		c._drag_step(dxy)

@@ -1,22 +1,27 @@
-class_name GsNodeTool extends GsMouseTool
+class_name GsNodeTool extends GsArrowTool
 func get_class_name(): return "GsNodeTool"
 
 var node : GsNode
 
 func _drag_start(mouse):
-	node = GsNode.new()
-	node.text = ''
-	node.fill_color = $"/root/app".current_fill_color
-	node.rect_position = mouse.origin
-	mouse.current_sketch.add_child(node)
-	node.set_owner(mouse.current_sketch)
+	if mouse.find_new_subject() == null:
+		node = GsNode.new()
+		node.text = ''
+		node.fill_color = $"/root/app".current_fill_color
+		node.rect_position = mouse.origin
+		mouse.current_sketch.add_child(node)
+		node.set_owner(mouse.current_sketch)
+	else: ._drag_start(mouse)
 
 func _drag_step(mouse):
-	var r : Rect2 = mouse.drag_rect().abs()
-	node.rect_position = r.position
-	node.rect_size.x = max(node.rect_min_size.x, r.size.x)
-	node.rect_size.y = max(node.rect_min_size.y, r.size.y)
-	node.update()
+	if mouse.subject: ._drag_step(mouse)
+	else:
+		var r : Rect2 = mouse.drag_rect().abs()
+		node.rect_position = r.position
+		node.rect_size.x = max(node.rect_min_size.x, r.size.x)
+		node.rect_size.y = max(node.rect_min_size.y, r.size.y)
+		node.update()
 
 func _drag_end(mouse):
-	node = null
+	if mouse.subject: ._drag_end(mouse)
+	else: GsLib.app.selection = [node]

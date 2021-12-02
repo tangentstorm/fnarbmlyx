@@ -22,13 +22,10 @@ func _enter_tree():
 func _gui_input(e):
 	if e is InputEventMouse:
 		e.position = e.global_position
-		_get_mouse().handle(e)
-
-func _get_mouse():
-	return $"/root/app/mouse"
+		GsLib.mouse.handle(e)
 
 func set_draggable(v):
-	var m = _get_mouse()
+	var m = GsLib.mouse
 	if v:
 		connect("mouse_entered", m, "_enter", [self])
 		connect("mouse_exited",  m, "_leave", [self])

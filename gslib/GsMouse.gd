@@ -29,7 +29,7 @@ func drag_rect() -> Rect2:
 	return Rect2(origin, position-origin)
 
 func context_menu(xy:Vector2):
-	var m = $"/root/app/context_menu"
+	var m = $"/root/app/ui/context_menu"
 	m.rect_position = xy
 	m.popup()
 
@@ -41,10 +41,9 @@ func handle(e:InputEventMouse):
 	position = e.position
 	if e is InputEventMouseButton:
 		if e.pressed:
-			if e.button_index == 1:
-				origin = position
-			elif e.button_index == BUTTON_RIGHT:
-				context_menu(e.position)
+			match e.button_index:
+				BUTTON_LEFT: origin = position
+				BUTTON_RIGHT: context_menu(position)
 		elif dragging:
 			dragging = false
 			current_tool._drag_end(self)

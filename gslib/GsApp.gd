@@ -35,22 +35,22 @@ func _set_selection(nodes:Array):
 		s.rect_position = xy0 - padding; s.rect_size = (xy1 - xy0) + 2 * padding
 		_set_fill_color(fill, true, false)
 	if nodes.size() == 1:
-		$inspector.set_item(nodes[0])
+		$ui/inspector.set_item(nodes[0])
 
 func _input(e):
 	if e is InputEventMouse and not ignore_mouse:
-		if $toolbar.get_rect().has_point(e.position): pass
+		if $ui/toolbar.get_rect().has_point(e.position): pass
 		else: $mouse.handle(e)
 
 func _on_load_pressed():
-	$FileDialog.current_dir = 'user://'
-	$FileDialog.mode = FileDialog.MODE_OPEN_FILE
-	$FileDialog.popup()
+	$ui/FileDialog.current_dir = 'user://'
+	$ui/FileDialog.mode = FileDialog.MODE_OPEN_FILE
+	$ui/FileDialog.popup()
 
 func _on_save_pressed():
-	$FileDialog.current_dir = 'user://'
-	$FileDialog.mode = FileDialog.MODE_SAVE_FILE
-	$FileDialog.popup()
+	$ui/FileDialog.current_dir = 'user://'
+	$ui/FileDialog.mode = FileDialog.MODE_SAVE_FILE
+	$ui/FileDialog.popup()
 
 func _on_FileDialog_about_to_show():
 	$fog.visible = true
@@ -94,7 +94,7 @@ func _on_delete_pressed():
 func _set_fill_color(v, tell_ui=true, paint_selection=true):
 	current_fill_color = v
 	if is_inside_tree():
-		if tell_ui: $toolbar/hbox/color.color = v
+		if tell_ui: $ui/toolbar/hbox/color.color = v
 		if paint_selection:
 			for c in selection:
 				if c is GsNode: c.fill_color = v
@@ -187,11 +187,11 @@ func cmd_ungroup():
 
 func _on_context_menu_about_to_show():
 	ignore_mouse += 1
-	$context_menu.clear()
+	$ui/context_menu.clear()
 	for cmd in CMD.values():
-		$context_menu.add_item(CMDS[cmd], cmd)
+		$ui/context_menu.add_item(CMDS[cmd], cmd)
 		if (cmd==CMD.ARRANGE_ROW or cmd==CMD.ARRANGE_COL):
-			$context_menu.set_item_disabled(cmd, true)
+			$ui/context_menu.set_item_disabled(cmd, true)
 
 func _on_context_menu_popup_hide():
 	ignore_mouse -= 1

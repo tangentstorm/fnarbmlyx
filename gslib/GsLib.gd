@@ -11,6 +11,7 @@ func add_group(xy, wh)->GsGroup:
 	g.rect_position = xy; g.rect_size = wh
 	g.get_node('members').rect_position = -xy
 	GsLib.sketch.add_child(g); g.set_owner(GsLib.sketch)
+	for c in g.get_children(): c.set_owner(GsLib.sketch)
 	return g
 
 func add_node(n:GsNode, select:bool=true)->GsNode:

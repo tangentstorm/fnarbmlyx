@@ -2,7 +2,7 @@ class_name GsGroup extends GsBase
 func get_class_name(): return 'GsGroup'
 
 func add_item(x):
-	$members.add_child(x); x.set_owner($members)
+	$members.add_child(x); x.set_owner(self.owner)
 
 func _drag_step(dxy):
 	# we need nodes to share the global coordinate system,
@@ -24,5 +24,5 @@ func ungroup()->Array:
 
 func set_selected(v):
 	.set_selected(v)
-	if is_inside_tree():
+	if $drag_helper:
 		$drag_helper.color = Color('60215dc3') if v else Color.transparent

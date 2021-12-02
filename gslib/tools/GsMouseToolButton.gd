@@ -6,5 +6,4 @@ func _ready():
 	self.connect('pressed', self, '_click')
 	
 func _click():
-	var m : GsMouse = get_node("/root/app/mouse")
-	m.set_tool_script(tool_script)
+	GsLib.mouse.set_tool_script(tool_script)

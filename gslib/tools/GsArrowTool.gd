@@ -18,11 +18,10 @@ func _drag_end(mouse):
 	if mouse.subject: mouse.subject._drag_end()
 	else:
 		mouse.selectangle.visible = false
-		var csk = mouse.current_sketch
 		var rect = mouse.selectangle.get_rect()
 		var selection = []
 
-		for c in csk.get_children():
+		for c in GsLib.sketch.get_children():
 			if not c is GsBase: continue
 			var r:Rect2 = c.get_rect()
 			if r.intersects(rect):

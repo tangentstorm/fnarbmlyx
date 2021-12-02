@@ -3,20 +3,18 @@ func get_class_name(): return "GsLib"
 
 var app : GsApp
 var mouse : GsMouse
-# TODO: var sketch : GsSketch
+var sketch : GsSketch
 
 func add_group(xy, wh)->GsGroup:
 	var g = $'/root/app/proto_group'.duplicate()
 	g.visible = true
 	g.rect_position = xy; g.rect_size = wh
 	g.get_node('members').rect_position = -xy
-	mouse.current_sketch.add_child(g)
-	g.set_owner(mouse.current_sketch)
+	GsLib.sketch.add_child(g); g.set_owner(GsLib.sketch)
 	return g
 
 func add_node(n:GsNode, select:bool=true)->GsNode:
-	mouse.current_sketch.add_child(n)
-	n.set_owner(mouse.current_sketch)
+	GsLib.sketch.add_child(n); n.set_owner(GsLib.sketch)
 	if select: app.selection = [n]
 	return n
 

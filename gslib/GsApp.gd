@@ -15,7 +15,7 @@ func _ready():
 	self.current_fill_color = current_fill_color
 
 func _clear_selection():
-	for c in GsLib.mouse.current_sketch.get_children():
+	for c in GsLib.sketch.get_children():
 		if c is GsBase: c.selected = false
 
 func _set_selection(nodes:Array):
@@ -79,7 +79,7 @@ func _on_FileDialog_file_selected(path):
 			remove_child($sketch)
 			add_child(scn); scn.set_owner(self)
 			move_child(scn, pos)
-			$mouse.current_sketch = $sketch
+			GsLib.sketch = $sketch
 	$FileDialog.hide()
 
 func _on_clear_pressed():
@@ -174,7 +174,7 @@ func cmd_group():
 	if selection.size():
 		var g = GsLib.add_group($selection.rect_position, $selection.rect_size)
 		for item in selection:
-			GsLib.mouse.current_sketch.remove_child(item)
+			GsLib.sketch.remove_child(item)
 			g.add_item(item)
 		self.selection = [g]
 

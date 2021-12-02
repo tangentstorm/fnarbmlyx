@@ -1,7 +1,6 @@
 class_name GsMouse extends Label
 func get_class_name(): return "GsMouse"
 
-export var sketch_path : NodePath = '/root/app/sketch'
 export var grid_path : NodePath = '/root/app/grid'
 export var selectangle_path : NodePath = '/root/app/selectangle'
 export var selection_path : NodePath = '/root/app/selection'
@@ -15,7 +14,6 @@ var subject : Control
 
 onready var current_tool = $tool
 onready var current_grid = get_node(grid_path)
-onready var current_sketch = get_node(sketch_path)
 onready var selectangle = get_node(selectangle_path)
 onready var selection = get_node(selection_path)
 
@@ -75,7 +73,7 @@ func _process(_dt):
 
 func find_new_subject(xy=null):
 	if xy == null: xy = position
-	var ns = current_sketch.get_children()
+	var ns = GsLib.sketch.get_children()
 	self.subject = null
 	for i in range(len(ns)-1, 0, -1):
 		if ns[i] is GsNode and ns[i].get_rect().has_point(position):

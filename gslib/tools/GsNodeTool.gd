@@ -9,8 +9,7 @@ func _drag_start(mouse):
 		node.text = ''
 		node.fill_color = $"/root/app".current_fill_color
 		node.rect_position = mouse.origin
-		mouse.current_sketch.add_child(node)
-		node.set_owner(mouse.current_sketch)
+		GsLib.sketch.add_child(node); node.set_owner(GsLib.sketch)
 	else: ._drag_start(mouse)
 
 func _drag_step(mouse):

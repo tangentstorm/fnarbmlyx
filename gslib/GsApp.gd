@@ -1,4 +1,4 @@
-class_name GsApp extends ColorRect
+class_name GsApp extends Control
 func get_class_name(): return "GsApp"
 
 var ignore_mouse  : int = 0
@@ -13,6 +13,7 @@ const DEFAULT_NODE_SIZE = Vector2(32, 32)
 func _ready():
 	GsLib.app = self
 	self.current_fill_color = current_fill_color
+	GsLib.camera.connect('camera_changed', $bg/grid, '_on_camera_changed')
 
 func _clear_selection():
 	for c in GsLib.sketch.get_children():
@@ -36,11 +37,6 @@ func _set_selection(nodes:Array):
 		_set_fill_color(fill, true, false)
 	if nodes.size() == 1:
 		$ui/inspector.set_item(nodes[0])
-
-func _input(e):
-	if e is InputEventMouse and not ignore_mouse:
-		if $ui/toolbar.get_rect().has_point(e.position): pass
-		else: $mouse.handle(e)
 
 func _on_load_pressed():
 	$ui/FileDialog.current_dir = 'user://'

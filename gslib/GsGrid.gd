@@ -14,7 +14,14 @@ func _set_spacing(v):
 func _set_snap(v):
 	snap = v
 
+func _on_camera_changed(zoom, offset):
+	update()
+
 func _draw():
+	var c = GsLib.camera
+	var z = Vector2(1/c.zoom.x, 1/c.zoom.y)
+	draw_set_transform(-(c.position+c.offset)*z, 0.0, z)
+
 	var p0 = Vector2.ZERO
 	var p1 = Vector2(rect_size.x, 0)
 	var dp = Vector2.DOWN * spacing.y

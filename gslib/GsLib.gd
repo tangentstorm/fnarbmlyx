@@ -3,6 +3,7 @@ func get_class_name(): return "GsLib"
 
 var app : GsApp
 var mouse : GsMouse
+var camera : GsCamera
 var sketch : GsSketch
 
 func add_group(xy, wh)->GsGroup:

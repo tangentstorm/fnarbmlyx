@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://gslib/GsGrid.gd" type="Script" id=1]
 [ext_resource path="res://gslib/GsSketch.gd" type="Script" id=2]
@@ -19,34 +19,33 @@
 [ext_resource path="res://gslib/GsGroup.gd" type="Script" id=17]
 [ext_resource path="res://gslib/GsApp.gd" type="Script" id=18]
 [ext_resource path="res://fonts/noto-font.tres" type="DynamicFont" id=19]
+[ext_resource path="res://gslib/GsCanvas.gd" type="Script" id=20]
+[ext_resource path="res://gslib/GsCamera.gd" type="Script" id=21]
 
 [sub_resource type="ButtonGroup" id=1]
 
-[node name="app" type="ColorRect"]
+[node name="app" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0.2, 0.2, 0.298039, 1 )
 script = ExtResource( 18 )
 __meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
-[node name="grid" type="Control" parent="."]
+[node name="bg" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="canvas" type="ColorRect" parent="bg"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_right = 1.0
-mouse_filter = 2
-script = ExtResource( 1 )
+color = Color( 0.2, 0.2, 0.298039, 1 )
+script = ExtResource( 20 )
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
-color = Color( 0.227451, 0.266667, 0.333333, 1 )
 
-[node name="mouse" type="Label" parent="."]
+[node name="mouse" type="Label" parent="bg"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 0
@@ -56,8 +55,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="tool" type="Node" parent="mouse"]
+[node name="tool" type="Node" parent="bg/mouse"]
 script = ExtResource( 6 )
+
+[node name="grid" type="Control" parent="bg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+color = Color( 0.227451, 0.266667, 0.333333, 1 )
+
+[node name="camera" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource( 21 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="sketch" type="Control" parent="."]
 anchor_right = 1.0
@@ -216,13 +236,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="camera" type="Camera2D" parent="."]
-position = Vector2( 960, 540 )
-current = true
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="ui" type="CanvasLayer" parent="."]
 
 [node name="inspector" type="PanelContainer" parent="ui"]
@@ -340,6 +353,7 @@ margin_right = 356.0
 margin_bottom = 178.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 19 )
+caret_blink = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -590,9 +604,8 @@ autostart = true
 [connection signal="text_changed" from="ui/inspector/vbox/text" to="ui/inspector" method="_on_text_changed"]
 [connection signal="about_to_show" from="ui/context_menu" to="." method="_on_context_menu_about_to_show"]
 [connection signal="id_pressed" from="ui/context_menu" to="." method="_on_context_menu_id_pressed"]
-[connection signal="index_pressed" from="ui/context_menu" to="." method="_on_context_menu_index_pressed"]
 [connection signal="popup_hide" from="ui/context_menu" to="." method="_on_context_menu_popup_hide"]
-[connection signal="toggled" from="ui/toolbar/hbox/grid" to="grid" method="_on_grid_toggled"]
+[connection signal="toggled" from="ui/toolbar/hbox/grid" to="bg/grid" method="_on_grid_toggled"]
 [connection signal="pressed" from="ui/toolbar/hbox/clear" to="." method="_on_clear_pressed"]
 [connection signal="pressed" from="ui/toolbar/hbox/load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="ui/toolbar/hbox/save" to="." method="_on_save_pressed"]

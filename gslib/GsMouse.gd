@@ -1,7 +1,7 @@
 class_name GsMouse extends Label
 func get_class_name(): return "GsMouse"
 
-export var grid_path : NodePath = '/root/app/grid'
+export var grid_path : NodePath = '/root/app/bg/grid'
 export var selectangle_path : NodePath = '/root/app/selectangle'
 export var selection_path : NodePath = '/root/app/selection'
 
@@ -35,15 +35,20 @@ func context_menu(xy:Vector2):
 
 
 func handle(e:InputEventMouse):
+	var o = e.position;
+	var c = GsLib.camera
+	var p = c.screen_to_world(o)
 	if current_grid and current_grid.snap:
-		e.position -= e.position.posmodv(current_grid.spacing)
-	dxy = e.position - position
-	position = e.position
+		p -= p.posmodv(current_grid.spacing)
+	dxy = p - position
+	position = p
 	if e is InputEventMouseButton:
 		if e.pressed:
 			match e.button_index:
 				BUTTON_LEFT: origin = position
 				BUTTON_RIGHT: context_menu(position)
+				BUTTON_WHEEL_UP: GsLib.camera.zoom_at(o, -0.1)
+				BUTTON_WHEEL_DOWN: GsLib.camera.zoom_at(o, 0.1)
 		elif dragging:
 			dragging = false
 			current_tool._drag_end(self)

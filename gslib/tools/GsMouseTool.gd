@@ -1,4 +1,4 @@
-class_name GsMouseTool extends Reference
+class_name GsMouseTool extends Node # so we can use $
 func get_class_name(): return "GsMouseTool"
 
 var sketch : GsSketch

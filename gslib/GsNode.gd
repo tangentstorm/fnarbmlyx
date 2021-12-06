@@ -21,9 +21,6 @@ func _clone():
 			c.set(k, get(k))
 	return c
 
-func _ready():
-	self.draggable = true
-
 func _set_shape(v):
 	shape = v; update()
 

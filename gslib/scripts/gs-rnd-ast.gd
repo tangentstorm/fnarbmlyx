@@ -28,14 +28,6 @@ func _ready():
 		yield($Timer, "timeout")
 		co = co.resume()
 
-func init_state():
-	var state = {}
-	state['xy'] = Vector2.ZERO
-	state['budget'] = 32
-	state['node'] = add_node(state.xy, str(state.budget))
-	state['prev'] = null
-	return state
-
 class TreeNode:
 	var xy    : Vector2 = Vector2.ZERO
 	var wh    : Vector2 = Vector2.ONE

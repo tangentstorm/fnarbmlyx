@@ -1,5 +1,5 @@
 tool extends GsBase
-func get_class_name(): return "GsSelection"
+func get_class_name(): return "Selectangle"
 
 func _ready():
 	connect("resized", self, "_resized")
@@ -30,9 +30,9 @@ func _click(_xy):
 
 
 func _visibility_changed():
-	$'../selection_drag_helper'.visible = visible
+	$'../selectangle_helper'.visible = visible
 
 func _item_rect_changed():
-	var dh : Control = $'../selection_drag_helper'
+	var dh : Control = $'../selectangle_helper'
 	dh.rect_position = rect_position
 	dh.rect_size = rect_size

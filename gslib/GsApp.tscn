@@ -6,7 +6,7 @@
 [ext_resource path="res://gslib/tools/GsNodeTool.gd" type="Script" id=4]
 [ext_resource path="res://gslib/GsMouse.gd" type="Script" id=5]
 [ext_resource path="res://gslib/tools/GsArrowTool.gd" type="Script" id=6]
-[ext_resource path="res://gslib/GsSelection.gd" type="Script" id=7]
+[ext_resource path="res://gslib/GsSelectangle.gd" type="Script" id=7]
 [ext_resource path="res://gslib/tools/GsInspector.gd" type="Script" id=8]
 [ext_resource path="res://gslib/tools/GsMouseToolButton.gd" type="Script" id=9]
 [ext_resource path="res://gslib/GsHandle.gd" type="Script" id=10]
@@ -79,7 +79,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="selection_drag_helper" type="ColorRect" parent="."]
+[node name="selectangle_helper" type="ColorRect" parent="."]
 visible = false
 mouse_default_cursor_shape = 13
 color = Color( 0.462745, 0.521569, 0.890196, 0.0941176 )

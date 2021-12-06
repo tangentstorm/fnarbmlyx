@@ -39,6 +39,7 @@ layer = -1
 [node name="canvas" type="ColorRect" parent="bg"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 0.2, 0.2, 0.298039, 1 )
 script = ExtResource( 20 )
 __meta__ = {
@@ -48,7 +49,6 @@ __meta__ = {
 [node name="mouse" type="Label" parent="bg"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 0
 align = 2
 script = ExtResource( 5 )
 __meta__ = {
@@ -82,7 +82,7 @@ __meta__ = {
 [node name="sketch" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 1
+mouse_filter = 2
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true,
@@ -90,7 +90,6 @@ __meta__ = {
 }
 
 [node name="selection" type="ReferenceRect" parent="."]
-visible = false
 margin_left = 224.0
 margin_top = 128.0
 margin_right = 352.0
@@ -203,6 +202,7 @@ margin_left = 456.0
 margin_top = 128.0
 margin_right = 584.0
 margin_bottom = 256.0
+mouse_filter = 2
 border_color = Color( 0.396078, 0.541176, 0.623529, 1 )
 editor_only = false
 __meta__ = {
@@ -212,13 +212,13 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="selectangle"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 0.709804, 0.694118, 0.694118, 0.0941176 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="proto_group" type="Control" parent="."]
-visible = false
 mouse_filter = 2
 script = ExtResource( 17 )
 __meta__ = {
@@ -595,8 +595,6 @@ script = ExtResource( 16 )
 wait_time = 0.001
 autostart = true
 
-[connection signal="mouse_entered" from="ui/inspector" to="ui/inspector" method="_on_inspector_mouse_entered"]
-[connection signal="mouse_exited" from="ui/inspector" to="ui/inspector" method="_on_inspector_mouse_exited"]
 [connection signal="color_changed" from="ui/inspector/vbox/fill_color/ColorPickerButton" to="ui/inspector" method="_on_fill_color_changed"]
 [connection signal="color_changed" from="ui/inspector/vbox/line_color/ColorPickerButton" to="ui/inspector" method="_on_line_color_changed"]
 [connection signal="color_changed" from="ui/inspector/vbox/text_color/ColorPickerButton" to="ui/inspector" method="_on_text_color_changed"]
@@ -604,7 +602,8 @@ autostart = true
 [connection signal="text_changed" from="ui/inspector/vbox/text" to="ui/inspector" method="_on_text_changed"]
 [connection signal="about_to_show" from="ui/context_menu" to="." method="_on_context_menu_about_to_show"]
 [connection signal="id_pressed" from="ui/context_menu" to="." method="_on_context_menu_id_pressed"]
-[connection signal="popup_hide" from="ui/context_menu" to="." method="_on_context_menu_popup_hide"]
+[connection signal="mouse_entered" from="ui/toolbar" to="." method="_on_enter_gui"]
+[connection signal="mouse_exited" from="ui/toolbar" to="." method="_on_leave_gui"]
 [connection signal="toggled" from="ui/toolbar/hbox/grid" to="bg/grid" method="_on_grid_toggled"]
 [connection signal="pressed" from="ui/toolbar/hbox/clear" to="." method="_on_clear_pressed"]
 [connection signal="pressed" from="ui/toolbar/hbox/load" to="." method="_on_load_pressed"]
@@ -613,8 +612,8 @@ autostart = true
 [connection signal="pressed" from="ui/toolbar/hbox/to_front" to="." method="_on_to_front_pressed"]
 [connection signal="pressed" from="ui/toolbar/hbox/to_back" to="." method="_on_to_back_pressed"]
 [connection signal="color_changed" from="ui/toolbar/hbox/color" to="." method="_on_color_color_changed"]
-[connection signal="popup_closed" from="ui/toolbar/hbox/color" to="." method="_on_color_popup_closed"]
-[connection signal="pressed" from="ui/toolbar/hbox/color" to="." method="_on_color_pressed"]
+[connection signal="popup_closed" from="ui/toolbar/hbox/color" to="." method="_on_leave_gui"]
+[connection signal="pressed" from="ui/toolbar/hbox/color" to="." method="_on_enter_gui"]
 [connection signal="clicked" from="ui/toolbar/hbox/palette" to="." method="_on_palette_clicked"]
 [connection signal="about_to_show" from="ui/FileDialog" to="." method="_on_FileDialog_about_to_show"]
 [connection signal="confirmed" from="ui/FileDialog" to="." method="_on_FileDialog_confirmed"]

@@ -1,7 +1,6 @@
 class_name GsApp extends Control
 func get_class_name(): return "GsApp"
 
-var ignore_mouse  : int = 0
 export var current_fill_color : Color = Color.white setget _set_fill_color
 export var current_line_color : Color = Color.black
 export var current_text_color : Color = Color.black
@@ -49,18 +48,18 @@ func _on_save_pressed():
 	$ui/FileDialog.popup()
 
 func _on_FileDialog_about_to_show():
-	$fog.visible = true
+	$ui/fog.visible = true
 
 func _on_FileDialog_popup_hide():
-	$fog.visible = false
+	$ui/fog.visible = false
 
 func _on_FileDialog_confirmed():
-	var p = $FileDialog.current_path
+	var p = $ui/FileDialog.current_path
 	if not p.ends_with(".tscn"): p += ".tscn"
 	_on_FileDialog_file_selected(p)
 
 func _on_FileDialog_file_selected(path):
-	match $FileDialog.mode:
+	match $ui/FileDialog.mode:
 		FileDialog.MODE_SAVE_FILE:
 			var s = PackedScene.new()
 			s.pack($sketch)
@@ -76,7 +75,7 @@ func _on_FileDialog_file_selected(path):
 			add_child(scn); scn.set_owner(self)
 			move_child(scn, pos)
 			GsLib.sketch = $sketch
-	$FileDialog.hide()
+	$ui/FileDialog.hide()
 
 func _on_clear_pressed():
 	$sketch.clear()
@@ -97,13 +96,6 @@ func _set_fill_color(v, tell_ui=true, paint_selection=true):
 
 func _on_color_color_changed(color):
 	_set_fill_color(color, false)
-
-func _on_color_pressed():
-	ignore_mouse += 1
-
-func _on_color_popup_closed():
-	ignore_mouse -= 1
-
 
 func _on_to_front_pressed():
 	var n = $sketch.get_child_count()
@@ -182,12 +174,12 @@ func cmd_ungroup():
 	self.selection = newsel
 
 func _on_context_menu_about_to_show():
-	ignore_mouse += 1
 	$ui/context_menu.clear()
 	for cmd in CMD.values():
 		$ui/context_menu.add_item(CMDS[cmd], cmd)
 		if (cmd==CMD.ARRANGE_ROW or cmd==CMD.ARRANGE_COL):
 			$ui/context_menu.set_item_disabled(cmd, true)
 
-func _on_context_menu_popup_hide():
-	ignore_mouse -= 1
+func _unhandled_input(e):
+	if e is InputEventMouse:
+		GsLib.mouse.handle(e)

@@ -7,12 +7,12 @@ func _drag_start(mouse):
 	_drag_step(mouse)
 
 func _drag_step(mouse):
-	if mouse.subject:
-		mouse.subject._drag_step(mouse.dxy)
-	else:
+	if mouse.selectangle.visible:
 		var r : Rect2 = mouse.drag_rect().abs()
 		mouse.selectangle.rect_position = r.position
 		mouse.selectangle.rect_size = r.size
+	elif mouse.subject:
+		mouse.subject._drag_step(mouse.dxy)
 
 func _drag_end(mouse):
 	if mouse.subject: mouse.subject._drag_end()

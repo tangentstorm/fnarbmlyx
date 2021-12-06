@@ -3,6 +3,8 @@ func get_class_name(): return "GsSelection"
 
 func _ready():
 	connect("resized", self, "_resized")
+	connect("visibility_changed", self, '_visibility_changed')
+	connect("item_rect_changed", self, '_item_rect_changed')
 	_resized()
 	
 func _resized():
@@ -16,7 +18,6 @@ func _resized():
 	$SW.rect_position = Vector2(0,h)
 	$W.rect_position = Vector2(0,h/2)
 	for c in get_children():
-		if c.get_name() == 'drag_helper': continue
 		c.rect_position -= c.rect_size/2
 
 func _drag_step(dxy):
@@ -26,3 +27,12 @@ func _drag_step(dxy):
 
 func _click(xy):
 	pass # don't select anything
+
+
+func _visibility_changed():
+	$'../selection_drag_helper'.visible = visible
+
+func _item_rect_changed():
+	var dh : Control = $'../selection_drag_helper'
+	dh.rect_position = rect_position
+	dh.rect_size = rect_size

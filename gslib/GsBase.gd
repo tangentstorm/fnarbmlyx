@@ -7,6 +7,9 @@ onready var _cloning : bool = false
 
 signal moved(node, dxy)
 
+func _ready():
+	self.draggable = draggable
+
 func clone()->Node:
 	_cloning = true
 	var copy = self._clone()
@@ -15,9 +18,6 @@ func clone()->Node:
 
 func _clone()->Node:
 	return .duplicate()
-
-func _enter_tree():
-	mouse_filter = Control.MOUSE_FILTER_PASS
 
 func _gui_input(e):
 	if e is InputEventMouse:
@@ -45,7 +45,12 @@ func set_selected(v):
 	update()
 
 func _click(xy):
-	GsLib.app.selection = [self]
+	if GsLib.mouse.shift_pressed:
+		var ix = GsLib.app.selection.find(self)
+		if ix > -1: GsLib.app.selection.remove(ix)
+		else: GsLib.app.selection.append(self)
+		GsLib.app.selection = GsLib.app.selection # to trigger setter
+	else: GsLib.app.selection = [self]
 
 func get_info():
 	return get_class_name()

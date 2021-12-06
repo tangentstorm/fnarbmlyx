@@ -79,6 +79,13 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="selection_drag_helper" type="ColorRect" parent="."]
+visible = false
+mouse_default_cursor_shape = 13
+color = Color( 0.462745, 0.521569, 0.890196, 0.215686 )
+script = ExtResource( 13 )
+target_path = NodePath("../selection")
+
 [node name="sketch" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -94,7 +101,7 @@ margin_left = 224.0
 margin_top = 128.0
 margin_right = 352.0
 margin_bottom = 256.0
-mouse_filter = 1
+mouse_filter = 2
 border_color = Color( 0.580392, 0.831373, 0.968627, 1 )
 border_width = 2.5
 editor_only = false
@@ -190,11 +197,6 @@ script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="drag_helper" type="Control" parent="selection"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 13 )
 
 [node name="selectangle" type="ReferenceRect" parent="."]
 visible = false

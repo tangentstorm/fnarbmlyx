@@ -4,11 +4,10 @@
 class_name GsDragHelper extends GsBase
 func get_class_name(): return "GsDragHelper"
 
-func _ready():
-	self.draggable = true
+export (NodePath) var target_path = '..'
 
 func _drag_step(dxy):
-	get_parent()._drag_step(dxy)
+	get_node(target_path)._drag_step(dxy)
 
 func _click(xy):
-	get_parent()._click(xy)
+	get_node(target_path)._click(xy)

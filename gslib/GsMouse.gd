@@ -5,7 +5,10 @@ export var grid_path : NodePath = '/root/app/bg/grid'
 export var selectangle_path : NodePath = '/root/app/selectangle'
 export var selection_path : NodePath = '/root/app/selection'
 
-var button_state : int = 0
+var button_mask : int = 0
+var alt_pressed : bool = false
+var shift_pressed : bool = false
+var control_pressed : bool = false
 var position : Vector2 = Vector2.ZERO
 var dxy : Vector2 = Vector2.ZERO
 var dragging : bool = false
@@ -41,7 +44,8 @@ func handle(e:InputEventMouse):
 	if current_grid and current_grid.snap:
 		p -= p.posmodv(current_grid.spacing)
 	dxy = p - position
-	position = p
+	position = p; button_mask = e.button_mask
+	alt_pressed = e.alt; shift_pressed = e.shift; control_pressed = e.control
 	if e is InputEventMouseButton:
 		if e.pressed:
 			match e.button_index:

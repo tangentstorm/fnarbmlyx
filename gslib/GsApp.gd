@@ -20,7 +20,7 @@ func _clear_selection():
 
 func _set_selection(nodes:Array):
 	_clear_selection(); selection = nodes
-	if nodes.empty(): $selection.visible = false
+	if nodes.empty(): $selectangle.visible = false
 	else:
 		var xy0 = Vector2.INF; var xy1 = -Vector2.INF
 		var fill = current_fill_color
@@ -30,7 +30,7 @@ func _set_selection(nodes:Array):
 			var r : Rect2 = n.get_rect()
 			xy0.x = min(xy0.x, r.position.x); xy1.x = max(xy1.x, r.end.x)
 			xy0.y = min(xy0.y, r.position.y); xy1.y = max(xy1.y, r.end.y)
-		var s = $selection; s.visible = true
+		var s = $selectangle; s.visible = true
 		var padding = SELECTANGLE_PADDING if nodes.size() > 1 else Vector2.ZERO
 		s.rect_position = xy0 - padding; s.rect_size = (xy1 - xy0) + 2 * padding
 		_set_fill_color(fill, true, false)
@@ -84,7 +84,7 @@ func _on_delete_pressed():
 	for c in $sketch.get_children():
 		if c is GsBase and c.selected:
 			c.queue_free()
-	$selection.visible = false
+	$selectangle.visible = false
 
 func _set_fill_color(v, tell_ui=true, paint_selection=true):
 	current_fill_color = v
@@ -160,7 +160,7 @@ func cmd_duplicate():
 
 func cmd_group():
 	if selection.size():
-		var g = GsLib.add_group($selection.rect_position, $selection.rect_size)
+		var g = GsLib.add_group($selectangle.rect_position, $selectangle.rect_size)
 		for item in selection:
 			GsLib.sketch.remove_child(item)
 			g.add_item(item)

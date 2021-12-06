@@ -84,7 +84,7 @@ visible = false
 mouse_default_cursor_shape = 13
 color = Color( 0.462745, 0.521569, 0.890196, 0.0941176 )
 script = ExtResource( 13 )
-target_path = NodePath("../selection")
+target_path = NodePath("../selectangle")
 
 [node name="sketch" type="Control" parent="."]
 anchor_right = 1.0
@@ -96,7 +96,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="selection" type="ReferenceRect" parent="."]
+[node name="selectangle" type="ReferenceRect" parent="."]
 margin_left = 224.0
 margin_top = 128.0
 margin_right = 352.0
@@ -110,7 +110,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NW" type="ColorRect" parent="selection"]
+[node name="NW" type="ColorRect" parent="selectangle"]
 margin_left = -4.0
 margin_top = -4.0
 margin_right = 4.0
@@ -121,7 +121,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="N" type="ColorRect" parent="selection"]
+[node name="N" type="ColorRect" parent="selectangle"]
 margin_left = 60.0
 margin_top = -4.0
 margin_right = 68.0
@@ -132,7 +132,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NE" type="ColorRect" parent="selection"]
+[node name="NE" type="ColorRect" parent="selectangle"]
 margin_left = 124.0
 margin_top = -4.0
 margin_right = 132.0
@@ -143,7 +143,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="E" type="ColorRect" parent="selection"]
+[node name="E" type="ColorRect" parent="selectangle"]
 margin_left = 124.0
 margin_top = 60.0
 margin_right = 132.0
@@ -154,7 +154,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SE" type="ColorRect" parent="selection"]
+[node name="SE" type="ColorRect" parent="selectangle"]
 margin_left = 124.0
 margin_top = 124.0
 margin_right = 132.0
@@ -165,7 +165,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="S" type="ColorRect" parent="selection"]
+[node name="S" type="ColorRect" parent="selectangle"]
 margin_left = 60.0
 margin_top = 124.0
 margin_right = 68.0
@@ -176,7 +176,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SW" type="ColorRect" parent="selection"]
+[node name="SW" type="ColorRect" parent="selectangle"]
 margin_left = -4.0
 margin_top = 124.0
 margin_right = 4.0
@@ -187,7 +187,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="W" type="ColorRect" parent="selection"]
+[node name="W" type="ColorRect" parent="selectangle"]
 margin_left = -4.0
 margin_top = 60.0
 margin_right = 4.0

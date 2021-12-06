@@ -3,7 +3,6 @@ func get_class_name(): return "GsMouse"
 
 export var grid_path : NodePath = '/root/app/bg/grid'
 export var lasso_path : NodePath = '/root/app/lasso'
-export var selection_path : NodePath = '/root/app/selection'
 
 var button_mask : int = 0
 var alt_pressed : bool = false
@@ -18,7 +17,6 @@ var subject : Control
 onready var current_tool = $tool
 onready var current_grid = get_node(grid_path)
 onready var lasso = get_node(lasso_path)
-onready var selection = get_node(selection_path)
 
 func _ready():
 	GsLib.mouse = self

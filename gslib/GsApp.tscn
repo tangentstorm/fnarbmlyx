@@ -82,7 +82,7 @@ __meta__ = {
 [node name="selection_drag_helper" type="ColorRect" parent="."]
 visible = false
 mouse_default_cursor_shape = 13
-color = Color( 0.462745, 0.521569, 0.890196, 0.215686 )
+color = Color( 0.462745, 0.521569, 0.890196, 0.0941176 )
 script = ExtResource( 13 )
 target_path = NodePath("../selection")
 

@@ -1,9 +1,6 @@
 class_name GsHandle extends GsBase
 func get_class_name(): return "GsHandle"
 
-func _ready():
-	self.draggable = true
-
 func _dxy(dxy):
 	get_parent().rect_position += dxy
 	if GsLib.app.selection.size() == 1:

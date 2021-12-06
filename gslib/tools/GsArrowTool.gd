@@ -3,22 +3,22 @@ func get_class_name(): return "GsArrowTool"
 
 func _drag_start(mouse):
 	if mouse.subject == null:
-		mouse.selectangle.visible = true
+		mouse.lasso.visible = true
 	_drag_step(mouse)
 
 func _drag_step(mouse):
-	if mouse.selectangle.visible:
+	if mouse.lasso.visible:
 		var r : Rect2 = mouse.drag_rect().abs()
-		mouse.selectangle.rect_position = r.position
-		mouse.selectangle.rect_size = r.size
+		mouse.lasso.rect_position = r.position
+		mouse.lasso.rect_size = r.size
 	elif mouse.subject:
 		mouse.subject._drag_step(mouse.dxy)
 
 func _drag_end(mouse):
 	if mouse.subject: mouse.subject._drag_end()
 	else:
-		mouse.selectangle.visible = false
-		var rect = mouse.selectangle.get_rect()
+		mouse.lasso.visible = false
+		var rect = mouse.lasso.get_rect()
 		var selection = []
 
 		for c in GsLib.sketch.get_children():

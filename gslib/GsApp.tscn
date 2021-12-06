@@ -46,18 +46,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="mouse" type="Label" parent="bg"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-align = 2
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="tool" type="Node" parent="bg/mouse"]
-script = ExtResource( 6 )
-
 [node name="grid" type="Control" parent="bg"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -68,6 +56,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 color = Color( 0.227451, 0.266667, 0.333333, 1 )
+
+[node name="mouse" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+align = 2
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tool" type="Node" parent="mouse"]
+script = ExtResource( 6 )
 
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -198,7 +198,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="selectangle" type="ReferenceRect" parent="."]
+[node name="lasso" type="ReferenceRect" parent="."]
 visible = false
 margin_left = 456.0
 margin_top = 128.0
@@ -211,7 +211,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="selectangle"]
+[node name="ColorRect" type="ColorRect" parent="lasso"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2

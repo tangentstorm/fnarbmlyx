@@ -12,5 +12,5 @@ func _drag_start(mouse):
 func _drag_step(mouse):
 	curve.add_point(mouse.position - mouse.origin)
 
-func _drag_end(mouse):
+func _drag_end(_mouse):
 	GsLib.app.selection = [curve]

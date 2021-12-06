@@ -68,7 +68,7 @@ func handle(e:InputEventMouse):
 func _enter(c:Control):
 	self.subject = c
 
-func _leave(c:Control):
+func _leave(_c:Control):
 	self.subject = null
 
 func _process(_dt):

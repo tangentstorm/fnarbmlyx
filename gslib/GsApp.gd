@@ -110,7 +110,7 @@ func _on_to_back_pressed():
 		if c is GsBase and c.selected:
 			$sketch.move_child(c, 0)
 
-func _on_palette_clicked(node, x, y, i, color):
+func _on_palette_clicked(_node, _x, _y, _i, color):
 	_set_fill_color(color)
 
 

@@ -14,7 +14,7 @@ func _set_spacing(v):
 func _set_snap(v):
 	snap = v
 
-func _on_camera_changed(zoom, offset):
+func _on_camera_changed(_zoom, _offset):
 	update()
 
 func _draw():
@@ -25,12 +25,12 @@ func _draw():
 	var p0 = Vector2.ZERO
 	var p1 = Vector2(rect_size.x, 0)
 	var dp = Vector2.DOWN * spacing.y
-	for y in range(0, rect_size.y, spacing.y):
+	for _y in range(0, rect_size.y, spacing.y):
 		draw_line(p0, p1, color); p0 += dp; p1 += dp
 
 	p0 = Vector2.ZERO; p1 = Vector2(0, rect_size.y)
 	dp = Vector2.RIGHT * spacing.x
-	for x in range(0, rect_size.x, spacing.x):
+	for _x in range(0, rect_size.x, spacing.x):
 		draw_line(p0, p1, color); p0 += dp; p1 += dp
 
 func _on_grid_toggled(flag):

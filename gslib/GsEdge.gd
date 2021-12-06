@@ -43,5 +43,5 @@ func _on_node_moved():
 	curve.set_point_position(1, b)
 	self.start = a
 
-func _drag_step(dxy):
+func _drag_step(_dxy):
 	update()

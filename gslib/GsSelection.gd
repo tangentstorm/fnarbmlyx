@@ -25,7 +25,7 @@ func _drag_step(dxy):
 	for c in GsLib.app.selection:
 		c._drag_step(dxy)
 
-func _click(xy):
+func _click(_xy):
 	pass # don't select anything
 
 

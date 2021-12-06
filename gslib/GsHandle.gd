@@ -21,7 +21,6 @@ func _drag_step(dxy):
 	# opposite direction to compensate.
 	# Since the handle is a child of the selection, we
 	# have to tell the mouse to update our offset.
-	var p = get_parent()
 	var name = get_name()
 	if name.begins_with('N'):
 		_dxy(dxy.y * Vector2.DOWN)

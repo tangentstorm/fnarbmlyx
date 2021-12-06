@@ -36,13 +36,13 @@ class TreeNode:
 	var count : int = 1
 	var links : Array
 
-	func _init(xy, value, split=[], nodes=[]):
-		self.xy = xy
-		self.value = value
-		self.split = split
-		self.links = nodes
+	func _init(xy0, value0, split0=[], links0=[]):
+		self.xy = xy0
+		self.value = value0
+		self.split = split0
+		self.links = links0
 		var shape = Vector2.DOWN
-		for n in nodes:
+		for n in links0:
 			shape.x += n.wh.x
 			shape.y = max(shape.y, 1+n.wh.y)
 			self.count += n.count

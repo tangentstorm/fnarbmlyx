@@ -18,7 +18,7 @@ func _set_src(v):
 		offset = src.link_offset(0)
 		edge.start = src.rect_position + offset
 		GsLib.sketch.add_child(edge); edge.set_owner(GsLib.sketch)
-		GsLib.sketch.move_child(edge, max(0, src.get_index()-1))
+		GsLib.sketch.move_child(edge, int(max(0, src.get_index()-1)))
 
 func _click(mouse):
 	if GsLib.app.selection.size(): ._click(mouse)

@@ -44,7 +44,7 @@ func set_selected(v):
 	selected = v
 	update()
 
-func _click(xy):
+func _click(_xy):
 	if GsLib.mouse.shift_pressed:
 		var ix = GsLib.app.selection.find(self)
 		if ix > -1: GsLib.app.selection.remove(ix)

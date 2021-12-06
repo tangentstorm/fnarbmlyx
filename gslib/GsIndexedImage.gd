@@ -33,9 +33,8 @@ func _rebuild():
 func _draw():
 	var i = 0
 	for row in range(shape.y):
-		var offset = row * shape.x
 		var xy = Vector2(0, row * cell_size.y)
-		for x in range(shape.x):
+		for _x in range(shape.x):
 			draw_rect(Rect2(xy, cell_size), palette[data[i]])
 			xy.x += cell_size.x; i += 1
 

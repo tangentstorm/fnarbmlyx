@@ -1,6 +1,8 @@
 # draw a random AST
 extends Node2D
 
+export var animated: bool = true
+
 enum BFn { X0, X1, X2, X3, X4, O, I, AND, OR, XOR, NONE } # ITE, MAJ ?
 const R = GsNode.SHAPE.RECT; const D = GsNode.SHAPE.DISK
 const THEME = { # shape, textcolor, bgcolor, text
@@ -21,11 +23,14 @@ var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready():
 	rng.seed = 322
+	call_deferred('play')
+
+func play():
 	var trace = []
 	var tree = sprout(trace, Vector2.ZERO, 32)
 	var co = animate(trace, tree)
 	while co is GDScriptFunctionState:
-		yield($Timer, "timeout")
+		if animated: yield($Timer, "timeout")
 		co = co.resume()
 
 class TreeNode:

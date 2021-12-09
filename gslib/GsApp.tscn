@@ -80,7 +80,6 @@ __meta__ = {
 }
 
 [node name="selectangle_helper" type="ColorRect" parent="."]
-visible = false
 mouse_default_cursor_shape = 13
 color = Color( 0.462745, 0.521569, 0.890196, 0.0941176 )
 script = ExtResource( 13 )
@@ -573,8 +572,8 @@ window_title = "Open a File"
 mode = 0
 access = 1
 filters = PoolStringArray( "*.tscn" )
-current_dir = "user://d:/ver/fnarbmlyx"
-current_path = "user://d:/ver/fnarbmlyx/"
+current_dir = "user://D:/ver/fnarbmlyx"
+current_path = "user://D:/ver/fnarbmlyx/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -592,6 +591,7 @@ __meta__ = {
 [node name="script" type="Node2D" parent="."]
 position = Vector2( 64, 96 )
 script = ExtResource( 16 )
+animated = false
 
 [node name="Timer" type="Timer" parent="script"]
 wait_time = 0.001

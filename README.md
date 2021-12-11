@@ -7,7 +7,7 @@ as well as a text terminal conttrol and experiments for connecting Godot with J.
 
 Until I get around to collecting them here, you can see some screenshots of these experiments on my twitter feed:
 
-    https://twitter.com/tangentstorm
+- https://twitter.com/tangentstorm
 
 **WARNING:** Nothing in here should be considered stable or production quality.
 

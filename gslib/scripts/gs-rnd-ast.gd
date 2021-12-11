@@ -25,13 +25,19 @@ func _ready():
 	rng.seed = 322
 	call_deferred('play')
 
+var tree : TreeNode
+
 func play():
 	var trace = []
-	var tree = sprout(trace, Vector2.ZERO, 32)
+	self.tree = sprout(trace, Vector2.ZERO, 32)
 	var co = animate(trace, tree)
 	while co is GDScriptFunctionState:
 		if animated: yield($Timer, "timeout")
 		co = co.resume()
+	call_deferred('to_bottom')
+
+func to_bottom():
+	tree.to_bottom()
 
 class TreeNode:
 	var xy    : Vector2 = Vector2.ZERO
@@ -40,6 +46,8 @@ class TreeNode:
 	var split : Array # the budgets passed to the children
 	var count : int = 1
 	var links : Array
+	var view  : GsNode
+	var height: int = 0
 
 	func _init(xy0, value0, split0=[], links0=[]):
 		self.xy = xy0
@@ -56,6 +64,15 @@ class TreeNode:
 
 	func lo(): return links[0]
 	func hi(): return links[1]
+
+	func to_bottom():
+		height = 0
+		for c in links:
+			c.to_bottom()
+			height = max(height, c.height)
+		height += 1
+		if self.view:
+			self.view.rect_position.y = 500 - (height * 48)
 
 func sprout(trace, xy, budget):
 	var res
@@ -86,13 +103,13 @@ func animate(trace, tree):
 	var stack = []; var gsn; var lo; var hi; var xy
 	for step in trace:
 		yield()
-		print(step)
 		var s = step[1]
 		match step[0]:
 			'BUILD':
 				if gsn == null:
 					xy = s['xy'] * CELLSIZE
 					gsn = add_node(xy, str(s['b']))
+					tree.view = gsn
 			'LEAF':
 				set_theme(gsn, s['v'])
 				gsn.modulate = Color.white
@@ -100,6 +117,7 @@ func animate(trace, tree):
 				var split = s['split']
 				lo = add_node(xy + CELLSIZE * Vector2.DOWN, str(split[0]))
 				hi = add_node(xy + CELLSIZE * Vector2.RIGHT, str(split[1]))
+				tree.lo().view = lo; tree.hi().view = hi
 				add_edge(gsn, lo); add_edge(gsn, hi)
 				set_theme(gsn, s['v'])
 				gsn.modulate = DIM_NODE; hi.modulate = DIM_NODE

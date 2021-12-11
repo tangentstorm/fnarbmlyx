@@ -1,4 +1,4 @@
-extends PanelContainer
+tool extends PanelContainer
 
 var o : GsBase = null setget set_item
 

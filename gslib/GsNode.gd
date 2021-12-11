@@ -62,7 +62,7 @@ func _set_edge_refs_deferred(vs):
 
 func add_edge(e):
 	edge_refs.append(e.get_path()); edges.append(e)
-	print("CONNECT: ", self.get_name(), " -> ", e.get_name())
+	# print("CONNECT: ", self.get_name(), " -> ", e.get_name())
 	connect("item_rect_changed", e, '_on_node_moved')
 
 func rm_edge(e):
@@ -70,7 +70,7 @@ func rm_edge(e):
 	var ix = edges.find(e)
 	if ix > -1:
 		edges.remove(ix); edge_refs.remove(ix)
-		print("DISCONNECT: ", self.get_name(), " -> ", e.get_name())
+		# print("DISCONNECT: ", self.get_name(), " -> ", e.get_name())
 		disconnect("item_rect_changed", e, '_on_node_moved')
 
 func add_edge_ref(ref):

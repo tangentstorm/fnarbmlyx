@@ -1,4 +1,4 @@
-class_name GsPalette extends Object
+tool class_name GsPalette extends Object
 
 # dawnbringer palette https://pixeljoint.com/forum/forum_posts.asp?TID=12795
 const dawnbringer = [

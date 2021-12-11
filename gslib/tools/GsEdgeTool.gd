@@ -1,6 +1,6 @@
 # Tool for rapidly building networks of nodes and edges
 # by clicking and dragging on nodes or the canvas.
-class_name GsEdgeTool extends GsArrowTool
+tool class_name GsEdgeTool extends GsArrowTool
 func get_class_name(): return "GsEdgeTool"
 
 var src setget _set_src

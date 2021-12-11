@@ -2,7 +2,7 @@
 # The nodes themselves keep track of the event handling
 # for all connected edges, but the edges need to remember
 # which side is which.
-class_name GsEdge extends GsCurve
+tool class_name GsEdge extends GsCurve
 func get_class_name(): return 'GsEdge'
 
 export var src_path : NodePath setget _set_src_path

@@ -1,8 +1,8 @@
-class_name GsMouse extends Label
+tool class_name GsMouse extends Label
 func get_class_name(): return "GsMouse"
 
-export var grid_path : NodePath = '/root/app/bg/grid'
-export var lasso_path : NodePath = '/root/app/lasso'
+export var grid_path : NodePath = '../bg-layer/bg/grid'
+export var lasso_path : NodePath = '../lasso'
 
 var button_mask : int = 0
 var alt_pressed : bool = false
@@ -30,7 +30,7 @@ func drag_rect() -> Rect2:
 	return Rect2(origin, position-origin)
 
 func context_menu(xy:Vector2):
-	var m = $"/root/app/ui/context_menu"
+	var m = GsLib.app.ui.get_node('context_menu')
 	m.rect_position = xy
 	m.popup()
 

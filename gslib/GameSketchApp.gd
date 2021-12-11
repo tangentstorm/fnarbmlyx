@@ -1,4 +1,4 @@
-extends ColorRect
+tool extends ColorRect
 func get_class_name(): return "GameSketchApp"
 
 func _input(e):

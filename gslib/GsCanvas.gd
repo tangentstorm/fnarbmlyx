@@ -1,2 +1,2 @@
-extends ColorRect
+tool extends ColorRect
 #

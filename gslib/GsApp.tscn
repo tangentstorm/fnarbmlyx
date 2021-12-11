@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://gslib/GsGrid.gd" type="Script" id=1]
 [ext_resource path="res://gslib/GsSketch.gd" type="Script" id=2]
@@ -15,28 +15,39 @@
 [ext_resource path="res://gslib/tools/GsDragHelper.gd" type="Script" id=13]
 [ext_resource path="res://gslib/tools/GsEdgeTool.gd" type="Script" id=14]
 [ext_resource path="res://gslib/GsIndexedImage.gd" type="Script" id=15]
+[ext_resource path="res://gslib/scripts/gs-rnd-ast.gd" type="Script" id=16]
 [ext_resource path="res://gslib/GsGroup.gd" type="Script" id=17]
 [ext_resource path="res://gslib/GsApp.gd" type="Script" id=18]
 [ext_resource path="res://fonts/noto-font.tres" type="DynamicFont" id=19]
 [ext_resource path="res://gslib/GsCanvas.gd" type="Script" id=20]
 [ext_resource path="res://gslib/GsCamera.gd" type="Script" id=21]
 [ext_resource path="res://gslib/GsConsole.gd" type="Script" id=22]
+[ext_resource path="res://gslib/tools/GsMouseTool.gd" type="Script" id=23]
 
 [sub_resource type="ButtonGroup" id=1]
 
 [node name="app" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_clip_content = true
 mouse_filter = 2
 script = ExtResource( 18 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="bg" type="CanvasLayer" parent="."]
+[node name="bg-layer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="canvas" type="ColorRect" parent="bg"]
+[node name="bg" type="Control" parent="bg-layer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="canvas" type="ColorRect" parent="bg-layer/bg"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -46,7 +57,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="grid" type="Control" parent="bg"]
+[node name="grid" type="Control" parent="bg-layer/bg"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -58,8 +69,12 @@ __meta__ = {
 color = Color( 0.227451, 0.266667, 0.333333, 1 )
 
 [node name="mouse" type="Label" parent="."]
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
+margin_left = -447.0
+margin_right = -16.0
+margin_bottom = 23.0
+text = "[ GsArrowTool ] (0,0)"
 align = 2
 script = ExtResource( 5 )
 __meta__ = {
@@ -72,22 +87,26 @@ script = ExtResource( 6 )
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
-editor_draw_limits = true
-editor_draw_drag_margin = true
+editor_draw_screen = false
 script = ExtResource( 21 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="selectangle_helper" type="ColorRect" parent="."]
+visible = false
+margin_left = 1120.0
+margin_top = 288.0
+margin_right = 1152.0
+margin_bottom = 320.0
 mouse_default_cursor_shape = 13
 color = Color( 0.462745, 0.521569, 0.890196, 0.0941176 )
 script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 target_path = NodePath("../selectangle")
 
 [node name="sketch" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_top = 22.0
+margin_bottom = 22.0
 mouse_filter = 2
 script = ExtResource( 2 )
 __meta__ = {
@@ -96,10 +115,11 @@ __meta__ = {
 }
 
 [node name="selectangle" type="ReferenceRect" parent="."]
-margin_left = 224.0
-margin_top = 128.0
-margin_right = 352.0
-margin_bottom = 256.0
+visible = false
+margin_left = 1120.0
+margin_top = 288.0
+margin_right = 1152.0
+margin_bottom = 320.0
 mouse_filter = 2
 border_color = Color( 0.580392, 0.831373, 0.968627, 1 )
 border_width = 2.5
@@ -121,9 +141,9 @@ __meta__ = {
 }
 
 [node name="N" type="ColorRect" parent="selectangle"]
-margin_left = 60.0
+margin_left = 12.0
 margin_top = -4.0
-margin_right = 68.0
+margin_right = 20.0
 margin_bottom = 4.0
 rect_min_size = Vector2( 8, 8 )
 script = ExtResource( 10 )
@@ -132,9 +152,9 @@ __meta__ = {
 }
 
 [node name="NE" type="ColorRect" parent="selectangle"]
-margin_left = 124.0
+margin_left = 28.0
 margin_top = -4.0
-margin_right = 132.0
+margin_right = 36.0
 margin_bottom = 4.0
 rect_min_size = Vector2( 8, 8 )
 script = ExtResource( 10 )
@@ -143,10 +163,10 @@ __meta__ = {
 }
 
 [node name="E" type="ColorRect" parent="selectangle"]
-margin_left = 124.0
-margin_top = 60.0
-margin_right = 132.0
-margin_bottom = 68.0
+margin_left = 28.0
+margin_top = 12.0
+margin_right = 36.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 8, 8 )
 script = ExtResource( 10 )
 __meta__ = {
@@ -154,10 +174,10 @@ __meta__ = {
 }
 
 [node name="SE" type="ColorRect" parent="selectangle"]
-margin_left = 124.0
-margin_top = 124.0
-margin_right = 132.0
-margin_bottom = 132.0
+margin_left = 28.0
+margin_top = 28.0
+margin_right = 36.0
+margin_bottom = 36.0
 rect_min_size = Vector2( 8, 8 )
 script = ExtResource( 10 )
 __meta__ = {
@@ -165,10 +185,10 @@ __meta__ = {
 }
 
 [node name="S" type="ColorRect" parent="selectangle"]
-margin_left = 60.0
-margin_top = 124.0
-margin_right = 68.0
-margin_bottom = 132.0
+margin_left = 12.0
+margin_top = 28.0
+margin_right = 20.0
+margin_bottom = 36.0
 rect_min_size = Vector2( 8, 8 )
 script = ExtResource( 10 )
 __meta__ = {
@@ -177,9 +197,9 @@ __meta__ = {
 
 [node name="SW" type="ColorRect" parent="selectangle"]
 margin_left = -4.0
-margin_top = 124.0
+margin_top = 28.0
 margin_right = 4.0
-margin_bottom = 132.0
+margin_bottom = 36.0
 rect_min_size = Vector2( 8, 8 )
 script = ExtResource( 10 )
 __meta__ = {
@@ -188,9 +208,9 @@ __meta__ = {
 
 [node name="W" type="ColorRect" parent="selectangle"]
 margin_left = -4.0
-margin_top = 60.0
+margin_top = 12.0
 margin_right = 4.0
-margin_bottom = 68.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 8, 8 )
 script = ExtResource( 10 )
 __meta__ = {
@@ -220,6 +240,8 @@ __meta__ = {
 }
 
 [node name="proto_group" type="Control" parent="."]
+margin_top = 30.0
+margin_bottom = 30.0
 mouse_filter = 2
 script = ExtResource( 17 )
 __meta__ = {
@@ -231,19 +253,28 @@ __meta__ = {
 [node name="drag_helper" type="ColorRect" parent="proto_group"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.129412, 0.364706, 0.764706, 0.552941 )
+color = Color( 1, 1, 1, 0 )
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ui" type="CanvasLayer" parent="."]
+[node name="ui-layer" type="CanvasLayer" parent="."]
+layer = 2
 
-[node name="inspector" type="PanelContainer" parent="ui"]
+[node name="ui" type="Control" parent="ui-layer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="inspector" type="PanelContainer" parent="ui-layer/ui"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -363.0
+margin_left = -370.0
 margin_top = 31.0
 margin_right = 7.0
 margin_bottom = -7.0
@@ -252,139 +283,144 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="vbox" type="VBoxContainer" parent="ui/inspector"]
+[node name="vbox" type="VBoxContainer" parent="ui-layer/ui/inspector"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 363.0
+margin_right = 370.0
 margin_bottom = 1035.0
 custom_constants/separation = 8
 
-[node name="fill_color" type="HBoxContainer" parent="ui/inspector/vbox"]
-margin_right = 356.0
+[node name="fill_color" type="HBoxContainer" parent="ui-layer/ui/inspector/vbox"]
+margin_right = 363.0
 margin_bottom = 20.0
 
-[node name="Label" type="Label" parent="ui/inspector/vbox/fill_color"]
+[node name="Label" type="Label" parent="ui-layer/ui/inspector/vbox/fill_color"]
 margin_top = 3.0
-margin_right = 288.0
+margin_right = 295.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 text = "fill color"
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="ui/inspector/vbox/fill_color"]
-margin_left = 292.0
-margin_right = 356.0
+[node name="ColorPickerButton" type="ColorPickerButton" parent="ui-layer/ui/inspector/vbox/fill_color"]
+margin_left = 299.0
+margin_right = 363.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 64, 0 )
+color = Color( 1, 1, 1, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="line_color" type="HBoxContainer" parent="ui/inspector/vbox"]
+[node name="line_color" type="HBoxContainer" parent="ui-layer/ui/inspector/vbox"]
 margin_top = 28.0
-margin_right = 356.0
+margin_right = 363.0
 margin_bottom = 48.0
 
-[node name="Label" type="Label" parent="ui/inspector/vbox/line_color"]
+[node name="Label" type="Label" parent="ui-layer/ui/inspector/vbox/line_color"]
 margin_top = 3.0
-margin_right = 288.0
+margin_right = 295.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 text = "line color"
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="ui/inspector/vbox/line_color"]
-margin_left = 292.0
-margin_right = 356.0
+[node name="ColorPickerButton" type="ColorPickerButton" parent="ui-layer/ui/inspector/vbox/line_color"]
+margin_left = 299.0
+margin_right = 363.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 64, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="text_color" type="HBoxContainer" parent="ui/inspector/vbox"]
+[node name="text_color" type="HBoxContainer" parent="ui-layer/ui/inspector/vbox"]
 margin_top = 56.0
-margin_right = 356.0
+margin_right = 363.0
 margin_bottom = 76.0
 
-[node name="Label" type="Label" parent="ui/inspector/vbox/text_color"]
+[node name="Label" type="Label" parent="ui-layer/ui/inspector/vbox/text_color"]
 margin_top = 3.0
-margin_right = 288.0
+margin_right = 295.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 text = "text color"
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="ui/inspector/vbox/text_color"]
-margin_left = 292.0
-margin_right = 356.0
+[node name="ColorPickerButton" type="ColorPickerButton" parent="ui-layer/ui/inspector/vbox/text_color"]
+margin_left = 299.0
+margin_right = 363.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 64, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="shape" type="HBoxContainer" parent="ui/inspector/vbox"]
+[node name="shape" type="HBoxContainer" parent="ui-layer/ui/inspector/vbox"]
 margin_top = 84.0
-margin_right = 356.0
+margin_right = 363.0
 margin_bottom = 104.0
 
-[node name="Label" type="Label" parent="ui/inspector/vbox/shape"]
+[node name="Label" type="Label" parent="ui-layer/ui/inspector/vbox/shape"]
 margin_top = 3.0
-margin_right = 288.0
+margin_right = 295.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 text = "shape"
 
-[node name="shape_picker" type="OptionButton" parent="ui/inspector/vbox/shape"]
-margin_left = 292.0
-margin_right = 356.0
+[node name="shape_picker" type="OptionButton" parent="ui-layer/ui/inspector/vbox/shape"]
+margin_left = 299.0
+margin_right = 363.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 64, 0 )
 text = "DISK"
 items = [ "DISK", null, false, 0, null, "RECT", null, false, 1, null ]
 selected = 0
 
-[node name="lbl_text" type="Label" parent="ui/inspector/vbox"]
+[node name="lbl_text" type="Label" parent="ui-layer/ui/inspector/vbox"]
 margin_top = 112.0
-margin_right = 356.0
+margin_right = 363.0
 margin_bottom = 126.0
 text = "text	"
 
-[node name="text" type="LineEdit" parent="ui/inspector/vbox"]
+[node name="text" type="LineEdit" parent="ui-layer/ui/inspector/vbox"]
 margin_top = 134.0
-margin_right = 356.0
+margin_right = 363.0
 margin_bottom = 178.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 19 )
+text = "1"
 caret_blink = true
+caret_blink_speed = 0.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="lbl_info" type="Label" parent="ui/inspector/vbox"]
+[node name="lbl_info" type="Label" parent="ui-layer/ui/inspector/vbox"]
 margin_top = 186.0
-margin_right = 356.0
+margin_right = 363.0
 margin_bottom = 200.0
 text = "info	"
 
-[node name="info" type="Panel" parent="ui/inspector/vbox"]
+[node name="info" type="Panel" parent="ui-layer/ui/inspector/vbox"]
 margin_top = 208.0
-margin_right = 356.0
+margin_right = 363.0
 margin_bottom = 336.0
 rect_min_size = Vector2( 0, 128 )
 size_flags_horizontal = 3
 
-[node name="label" type="RichTextLabel" parent="ui/inspector/vbox/info"]
+[node name="label" type="RichTextLabel" parent="ui-layer/ui/inspector/vbox/info"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 bbcode_enabled = true
+bbcode_text = "GsNode"
+text = "GsNode"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="context_menu" type="PopupMenu" parent="ui"]
+[node name="context_menu" type="PopupMenu" parent="ui-layer/ui"]
 margin_right = 20.0
 margin_bottom = 20.0
 
-[node name="toolbar" type="PanelContainer" parent="ui"]
+[node name="toolbar" type="PanelContainer" parent="ui-layer/ui"]
 margin_right = 562.0
 margin_bottom = 38.0
 input_pass_on_modal_close_click = false
@@ -393,7 +429,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hbox" type="HBoxContainer" parent="ui/toolbar"]
+[node name="hbox" type="HBoxContainer" parent="ui-layer/ui/toolbar"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 555.0
@@ -402,7 +438,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="arrow" type="ToolButton" parent="ui/toolbar/hbox"]
+[node name="arrow" type="ToolButton" parent="ui-layer/ui/toolbar/hbox"]
 margin_right = 22.0
 margin_bottom = 24.0
 hint_tooltip = "Arrow tool"
@@ -415,7 +451,7 @@ __meta__ = {
 }
 tool_script = ExtResource( 6 )
 
-[node name="node" type="ToolButton" parent="ui/toolbar/hbox"]
+[node name="node" type="ToolButton" parent="ui-layer/ui/toolbar/hbox"]
 margin_left = 26.0
 margin_right = 52.0
 margin_bottom = 24.0
@@ -428,7 +464,7 @@ __meta__ = {
 }
 tool_script = ExtResource( 4 )
 
-[node name="build" type="ToolButton" parent="ui/toolbar/hbox"]
+[node name="build" type="ToolButton" parent="ui-layer/ui/toolbar/hbox"]
 margin_left = 56.0
 margin_right = 88.0
 margin_bottom = 24.0
@@ -441,7 +477,7 @@ __meta__ = {
 }
 tool_script = ExtResource( 14 )
 
-[node name="pencil" type="ToolButton" parent="ui/toolbar/hbox"]
+[node name="pencil" type="ToolButton" parent="ui-layer/ui/toolbar/hbox"]
 margin_left = 92.0
 margin_right = 120.0
 margin_bottom = 24.0
@@ -454,7 +490,7 @@ __meta__ = {
 }
 tool_script = ExtResource( 3 )
 
-[node name="hand" type="ToolButton" parent="ui/toolbar/hbox"]
+[node name="hand" type="ToolButton" parent="ui-layer/ui/toolbar/hbox"]
 margin_left = 124.0
 margin_right = 150.0
 margin_bottom = 24.0
@@ -463,8 +499,9 @@ custom_fonts/font = ExtResource( 12 )
 disabled = true
 text = ""
 script = ExtResource( 9 )
+tool_script = ExtResource( 23 )
 
-[node name="text" type="ToolButton" parent="ui/toolbar/hbox"]
+[node name="text" type="ToolButton" parent="ui-layer/ui/toolbar/hbox"]
 margin_left = 154.0
 margin_right = 180.0
 margin_bottom = 24.0
@@ -475,8 +512,9 @@ script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+tool_script = ExtResource( 23 )
 
-[node name="grid" type="CheckBox" parent="ui/toolbar/hbox"]
+[node name="grid" type="CheckBox" parent="ui-layer/ui/toolbar/hbox"]
 margin_left = 184.0
 margin_right = 239.0
 margin_bottom = 24.0
@@ -486,7 +524,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="clear" type="Button" parent="ui/toolbar/hbox"]
+[node name="clear" type="Button" parent="ui-layer/ui/toolbar/hbox"]
 margin_left = 243.0
 margin_right = 267.0
 margin_bottom = 24.0
@@ -494,7 +532,7 @@ custom_fonts/font = ExtResource( 12 )
 text = ""
 flat = true
 
-[node name="load" type="Button" parent="ui/toolbar/hbox"]
+[node name="load" type="Button" parent="ui-layer/ui/toolbar/hbox"]
 margin_left = 271.0
 margin_right = 301.0
 margin_bottom = 24.0
@@ -503,7 +541,7 @@ custom_fonts/font = ExtResource( 12 )
 text = ""
 flat = true
 
-[node name="save" type="Button" parent="ui/toolbar/hbox"]
+[node name="save" type="Button" parent="ui-layer/ui/toolbar/hbox"]
 margin_left = 305.0
 margin_right = 331.0
 margin_bottom = 24.0
@@ -512,7 +550,7 @@ custom_fonts/font = ExtResource( 12 )
 text = ""
 flat = true
 
-[node name="delete" type="Button" parent="ui/toolbar/hbox"]
+[node name="delete" type="Button" parent="ui-layer/ui/toolbar/hbox"]
 margin_left = 335.0
 margin_right = 361.0
 margin_bottom = 24.0
@@ -521,7 +559,7 @@ custom_fonts/font = ExtResource( 12 )
 text = ""
 flat = true
 
-[node name="to_front" type="Button" parent="ui/toolbar/hbox"]
+[node name="to_front" type="Button" parent="ui-layer/ui/toolbar/hbox"]
 margin_left = 365.0
 margin_right = 387.0
 margin_bottom = 24.0
@@ -530,7 +568,7 @@ custom_fonts/font = ExtResource( 12 )
 text = ""
 flat = true
 
-[node name="to_back" type="Button" parent="ui/toolbar/hbox"]
+[node name="to_back" type="Button" parent="ui-layer/ui/toolbar/hbox"]
 margin_left = 391.0
 margin_right = 413.0
 margin_bottom = 24.0
@@ -539,7 +577,7 @@ custom_fonts/font = ExtResource( 12 )
 text = ""
 flat = true
 
-[node name="color" type="ColorPickerButton" parent="ui/toolbar/hbox"]
+[node name="color" type="ColorPickerButton" parent="ui-layer/ui/toolbar/hbox"]
 margin_left = 417.0
 margin_right = 448.0
 margin_bottom = 24.0
@@ -547,9 +585,9 @@ hint_tooltip = "Fill  Color"
 size_flags_horizontal = 0
 text = "BG"
 flat = true
-color = Color( 0.866667, 0.8, 0.6, 1 )
+color = Color( 1, 1, 1, 1 )
 
-[node name="palette" type="Control" parent="ui/toolbar/hbox"]
+[node name="palette" type="Control" parent="ui-layer/ui/toolbar/hbox"]
 margin_left = 452.0
 margin_right = 548.0
 margin_bottom = 24.0
@@ -561,7 +599,7 @@ __meta__ = {
 cell_size = Vector2( 12, 12 )
 data = PoolByteArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 )
 
-[node name="FileDialog" type="FileDialog" parent="ui"]
+[node name="FileDialog" type="FileDialog" parent="ui-layer/ui"]
 margin_left = 786.562
 margin_top = 260.0
 margin_right = 1102.56
@@ -578,7 +616,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="fog" type="ColorRect" parent="ui"]
+[node name="fog" type="ColorRect" parent="ui-layer/ui"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -590,42 +628,40 @@ __meta__ = {
 
 [node name="script" type="Node2D" parent="."]
 position = Vector2( 64, 96 )
+script = ExtResource( 16 )
+animated = false
 
 [node name="Timer" type="Timer" parent="script"]
 wait_time = 0.001
 autostart = true
 
 [node name="GsConsole" type="Control" parent="."]
-margin_left = 39.0
-margin_top = 394.0
-margin_right = 1315.0
-margin_bottom = 1043.0
+margin_left = 356.707
+margin_top = 581.489
+margin_right = 1635.71
+margin_bottom = 1225.49
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="color_changed" from="ui/inspector/vbox/fill_color/ColorPickerButton" to="ui/inspector" method="_on_fill_color_changed"]
-[connection signal="color_changed" from="ui/inspector/vbox/line_color/ColorPickerButton" to="ui/inspector" method="_on_line_color_changed"]
-[connection signal="color_changed" from="ui/inspector/vbox/text_color/ColorPickerButton" to="ui/inspector" method="_on_text_color_changed"]
-[connection signal="item_selected" from="ui/inspector/vbox/shape/shape_picker" to="ui/inspector" method="_on_shape_picker_item_selected"]
-[connection signal="text_changed" from="ui/inspector/vbox/text" to="ui/inspector" method="_on_text_changed"]
-[connection signal="about_to_show" from="ui/context_menu" to="." method="_on_context_menu_about_to_show"]
-[connection signal="id_pressed" from="ui/context_menu" to="." method="_on_context_menu_id_pressed"]
-[connection signal="mouse_entered" from="ui/toolbar" to="." method="_on_enter_gui"]
-[connection signal="mouse_exited" from="ui/toolbar" to="." method="_on_leave_gui"]
-[connection signal="toggled" from="ui/toolbar/hbox/grid" to="bg/grid" method="_on_grid_toggled"]
-[connection signal="pressed" from="ui/toolbar/hbox/clear" to="." method="_on_clear_pressed"]
-[connection signal="pressed" from="ui/toolbar/hbox/load" to="." method="_on_load_pressed"]
-[connection signal="pressed" from="ui/toolbar/hbox/save" to="." method="_on_save_pressed"]
-[connection signal="pressed" from="ui/toolbar/hbox/delete" to="." method="_on_delete_pressed"]
-[connection signal="pressed" from="ui/toolbar/hbox/to_front" to="." method="_on_to_front_pressed"]
-[connection signal="pressed" from="ui/toolbar/hbox/to_back" to="." method="_on_to_back_pressed"]
-[connection signal="color_changed" from="ui/toolbar/hbox/color" to="." method="_on_color_color_changed"]
-[connection signal="popup_closed" from="ui/toolbar/hbox/color" to="." method="_on_leave_gui"]
-[connection signal="pressed" from="ui/toolbar/hbox/color" to="." method="_on_enter_gui"]
-[connection signal="clicked" from="ui/toolbar/hbox/palette" to="." method="_on_palette_clicked"]
-[connection signal="about_to_show" from="ui/FileDialog" to="." method="_on_FileDialog_about_to_show"]
-[connection signal="confirmed" from="ui/FileDialog" to="." method="_on_FileDialog_confirmed"]
-[connection signal="file_selected" from="ui/FileDialog" to="." method="_on_FileDialog_file_selected"]
-[connection signal="popup_hide" from="ui/FileDialog" to="." method="_on_FileDialog_popup_hide"]
+[connection signal="color_changed" from="ui-layer/ui/inspector/vbox/fill_color/ColorPickerButton" to="ui-layer/ui/inspector" method="_on_fill_color_changed"]
+[connection signal="color_changed" from="ui-layer/ui/inspector/vbox/line_color/ColorPickerButton" to="ui-layer/ui/inspector" method="_on_line_color_changed"]
+[connection signal="color_changed" from="ui-layer/ui/inspector/vbox/text_color/ColorPickerButton" to="ui-layer/ui/inspector" method="_on_text_color_changed"]
+[connection signal="item_selected" from="ui-layer/ui/inspector/vbox/shape/shape_picker" to="ui-layer/ui/inspector" method="_on_shape_picker_item_selected"]
+[connection signal="text_changed" from="ui-layer/ui/inspector/vbox/text" to="ui-layer/ui/inspector" method="_on_text_changed"]
+[connection signal="about_to_show" from="ui-layer/ui/context_menu" to="." method="_on_context_menu_about_to_show"]
+[connection signal="id_pressed" from="ui-layer/ui/context_menu" to="." method="_on_context_menu_id_pressed"]
+[connection signal="toggled" from="ui-layer/ui/toolbar/hbox/grid" to="bg-layer/bg/grid" method="_on_grid_toggled"]
+[connection signal="pressed" from="ui-layer/ui/toolbar/hbox/clear" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="ui-layer/ui/toolbar/hbox/load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="ui-layer/ui/toolbar/hbox/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="ui-layer/ui/toolbar/hbox/delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="ui-layer/ui/toolbar/hbox/to_front" to="." method="_on_to_front_pressed"]
+[connection signal="pressed" from="ui-layer/ui/toolbar/hbox/to_back" to="." method="_on_to_back_pressed"]
+[connection signal="color_changed" from="ui-layer/ui/toolbar/hbox/color" to="." method="_on_color_color_changed"]
+[connection signal="clicked" from="ui-layer/ui/toolbar/hbox/palette" to="." method="_on_palette_clicked"]
+[connection signal="about_to_show" from="ui-layer/ui/FileDialog" to="." method="_on_FileDialog_about_to_show"]
+[connection signal="confirmed" from="ui-layer/ui/FileDialog" to="." method="_on_FileDialog_confirmed"]
+[connection signal="file_selected" from="ui-layer/ui/FileDialog" to="." method="_on_FileDialog_file_selected"]
+[connection signal="popup_hide" from="ui-layer/ui/FileDialog" to="." method="_on_FileDialog_popup_hide"]

@@ -1,4 +1,4 @@
-class_name GsNodeTool extends GsArrowTool
+tool class_name GsNodeTool extends GsArrowTool
 func get_class_name(): return "GsNodeTool"
 
 var node : GsNode
@@ -7,7 +7,7 @@ func _drag_start(mouse):
 	if mouse.find_new_subject() == null:
 		node = GsNode.new()
 		node.text = ''
-		node.fill_color = $"/root/app".current_fill_color
+		node.fill_color = GsLib.app.current_fill_color
 		node.rect_position = mouse.origin
 		GsLib.sketch.add_child(node); node.set_owner(GsLib.sketch)
 	else: ._drag_start(mouse)

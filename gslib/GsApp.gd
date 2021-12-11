@@ -1,4 +1,4 @@
-class_name GsApp extends Control
+tool class_name GsApp extends Control
 func get_class_name(): return "GsApp"
 
 export var current_fill_color : Color = Color.white setget _set_fill_color
@@ -8,11 +8,21 @@ var selection : Array setget _set_selection
 
 const SELECTANGLE_PADDING = Vector2(5,5)
 const DEFAULT_NODE_SIZE = Vector2(32, 32)
+onready var ui = $'ui-layer/ui'
+onready var file_dlg = ui.get_node("FileDialog")
 
 func _ready():
 	GsLib.app = self
 	self.current_fill_color = current_fill_color
-	GsLib.camera.connect('camera_changed', $bg/grid, '_on_camera_changed')
+	GsLib.camera.connect('camera_changed', $'bg-layer/bg/grid', '_on_camera_changed')
+	self.connect("item_rect_changed", self, '_resized')
+	_resized()
+
+
+func _resized():
+	for uilayer in [$"bg-layer/bg", $"ui-layer/ui"]:
+		uilayer.rect_size = rect_size
+		uilayer.rect_position = rect_position
 
 func _clear_selection():
 	for c in GsLib.sketch.get_children():
@@ -35,31 +45,31 @@ func _set_selection(nodes:Array):
 		s.rect_position = xy0 - padding; s.rect_size = (xy1 - xy0) + 2 * padding
 		_set_fill_color(fill, true, false)
 	if nodes.size() == 1:
-		$ui/inspector.set_item(nodes[0])
+		ui.get_node('inspector').set_item(nodes[0])
 
 func _on_load_pressed():
-	$ui/FileDialog.current_dir = 'user://'
-	$ui/FileDialog.mode = FileDialog.MODE_OPEN_FILE
-	$ui/FileDialog.popup()
+	file_dlg.current_dir = 'user://'
+	file_dlg.mode = FileDialog.MODE_OPEN_FILE
+	file_dlg.popup()
 
 func _on_save_pressed():
-	$ui/FileDialog.current_dir = 'user://'
-	$ui/FileDialog.mode = FileDialog.MODE_SAVE_FILE
-	$ui/FileDialog.popup()
+	file_dlg.current_dir = 'user://'
+	file_dlg.mode = FileDialog.MODE_SAVE_FILE
+	file_dlg.popup()
 
 func _on_FileDialog_about_to_show():
-	$ui/fog.visible = true
+	ui.get_node('fog').visible = true
 
 func _on_FileDialog_popup_hide():
-	$ui/fog.visible = false
+	ui.get_node('fog').visible = false
 
 func _on_FileDialog_confirmed():
-	var p = $ui/FileDialog.current_path
+	var p = file_dlg.current_path
 	if not p.ends_with(".tscn"): p += ".tscn"
 	_on_FileDialog_file_selected(p)
 
 func _on_FileDialog_file_selected(path):
-	match $ui/FileDialog.mode:
+	match file_dlg.mode:
 		FileDialog.MODE_SAVE_FILE:
 			var s = PackedScene.new()
 			s.pack($sketch)
@@ -75,7 +85,7 @@ func _on_FileDialog_file_selected(path):
 			add_child(scn); scn.set_owner(self)
 			move_child(scn, pos)
 			GsLib.sketch = $sketch
-	$ui/FileDialog.hide()
+	file_dlg.hide()
 
 func _on_clear_pressed():
 	$sketch.clear()
@@ -89,7 +99,7 @@ func _on_delete_pressed():
 func _set_fill_color(v, tell_ui=true, paint_selection=true):
 	current_fill_color = v
 	if is_inside_tree():
-		if tell_ui: $ui/toolbar/hbox/color.color = v
+		if tell_ui: $'ui-layer/ui/toolbar/hbox/color'.color = v
 		if paint_selection:
 			for c in selection:
 				if c is GsNode: c.fill_color = v
@@ -174,11 +184,11 @@ func cmd_ungroup():
 	self.selection = newsel
 
 func _on_context_menu_about_to_show():
-	$ui/context_menu.clear()
+	ui.get_node('context_menu').clear()
 	for cmd in CMD.values():
-		$ui/context_menu.add_item(CMDS[cmd], cmd)
+		ui.get_node('context_menu').add_item(CMDS[cmd], cmd)
 		if (cmd==CMD.ARRANGE_ROW or cmd==CMD.ARRANGE_COL):
-			$ui/context_menu.set_item_disabled(cmd, true)
+			ui.get_node('context_menu').set_item_disabled(cmd, true)
 
 func _unhandled_input(e):
 	if e is InputEventMouse:

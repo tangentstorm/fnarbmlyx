@@ -1,4 +1,4 @@
-class_name GsBase extends Control
+tool class_name GsBase extends Control
 func get_class_name(): return 'GsBase'
 
 export var draggable : bool = true setget set_draggable

@@ -1,4 +1,4 @@
-extends Node
+tool extends Node
 func get_class_name(): return "GsLib"
 
 var app : GsApp
@@ -7,7 +7,7 @@ var camera : GsCamera
 var sketch : GsSketch
 
 func add_group(xy, wh)->GsGroup:
-	var g = $'/root/app/proto_group'.duplicate()
+	var g = app.get_node('proto_group').duplicate()
 	g.visible = true
 	g.rect_position = xy; g.rect_size = wh
 	g.get_node('members').rect_position = -xy

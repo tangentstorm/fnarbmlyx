@@ -1,4 +1,4 @@
-extends ToolButton
+tool extends ToolButton
 
 export (Script) var tool_script = load('res://gslib/tools/GsMouseTool.gd')
 

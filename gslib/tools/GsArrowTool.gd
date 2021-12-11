@@ -1,4 +1,4 @@
-class_name GsArrowTool extends GsMouseTool
+tool class_name GsArrowTool extends GsMouseTool
 func get_class_name(): return "GsArrowTool"
 
 func _drag_start(mouse):

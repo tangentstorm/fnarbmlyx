@@ -1,5 +1,5 @@
 # draw a random AST
-extends Node2D
+tool extends Node2D
 
 export var animated: bool = true
 

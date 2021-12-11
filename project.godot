@@ -183,7 +183,7 @@ _global_script_class_icons={
 [application]
 
 config/name="fnarbmlyx"
-run/main_scene="res://gslib/GsApp.tscn"
+run/main_scene="res://addons/sketchlib/plugin.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="fnarbmlyx"
 config/icon="res://icon.png"

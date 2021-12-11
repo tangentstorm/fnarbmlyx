@@ -49,6 +49,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://gslib/GsCamera.gd"
 }, {
+"base": "Control",
+"class": "GsConsole",
+"language": "GDScript",
+"path": "res://gslib/GsConsole.gd"
+}, {
+"base": "Control",
+"class": "GsConsoleCursor",
+"language": "GDScript",
+"path": "res://gslib/GsConsoleCursor.gd"
+}, {
 "base": "GsBase",
 "class": "GsCurve",
 "language": "GDScript",
@@ -148,6 +158,8 @@ _global_script_class_icons={
 "GsArrowTool": "",
 "GsBase": "",
 "GsCamera": "",
+"GsConsole": "",
+"GsConsoleCursor": "",
 "GsCurve": "",
 "GsDragHelper": "",
 "GsEdge": "",

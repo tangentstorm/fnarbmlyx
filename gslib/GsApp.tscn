@@ -15,12 +15,12 @@
 [ext_resource path="res://gslib/tools/GsDragHelper.gd" type="Script" id=13]
 [ext_resource path="res://gslib/tools/GsEdgeTool.gd" type="Script" id=14]
 [ext_resource path="res://gslib/GsIndexedImage.gd" type="Script" id=15]
-[ext_resource path="res://gslib/scripts/gs-rnd-ast.gd" type="Script" id=16]
 [ext_resource path="res://gslib/GsGroup.gd" type="Script" id=17]
 [ext_resource path="res://gslib/GsApp.gd" type="Script" id=18]
 [ext_resource path="res://fonts/noto-font.tres" type="DynamicFont" id=19]
 [ext_resource path="res://gslib/GsCanvas.gd" type="Script" id=20]
 [ext_resource path="res://gslib/GsCamera.gd" type="Script" id=21]
+[ext_resource path="res://gslib/GsConsole.gd" type="Script" id=22]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -590,12 +590,20 @@ __meta__ = {
 
 [node name="script" type="Node2D" parent="."]
 position = Vector2( 64, 96 )
-script = ExtResource( 16 )
-animated = false
 
 [node name="Timer" type="Timer" parent="script"]
 wait_time = 0.001
 autostart = true
+
+[node name="GsConsole" type="Control" parent="."]
+margin_left = 39.0
+margin_top = 394.0
+margin_right = 1315.0
+margin_bottom = 1043.0
+script = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="color_changed" from="ui/inspector/vbox/fill_color/ColorPickerButton" to="ui/inspector" method="_on_fill_color_changed"]
 [connection signal="color_changed" from="ui/inspector/vbox/line_color/ColorPickerButton" to="ui/inspector" method="_on_line_color_changed"]

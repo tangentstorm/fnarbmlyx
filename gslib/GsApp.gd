@@ -9,18 +9,19 @@ var selection : Array setget _set_selection
 const SELECTANGLE_PADDING = Vector2(5,5)
 const DEFAULT_NODE_SIZE = Vector2(32, 32)
 onready var ui = $'ui-layer/ui'
+onready var bg = $'bg-layer/bg'
+onready var selectangle = $"selectangle"
 onready var file_dlg = ui.get_node("FileDialog")
 
 func _ready():
 	GsLib.app = self
 	self.current_fill_color = current_fill_color
-	GsLib.camera.connect('camera_changed', $'bg-layer/bg/grid', '_on_camera_changed')
+	GsLib.camera.connect('camera_changed', bg.get_node('grid'), '_on_camera_changed')
 	self.connect("item_rect_changed", self, '_resized')
 	_resized()
 
-
 func _resized():
-	for uilayer in [$"bg-layer/bg", $"ui-layer/ui"]:
+	for uilayer in [bg,ui]:
 		uilayer.rect_size = rect_size
 		uilayer.rect_position = rect_position
 
@@ -30,7 +31,7 @@ func _clear_selection():
 
 func _set_selection(nodes:Array):
 	_clear_selection(); selection = nodes
-	if nodes.empty(): $selectangle.visible = false
+	if nodes.empty(): selectangle.visible = false
 	else:
 		var xy0 = Vector2.INF; var xy1 = -Vector2.INF
 		var fill = current_fill_color
@@ -40,7 +41,7 @@ func _set_selection(nodes:Array):
 			var r : Rect2 = n.get_rect()
 			xy0.x = min(xy0.x, r.position.x); xy1.x = max(xy1.x, r.end.x)
 			xy0.y = min(xy0.y, r.position.y); xy1.y = max(xy1.y, r.end.y)
-		var s = $selectangle; s.visible = true
+		var s = selectangle; s.visible = true
 		var padding = SELECTANGLE_PADDING if nodes.size() > 1 else Vector2.ZERO
 		s.rect_position = xy0 - padding; s.rect_size = (xy1 - xy0) + 2 * padding
 		_set_fill_color(fill, true, false)
@@ -99,7 +100,7 @@ func _on_delete_pressed():
 func _set_fill_color(v, tell_ui=true, paint_selection=true):
 	current_fill_color = v
 	if is_inside_tree():
-		if tell_ui: $'ui-layer/ui/toolbar/hbox/color'.color = v
+		if tell_ui: ui.get_node('toolbar/hbox/color').color = v
 		if paint_selection:
 			for c in selection:
 				if c is GsNode: c.fill_color = v

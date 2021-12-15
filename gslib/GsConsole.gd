@@ -65,3 +65,41 @@ func _draw():
 			var p = y * grid_wh.x + x
 			draw_rect(Rect2(xy, cell_wh), BGB[p])
 			draw_char(font, xy+font_base, char(CHB[p]), ' ', FGB[p])
+
+onready var pal : PoolColorArray = _make_palette()
+func _make_palette():
+	var res = PoolColorArray()
+	var ansi = [ # -- ansi colors --
+		0x000000, # black
+		0xaa0000, # red
+		0x00aa00, # green
+		0xaaaa00, # dark yellow ( note: not vga brown! )
+		0x0000aa, # blue
+		0xaa00aa, # magenta
+		0x00aaaa, # cyan
+		0xaaaaaa, # gray
+		0x555555, # dark gray
+		0xff5555, # light red
+		0x55ff55, # light green
+		0xffff55, # yellow
+		0x5555ff, # light blue
+		0xff55ff, # light magenta
+		0x55ffff, # light cyan
+		0xffffff ]# white
+	for a in ansi: res.append(Color(a * 0x100 + 0xff))
+
+	# colors 16..231 are a color cube:
+	var ramp = [ 0x00, 0x5F, 0x87, 0xAF, 0xD7, 0xFF ]
+	for r in ramp:
+		for g in ramp:
+			for b in ramp:
+				res.append(Color(((r << 16 ) + ( g << 8 ) + b) * 0x100 + 0xff))
+
+	# 232..255 are a black to gray gradiant:
+	var grays = [ 0x00, 0x12, 0x1C, 0x26, 0x30, 0x3A, 0x44, 0x4E,
+			  0x58, 0x62, 0x6C, 0x76, 0x80, 0x8A, 0x94, 0x9E,
+			  0xA8, 0xB2, 0xBC, 0xC6, 0xD0, 0xDA, 0xE4, 0xEE ]
+	for v in grays:
+		res.append(Color((( v << 16 ) + ( v << 8 ) + v) * 0x100 + 0xff))
+
+	return res

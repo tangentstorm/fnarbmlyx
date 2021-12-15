@@ -1,5 +1,7 @@
 tool class_name GsConsole extends Control
 
+signal keypress(code, ch, fns)
+
 export var font : Font = preload("res://fonts/noto-font.tres")
 export var font_base : Vector2 = Vector2(1,20)
 
@@ -103,3 +105,36 @@ func _make_palette():
 		res.append(Color((( v << 16 ) + ( v << 8 ) + v) * 0x100 + 0xff))
 
 	return res
+
+func _gui_input(e):
+	if e is InputEventKey and e.pressed:
+		var code = e.scancode
+		var ch = char(e.unicode)
+		var fns = []
+		if code >= 32 and code < 127:
+			var fn = 'k'
+			var asc = true
+			if e.control: fn +='c'
+			if e.alt: fn += 'a'
+			if e.alt or e.control:
+				asc = false
+				ch = char(code).to_lower()
+			match ch:
+				"'": # need to escape this char in j
+					fn += '_quote'; ch="''"
+				' ': fn += '_space'
+				'+': fn += '_plus'
+				_: fn += '_' + ch
+			fns.append(fn)
+			if asc: fns.append('k_asc')
+		else:
+			match code:
+				KEY_SHIFT, KEY_ALT, KEY_CONTROL: return
+				KEY_UP: fns.append('k_arup')
+				KEY_DOWN: fns.append('k_ardn')
+				KEY_RIGHT: fns.append('k_arrt')
+				KEY_LEFT: fns.append('k_arlf')
+				KEY_TAB: fns.append('k_tab')
+				KEY_ENTER: fns.append('kc_m')
+				KEY_BACKSPACE: fns.append('k_bsp')
+		emit_signal('keypress', code, ch, fns)

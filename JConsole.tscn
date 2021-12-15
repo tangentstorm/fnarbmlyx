@@ -7,6 +7,7 @@
 [node name="JConsole" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+focus_mode = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true,
@@ -21,6 +22,7 @@ margin_left = 71.5146
 margin_top = 8.0022
 margin_right = 1362.51
 margin_bottom = 665.002
+focus_mode = 1
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -63,4 +65,5 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 14.0
 
+[connection signal="keypress" from="GsConsole" to="." method="_on_GsConsole_keypress"]
 [connection signal="text_entered" from="panel/vbox/input" to="." method="_on_input_text_entered"]

@@ -19,8 +19,9 @@ func _on_camera_changed(_zoom, _offset):
 
 func _draw():
 	var c = GsLib.camera
-	var z = Vector2(1/c.zoom.x, 1/c.zoom.y)
-	draw_set_transform(-(c.position+c.offset)*z, 0.0, z)
+	if c != null:
+		var z = Vector2(1/c.zoom.x, 1/c.zoom.y)
+		draw_set_transform(-(c.position+c.offset)*z, 0.0, z)
 
 	var p0 = Vector2.ZERO
 	var p1 = Vector2(rect_size.x, 0)

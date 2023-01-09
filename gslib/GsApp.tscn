@@ -256,6 +256,7 @@ script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+target_path = ".."
 
 [node name="ui-layer" type="CanvasLayer" parent="."]
 layer = 2
@@ -608,8 +609,6 @@ window_title = "Open a File"
 mode = 0
 access = 1
 filters = PoolStringArray( "*.tscn" )
-current_dir = "user://D:/ver/fnarbmlyx"
-current_path = "user://D:/ver/fnarbmlyx/"
 __meta__ = {
 "_edit_use_anchors_": false
 }

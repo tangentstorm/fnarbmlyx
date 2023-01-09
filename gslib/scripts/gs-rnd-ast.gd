@@ -2,6 +2,7 @@
 tool extends Node2D
 
 export var animated: bool = true
+export var rng_seed: int = 82076 setget set_rng_seed
 
 enum BFn { X0, X1, X2, X3, X4, O, I, AND, OR, XOR, NONE } # ITE, MAJ ?
 const R = GsNode.SHAPE.RECT; const D = GsNode.SHAPE.DISK
@@ -21,8 +22,8 @@ const DIM_NODE = Color(0xffffff99)
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
-func _ready():
-	rng.seed = 322
+func set_rng_seed(val):
+	rng.seed = val
 	call_deferred('play')
 
 var tree : TreeNode

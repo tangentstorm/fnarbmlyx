@@ -56,6 +56,7 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+anti_aliasing/quality/msaa_2d=1
 environment/defaults/default_environment="res://default_env.tres"
 quality/driver/fallback_to_gles2=true
 vram_compression/import_etc=true

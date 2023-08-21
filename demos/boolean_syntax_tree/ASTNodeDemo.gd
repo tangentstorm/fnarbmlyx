@@ -48,7 +48,7 @@ func rebuild():
 	scene.position = (size - scene.size) * 0.5
 	add_child(scene)
 	
-var ASTScene = preload("res://ASTNode.tscn")
+var ASTScene = preload("res://demos/boolean_syntax_tree/ASTNode.tscn")
 func build_scene(t:TreeNode) -> Container:
 	var res = ASTScene.instantiate()
 	res.op = t.value

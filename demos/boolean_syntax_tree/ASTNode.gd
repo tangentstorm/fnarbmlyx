@@ -94,10 +94,10 @@ func _draw():
 			for i in range(num):
 				draw_line(pts[i], pts[i+1], line_color, 1.0)
 	
-	var baseline = font.get_ascent() - 2
-	var text_size = font.get_string_size(text)
+	var baseline = font.get_ascent() + 8 # !! what should this be?
+	var text_size = font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, 24)
 	var xy = Vector2(center.x - (text_size.x * 0.5), baseline)
 	print('text:', text)
-	draw_string(font, xy, text, HORIZONTAL_ALIGNMENT_LEFT, -1,16, text_color)
+	draw_string(font, xy, text, HORIZONTAL_ALIGNMENT_LEFT, -1,24, text_color)
 	
 

@@ -1,17 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://duqplp2n3e6bo"]
 
-[ext_resource type="Script" path="res://demos/boolean_syntax_tree/ASTNode.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://1ocjurn612fu" path="res://fonts/noto-font.tres" id="2"]
+[ext_resource type="Script" path="res://demos/boolean_syntax_tree/ASTNode.gd" id="1_bnwx3"]
+[ext_resource type="FontFile" uid="uid://cpccn8n1583d1" path="res://fonts/NotoSansMono-Regular.ttf" id="2_mmqwl"]
 
 [node name="ASTNode" type="Container"]
 custom_minimum_size = Vector2(40, 40)
 offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 7
-script = ExtResource("1")
+script = ExtResource("1_bnwx3")
 op = 4
 shape = 1
 fill_color = Color(0.34902, 0.490196, 0.807843, 1)
 text_color = Color(1, 1, 1, 1)
 text = "x₄"
-font = ExtResource("2")
+font = ExtResource("2_mmqwl")

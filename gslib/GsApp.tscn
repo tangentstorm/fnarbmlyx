@@ -13,12 +13,12 @@
 [ext_resource type="FontFile" path="res://fonts/fa-regular-font.tres" id="11"]
 [ext_resource type="FontFile" path="res://fonts/fa-solid-font.tres" id="12"]
 [ext_resource type="Script" path="res://gslib/tools/GsDragHelper.gd" id="13"]
+[ext_resource type="FontFile" uid="uid://cpccn8n1583d1" path="res://fonts/NotoSansMono-Regular.ttf" id="13_owagx"]
 [ext_resource type="Script" path="res://gslib/tools/GsEdgeTool.gd" id="14"]
 [ext_resource type="Script" path="res://gslib/GsIndexedImage.gd" id="15"]
 [ext_resource type="Script" path="res://gslib/scripts/gs-rnd-ast.gd" id="16"]
 [ext_resource type="Script" path="res://gslib/GsGroup.gd" id="17"]
 [ext_resource type="Script" path="res://gslib/GsApp.gd" id="18"]
-[ext_resource type="FontFile" uid="uid://1ocjurn612fu" path="res://fonts/noto-font.tres" id="19"]
 [ext_resource type="Script" path="res://gslib/GsCanvas.gd" id="20"]
 [ext_resource type="Script" path="res://gslib/GsCamera.gd" id="21"]
 [ext_resource type="Script" path="res://gslib/tools/GsMouseTool.gd" id="23"]
@@ -301,7 +301,7 @@ text = "text	"
 [node name="text" type="LineEdit" parent="ui-layer/ui/inspector/vbox"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("19")
+theme_override_fonts/font = ExtResource("13_owagx")
 text = "1"
 caret_blink = true
 caret_blink_interval = 0.5

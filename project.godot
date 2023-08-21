@@ -31,10 +31,6 @@ GsLib="*res://gslib/GsLib.gd"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/sketchlib/plugin.cfg")
-
 [input]
 
 ui_record={

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bokuyujj7y25l"]
+[gd_scene load_steps=23 format=3 uid="uid://bokuyujj7y25l"]
 
 [ext_resource type="Script" path="res://gslib/GsGrid.gd" id="1"]
 [ext_resource type="Script" path="res://gslib/GsSketch.gd" id="2"]
@@ -21,7 +21,6 @@
 [ext_resource type="FontFile" uid="uid://1ocjurn612fu" path="res://fonts/noto-font.tres" id="19"]
 [ext_resource type="Script" path="res://gslib/GsCanvas.gd" id="20"]
 [ext_resource type="Script" path="res://gslib/GsCamera.gd" id="21"]
-[ext_resource type="Script" path="res://gslib/GsConsole.gd" id="22"]
 [ext_resource type="Script" path="res://gslib/tools/GsMouseTool.gd" id="23"]
 
 [node name="app" type="Control"]
@@ -462,14 +461,6 @@ animated = false
 [node name="Timer" type="Timer" parent="script"]
 wait_time = 0.001
 autostart = true
-
-[node name="GsConsole" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 356.707
-offset_top = 581.489
-offset_right = 1635.71
-offset_bottom = 1225.49
-script = ExtResource("22")
 
 [connection signal="color_changed" from="ui-layer/ui/inspector/vbox/fill_color/ColorPickerButton" to="ui-layer/ui/inspector" method="_on_fill_color_changed"]
 [connection signal="color_changed" from="ui-layer/ui/inspector/vbox/line_color/ColorPickerButton" to="ui-layer/ui/inspector" method="_on_line_color_changed"]

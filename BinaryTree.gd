@@ -1,6 +1,5 @@
 @tool class_name BinaryTree extends Control
 
-var colors = GsPalette.dawnbringer
 var colors = Palettes.colors_category10
 
 

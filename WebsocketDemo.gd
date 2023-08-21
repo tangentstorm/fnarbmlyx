@@ -1,5 +1,4 @@
-class_name WebSocketDemo
-tool extends VBoxContainer
+@tool class_name WebSocketDemo extends  VBoxContainer
 
 var ws : WebSocketClient = WebSocketClient.new()
 

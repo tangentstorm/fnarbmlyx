@@ -1,68 +1,55 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://bpbr3eje44jjt"]
 
-[ext_resource path="res://WebsocketDemo.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://WebsocketDemo.gd" id="1"]
 
 [node name="WebSocketDemo" type="VBoxContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 334.412
 offset_top = 7.79266
 offset_right = -945.588
 offset_bottom = -536.207
-scale = Vector2( 2, 2 )
-script = ExtResource( 1 )
+scale = Vector2(2, 2)
+script = ExtResource("1")
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="server" type="HBoxContainer" parent="."]
-offset_right = 640.0
-offset_bottom = 24.0
+layout_mode = 2
 
 [node name="editServer" type="LineEdit" parent="server"]
-offset_right = 487.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 100, 24 )
+custom_minimum_size = Vector2(100, 24)
+layout_mode = 2
 size_flags_horizontal = 3
 text = "ws://localhost:8081"
 
 [node name="btnConnect" type="Button" parent="server"]
-offset_left = 491.0
-offset_right = 554.0
-offset_bottom = 24.0
+layout_mode = 2
 text = "connect"
 
 [node name="btnDisconnect" type="Button" parent="server"]
-offset_left = 558.0
-offset_right = 640.0
-offset_bottom = 24.0
+layout_mode = 2
 text = "disconnect"
 
 [node name="sentence" type="HBoxContainer" parent="."]
-offset_top = 28.0
-offset_right = 640.0
-offset_bottom = 52.0
+layout_mode = 2
 
 [node name="editSentence" type="LineEdit" parent="sentence"]
-offset_right = 593.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 100, 24 )
+custom_minimum_size = Vector2(100, 24)
+layout_mode = 2
 size_flags_horizontal = 3
 text = "+/\\ p: i. 10"
 
 [node name="btnSend" type="Button" parent="sentence"]
-offset_left = 597.0
-offset_right = 640.0
-offset_bottom = 24.0
+layout_mode = 2
 text = "send"
 
 [node name="output" type="TextEdit" parent="."]
-offset_top = 56.0
-offset_right = 640.0
-offset_bottom = 536.0
-custom_minimum_size = Vector2( 640, 480 )
+custom_minimum_size = Vector2(640, 480)
+layout_mode = 2
 text = "WebSocketDemo is ready!"
-readonly = true
 
 [connection signal="text_changed" from="server/editServer" to="." method="_on_editServer_text_changed"]
 [connection signal="pressed" from="server/btnConnect" to="." method="_on_btnConnect_pressed"]

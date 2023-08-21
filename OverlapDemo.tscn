@@ -1,19 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://ipmftww8xdbp"]
 
-[ext_resource path="res://OverlapDemo.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://OverlapDemo.gd" id="1"]
 
 [node name="OverlapDemo" type="ColorRect"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.270588, 0.294118, 0.329412, 1 )
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0.270588, 0.294118, 0.329412, 1)
+script = ExtResource("1")
 
 [node name="mouseXY" type="Label" parent="."]
+layout_mode = 0
 offset_right = 356.0
 offset_bottom = 68.0
-__meta__ = {
-"_edit_use_anchors_": false
-}

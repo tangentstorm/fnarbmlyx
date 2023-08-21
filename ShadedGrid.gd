@@ -1,4 +1,4 @@
-tool extends ColorRect
+@tool extends ColorRect
 
 @export var cell_size : Vector2 = Vector2(32, 32)
 @export var rng_seed : int = 82076: set = set_seed

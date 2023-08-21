@@ -59,7 +59,7 @@ func _ready():
 
 func on_mouse_enter(x):
 	subject = x
-	x.color = Color.cornflower
+	x.color = Color.CORNFLOWER_BLUE
 
 func on_mouse_leave():
 	subject = null

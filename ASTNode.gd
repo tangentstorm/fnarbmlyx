@@ -1,5 +1,4 @@
-class_name ASTNode
-tool extends Container
+@tool class_name ASTNode extends Container
 
 enum OP { X0,X1,X2,X3,X4,O,I,AND,OR,XOR,ITE,MAJ,NONE }
 enum SHAPE { DISK, RECT }
@@ -47,7 +46,7 @@ func _set_font(v):
 func _set_text(v):
 	text = v; queue_redraw()
 
-func get_class():
+func get_classname():
 	return 'ASTNode'
 
 func link_point(_i:int=0):
@@ -99,6 +98,6 @@ func _draw():
 	var text_size = font.get_string_size(text)
 	var xy = Vector2(center.x - (text_size.x * 0.5), baseline)
 	print('text:', text)
-	draw_string(font, xy, text, text_color)
+	draw_string(font, xy, text, HORIZONTAL_ALIGNMENT_LEFT, -1,16, text_color)
 	
 

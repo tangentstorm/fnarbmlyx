@@ -1,4 +1,4 @@
-tool class_name Rect extends ColorRect
+@tool class_name Rect extends ColorRect
 
 @export var line_color : Color = Color.BLACK
 @export var line_width  : float = 1.0

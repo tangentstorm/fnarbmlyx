@@ -1,15 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cltjcy7u35yk8"]
 
-[ext_resource path="res://NodeArray.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://NodeArray.gd" id="1"]
 
 [node name="NodeArray" type="Container"]
 offset_left = 198.341
 offset_top = 625.632
 offset_right = 198.341
 offset_bottom = 625.632
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("1")
 ref = NodePath("../I")
 num = 4

@@ -1,5 +1,4 @@
-class_name TruthTable
-tool extends Control
+@tool class_name TruthTable extends Control
 
 @export var nvars : int = 5: set = _set_nvars
 @export var bits : int = 0: set = _set_bits

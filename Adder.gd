@@ -1,4 +1,4 @@
-tool extends Control
+@tool extends Control
 
 @onready var _script = make_script()
 
@@ -48,15 +48,15 @@ func make_script():
 	return res
 
 
-var await # [object, signal] pair for yield
+var _await # [object, signal] pair for yield
 func play():
 	for step in _script:
 		do_step(step)
-		await await[0].await[1]
+		await _await[0].await[1]
 
 
 func do_step(step):
-	await = [$Timer,'timeout']
+	_await = [$Timer,'timeout']
 	# print(step)
 	match step.pop_front():
 		'sync':

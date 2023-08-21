@@ -1,11 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://b2fuk5go41et1"]
 
-[ext_resource path="res://TruthTable.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://TruthTable.gd" id="1"]
 
 [node name="TruthTable" type="Control"]
-custom_minimum_size = Vector2( 1024, 32 )
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_minimum_size = Vector2(1024, 32)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1")
 bits = 1431655765

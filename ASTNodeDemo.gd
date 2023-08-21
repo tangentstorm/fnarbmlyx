@@ -1,5 +1,4 @@
-class_name ASTNodeDemo
-tool extends Control
+@tool class_name ASTNodeDemo extends Control
 
 @export var rng_seed : int = 82076: set = _set_rng_seed
 var node_radius = 16

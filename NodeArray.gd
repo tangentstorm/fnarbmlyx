@@ -1,5 +1,4 @@
-class_name NodeArray
-tool extends Container
+@tool class_name NodeArray extends Container
 
 @export var ref : NodePath: set = _set_ref
 @export var dxy : Vector2 = Vector2.RIGHT * 32: set = _set_dxy

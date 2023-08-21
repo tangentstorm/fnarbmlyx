@@ -1,4 +1,4 @@
-tool class_name GsGroup extends GsBase
+@tool class_name GsGroup extends GsBase
 func get_class_name(): return 'GsGroup'
 
 func add_item(x):

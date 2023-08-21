@@ -1,4 +1,4 @@
-tool extends EditorPlugin
+@tool extends EditorPlugin
 
 var scene = preload('res://addons/sketchlib/plugin.tscn')
 # var scene = preload('res://gslib/GsApp.tscn')

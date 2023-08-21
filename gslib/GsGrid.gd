@@ -1,21 +1,21 @@
-tool extends Control
+@tool extends Control
 func get_class_name(): return "GsGrid"
 
-@export var color : Color = Color.cornflower: set = _set_color
+@export var color : Color = Color.CORNFLOWER_BLUE: set = _set_color
 @export var spacing : Vector2 = Vector2(16, 16): set = _set_spacing
 @export var snap : bool = true: set = _set_snap
 
 func _set_color(v):
-	color = v; update()
+	color = v; queue_redraw()
 
 func _set_spacing(v):
-	spacing = v; update()
+	spacing = v; queue_redraw()
 
 func _set_snap(v):
 	snap = v
 
 func _on_camera_changed(_zoom, _offset):
-	update()
+	queue_redraw()
 
 func _draw():
 	var c = GsLib.camera

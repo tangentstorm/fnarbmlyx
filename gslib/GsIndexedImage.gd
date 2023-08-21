@@ -1,12 +1,14 @@
-tool class_name GsIndexedImage extends Control
+@tool class_name GsIndexedImage extends Control
 func get_class_name(): return 'GsIndexedImage'
 
 signal clicked(node,x,y,i,color)
 
 @export var shape : Vector2 = Vector2(8,2): set = _set_shape
 @export var cell_size : Vector2 = Vector2(16, 16): set = _set_cell_size
-@export (Array, Color) var palette = GsPalette.arne: set = _set_palette
-@export var data : PackedByteArray: set = _set_data
+@export var palette : Array[Color] = GsPalette.arne: set = _set_palette
+@export var data : PackedByteArray: set = _set_data, get = _get_data
+
+var _data : PackedByteArray
 
 func _set_shape(v):
 	shape = v; _rebuild()
@@ -15,20 +17,23 @@ func _set_cell_size(v):
 	cell_size = v; _rebuild()
 
 func _set_palette(v):
-	data = v; _rebuild()
+	data = v
 
 func _set_data(v):
-	data = v; _rebuild()
+	_data = v; _rebuild()
+	
+func _get_data():
+	return _data
 
 func _ready():
 	_rebuild()
 
 func _rebuild():
 	custom_minimum_size = cell_size * shape
-	data = PackedByteArray()
+	_data = PackedByteArray()
 	for i in range(len(palette)):
-		data.append(i)
-	update()
+		_data.append(i)
+	queue_redraw()
 
 func _draw():
 	var i = 0

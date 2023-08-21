@@ -1,4 +1,4 @@
-tool class_name GsHandle extends GsBase
+@tool class_name GsHandle extends GsBase
 func get_class_name(): return "GsHandle"
 
 func _dxy(dxy):

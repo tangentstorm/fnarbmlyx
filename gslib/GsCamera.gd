@@ -1,4 +1,4 @@
-tool class_name GsCamera extends Camera2D
+@tool class_name GsCamera extends Camera2D
 func get_class_name(): return 'GsCamera'
 
 signal camera_changed(new_zoom, new_offset)

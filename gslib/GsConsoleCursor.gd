@@ -1,4 +1,4 @@
-tool class_name GsConsoleCursor extends Control
+@tool class_name GsConsoleCursor extends Control
 func get_class_name(): return "GsConsoleCursor"
 
 var fg : Color = Color.BLACK
@@ -19,11 +19,11 @@ func _ready():
 
 func _blink():
 	blink_state = not blink_state
-	update()
+	queue_redraw()
 
 func _set_ch(v):
 	ch = v
-	update()
+	queue_redraw()
 
 func _draw():
 	if blink_state:

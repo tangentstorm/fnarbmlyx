@@ -1,4 +1,5 @@
-tool class_name GsNode extends GsBase
+@tool
+class_name GsNode extends GsBase
 func get_class_name(): return "GsNode"
 
 const NOTO = preload("res://fonts/noto-font.tres")
@@ -10,8 +11,8 @@ enum SHAPE { DISK, RECT }
 @export var text_color : Color = Color.BLACK: set = _set_text_color
 @export var text : String = '': set = _set_text
 @export var font : Font = NOTO: set = _set_font
-@export (Array, NodePath) var edge_refs : Array: set = _set_edge_refs
-var edges : Array # Array[GsEdge]
+@export var edge_refs : Array[NodePath]: set = _set_edge_refs
+var edges : Array[GsEdge]
 
 func _clone():
 	var c = super.duplicate(0)
@@ -22,28 +23,28 @@ func _clone():
 	return c
 
 func _set_shape(v):
-	shape = v; update()
+	shape = v; queue_redraw()
 
 func _set_fill_color(v):
-	fill_color = v; update()
+	fill_color = v; queue_redraw()
 
 func _set_line_color(v):
-	line_color = v; update()
+	line_color = v; queue_redraw()
 
 func _set_text_color(v):
-	text_color = v; update()
+	text_color = v; queue_redraw()
 
 func _set_font(v):
-	font = v; update()
+	font = v; queue_redraw()
 
 func _set_text(v):
 	text = v
 	if text == '': custom_minimum_size = Vector2.ONE * 32
 	else:
-		var size = font.get_string_size(text)
-		custom_minimum_size.x = max(32, size.x)
-		custom_minimum_size.y = max(32, size.y)
-	update()
+		var strSize = font.get_string_size(text)
+		custom_minimum_size.x = max(32, strSize.x)
+		custom_minimum_size.y = max(32, strSize.y)
+	queue_redraw()
 
 func _clear_edges():
 	edges = []; edge_refs = []
@@ -69,7 +70,7 @@ func rm_edge(e):
 	print('rm_edge:', e)
 	var ix = edges.find(e)
 	if ix > -1:
-		edges.remove(ix); edge_refs.remove(ix)
+		edges.remove_at(ix); edge_refs.remove_at(ix)
 		# print("DISCONNECT: ", self.get_name(), " -> ", e.get_name())
 		disconnect("item_rect_changed", Callable(e, '_on_node_moved'))
 
@@ -91,7 +92,7 @@ func _draw():
 			draw_circle(center, radius, fill_color)
 			var num = 32; var pts = PackedVector2Array()
 			for i in range(num+1):
-				var t = deg_to_rad(i * 360 / num)
+				var t = deg_to_rad(i * 360.0 / num)
 				pts.push_back(center + Vector2(cos(t), sin(t)) * radius)
 			for i in range(num):
 				draw_line(pts[i], pts[i+1], line_color, 1.0)
@@ -99,7 +100,7 @@ func _draw():
 	var baseline = font.get_ascent() - 2
 	var text_size = font.get_string_size(text)
 	var xy = Vector2(center.x - (text_size.x * 0.5), baseline)
-	draw_string(font, xy, text, text_color)
+	draw_string(font, xy, text, HORIZONTAL_ALIGNMENT_LEFT, -1, 16, text_color)
 
 	if selected and GsLib.app.selection.size() > 1:
 		var pad = Vector2(5,5)

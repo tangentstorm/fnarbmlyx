@@ -1,4 +1,4 @@
-tool class_name GsBase extends Control
+@tool class_name GsBase extends Control
 func get_class_name(): return 'GsBase'
 
 @export var draggable : bool = true: set = set_draggable
@@ -42,12 +42,12 @@ func _drag_end():
 
 func set_selected(v):
 	selected = v
-	update()
+	queue_redraw()
 
 func _click(_xy):
 	if GsLib.mouse.shift_pressed:
 		var ix = GsLib.app.selection.find(self)
-		if ix > -1: GsLib.app.selection.remove(ix)
+		if ix > -1: GsLib.app.selection.remove_at(ix)
 		else: GsLib.app.selection.append(self)
 		GsLib.app.selection = GsLib.app.selection # to trigger setter
 	else: GsLib.app.selection = [self]

@@ -1,4 +1,4 @@
-tool class_name ColorGrid extends Control
+@tool class_name ColorGrid extends Control
 
 @export var cell_size : Vector2 = Vector2(32, 32): set = set_cell_size
 @export var grid_size : Vector2 = Vector2(16, 16): set = set_grid_size
@@ -14,12 +14,12 @@ func set_grid_size(val):
 
 func set_data(val):
 	data = val
-	update()
+	queue_redraw()
 
 func rebuild():
 	size = cell_size * grid_size
 	data.resize(grid_size.x * grid_size.y)
-	update()
+	queue_redraw()
 
 func color(i) -> Color:
 	return GsPalette.arne[data[i] % 16]

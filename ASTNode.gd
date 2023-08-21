@@ -17,7 +17,7 @@ const op_text = [
 
 func _set_op(v):
 	op = v
-	if (op == OP.NONE) or (op == null): return # update()
+	if (op == OP.NONE) or (op == null): return # queue_redraw()
 	text = op_text[op]
 	text_color = Color.WHITE if op <= OP.O else Color.BLACK
 	shape = SHAPE.DISK if op > OP.I else SHAPE.RECT
@@ -32,20 +32,20 @@ func _set_op(v):
 		OP.OR: fill_color = Color('dad45e')
 		OP.ITE, OP.MAJ:
 			fill_color = Color('d04648')
-	update()
+	queue_redraw()
 
 func _set_shape(v):
-	shape = v; update()
+	shape = v; queue_redraw()
 func _set_fill_color(v):
-	fill_color = v; update()
+	fill_color = v; queue_redraw()
 func _set_line_color(v):
-	line_color = v; update()
+	line_color = v; queue_redraw()
 func _set_text_color(v):
-	text_color = v; update()
+	text_color = v; queue_redraw()
 func _set_font(v):
-	font = v; update()
+	font = v; queue_redraw()
 func _set_text(v):
-	text = v; update()
+	text = v; queue_redraw()
 
 func get_class():
 	return 'ASTNode'

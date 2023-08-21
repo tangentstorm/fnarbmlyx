@@ -1,6 +1,6 @@
 # Tool for rapidly building networks of nodes and edges
 # by clicking and dragging on nodes or the canvas.
-tool class_name GsEdgeTool extends GsArrowTool
+@tool class_name GsEdgeTool extends GsArrowTool
 func get_class_name(): return "GsEdgeTool"
 
 var src : set = _set_src
@@ -38,7 +38,7 @@ func _drag_step(mouse):
 	if GsLib.app.selection.size(): super._drag_step(mouse)
 	else:
 		curve.set_point_position(1, mouse.position - mouse.origin)
-		edge.update()
+		edge.queue_redraw()
 
 func _drag_end(mouse):
 	if GsLib.app.selection.size(): super._drag_end(mouse)

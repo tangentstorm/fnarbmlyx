@@ -1,6 +1,6 @@
-tool extends Button
+@tool extends Button
 
-@export (Script) var tool_script = load('res://gslib/tools/GsMouseTool.gd')
+@export var tool_script : Script = load('res://gslib/tools/GsMouseTool.gd')
 
 func _ready():
 	self.connect('pressed', Callable(self, '_click'))

@@ -1,4 +1,4 @@
-tool class_name GsConsole extends Control
+@tool class_name GsConsole extends Control
 
 signal keypress(code, ch, fns)
 
@@ -57,7 +57,7 @@ func _rnd():
 		FGB[i] = 0x333333ff + (rng.randi_range(0, 0xcccccc) << 8)
 		BGB[i] = Color.BLACK
 		CHB[i] = rng.randi_range(33,126)
-	update()
+	queue_redraw()
 
 func _draw():
 	var w = 80; var h = 16	
@@ -66,7 +66,7 @@ func _draw():
 			var xy = Vector2(x,y)*cell_wh
 			var p = y * grid_wh.x + x
 			draw_rect(Rect2(xy, cell_wh), BGB[p])
-			draw_char(font, xy+font_base, char(CHB[p]), ' ', FGB[p])
+			draw_char(font, xy+font_base, char(CHB[p]), 16, FGB[p])
 
 @onready var pal : PackedColorArray = _make_palette()
 func _make_palette():

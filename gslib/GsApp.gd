@@ -1,10 +1,12 @@
-tool class_name GsApp extends Control
+@tool class_name GsApp extends Control
 func get_class_name(): return "GsApp"
 
-@export var current_fill_color : Color = Color.WHITE: set = _set_fill_color
+@export var current_fill_color : Color = Color.WHITE: set = _set_fill_color, get = _get_fill_color
 @export var current_line_color : Color = Color.BLACK
 @export var current_text_color : Color = Color.BLACK
 var selection : Array: set = _set_selection
+
+var _current_fill_color : Color
 
 const SELECTANGLE_PADDING = Vector2(5,5)
 const DEFAULT_NODE_SIZE = Vector2(32, 32)
@@ -15,7 +17,6 @@ const DEFAULT_NODE_SIZE = Vector2(32, 32)
 
 func _ready():
 	GsLib.app = self
-	self.current_fill_color = current_fill_color
 	GsLib.camera.connect('camera_changed', Callable(bg.get_node('grid'), '_on_camera_changed'))
 	self.connect("item_rect_changed", Callable(self, '_resized'))
 	_resized()
@@ -34,7 +35,7 @@ func _set_selection(nodes:Array):
 	if nodes.is_empty(): selectangle.visible = false
 	else:
 		var xy0 = Vector2.INF; var xy1 = -Vector2.INF
-		var fill = current_fill_color
+		var fill = _current_fill_color
 		for n in nodes:
 			n.selected = true
 			if n is GsNode: fill = n.fill_color # keeping the last one
@@ -44,7 +45,7 @@ func _set_selection(nodes:Array):
 		var s = selectangle; s.visible = true
 		var padding = SELECTANGLE_PADDING if nodes.size() > 1 else Vector2.ZERO
 		s.position = xy0 - padding; s.size = (xy1 - xy0) + 2 * padding
-		_set_fill_color(fill, true, false)
+		_set_fill_color0(fill, true, false)
 	if nodes.size() == 1:
 		ui.get_node('inspector').set_item(nodes[0])
 
@@ -97,16 +98,22 @@ func _on_delete_pressed():
 			c.queue_free()
 	$selectangle.visible = false
 
-func _set_fill_color(v, tell_ui=true, paint_selection=true):
-	current_fill_color = v
+func _set_fill_color0(v, tell_ui=true, paint_selection=true):
+	_current_fill_color = v
 	if is_inside_tree():
 		if tell_ui: ui.get_node('toolbar/hbox/color').color = v
 		if paint_selection:
 			for c in selection:
 				if c is GsNode: c.fill_color = v
 
+func _set_fill_color(v):
+	_set_fill_color0(v)
+	
+func _get_fill_color():
+	return _current_fill_color
+
 func _on_color_color_changed(color):
-	_set_fill_color(color, false)
+	_set_fill_color0(color, false)
 
 func _on_to_front_pressed():
 	var n = $sketch.get_child_count()

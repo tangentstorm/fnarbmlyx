@@ -1,4 +1,5 @@
-tool extends Node
+@tool
+extends Node
 func get_class_name(): return "GsLib"
 
 var app : GsApp

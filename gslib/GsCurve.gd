@@ -1,4 +1,4 @@
-tool class_name GsCurve extends GsBase
+@tool class_name GsCurve extends GsBase
 func get_class_name(): return "GsCurve"
 
 @export var curve : Curve2D
@@ -14,11 +14,11 @@ func _ready():
 
 func add_point(xy):
 	curve.add_point(xy)
-	update()
+	queue_redraw()
 
 func set_start(xy):
 	start = xy
-	update()
+	queue_redraw()
 
 func has_point(xy):
 	return curve.get_closest_point(xy-start).distance_to(xy) < 15
@@ -47,4 +47,4 @@ func _draw():
 
 
 func _drag_step(dxy):
-	start += dxy; update()
+	start += dxy; queue_redraw()

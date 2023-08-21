@@ -1,15 +1,15 @@
-tool extends PanelContainer
+@tool extends PanelContainer
 
 var o : GsBase = null: set = set_item
 
-func set_item(x: GsNode):
+func set_item(x: GsBase):
 	o = x
 	if o != null:
-		$vbox/fill_color/ColorPickerButton.color = o.fill_color
-		$vbox/line_color/ColorPickerButton.color = o.line_color
-		$vbox/text_color/ColorPickerButton.color = o.text_color
-		$vbox/shape/shape_picker.selected = o.shape
-		$vbox/text.text = o.text
+		if 'fill_color' in o: $vbox/fill_color/ColorPickerButton.color = o.fill_color
+		if 'line_color' in o: $vbox/line_color/ColorPickerButton.color = o.line_color
+		if 'text_color' in o: $vbox/text_color/ColorPickerButton.color = o.text_color
+		if 'shape' in o:  $vbox/shape/shape_picker.selected = o.shape
+		if 'text' in o: $vbox/text.text = o.text
 		$vbox/info/label.text = o.get_info()
 
 

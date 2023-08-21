@@ -1,275 +1,238 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=3 uid="uid://bokuyujj7y25l"]
 
-[ext_resource path="res://gslib/GsGrid.gd" type="Script" id=1]
-[ext_resource path="res://gslib/GsSketch.gd" type="Script" id=2]
-[ext_resource path="res://gslib/tools/GsPencilTool.gd" type="Script" id=3]
-[ext_resource path="res://gslib/tools/GsNodeTool.gd" type="Script" id=4]
-[ext_resource path="res://gslib/GsMouse.gd" type="Script" id=5]
-[ext_resource path="res://gslib/tools/GsArrowTool.gd" type="Script" id=6]
-[ext_resource path="res://gslib/GsSelectangle.gd" type="Script" id=7]
-[ext_resource path="res://gslib/tools/GsInspector.gd" type="Script" id=8]
-[ext_resource path="res://gslib/tools/GsMouseToolButton.gd" type="Script" id=9]
-[ext_resource path="res://gslib/GsHandle.gd" type="Script" id=10]
-[ext_resource path="res://fonts/fa-regular-font.tres" type="FontFile" id=11]
-[ext_resource path="res://fonts/fa-solid-font.tres" type="FontFile" id=12]
-[ext_resource path="res://gslib/tools/GsDragHelper.gd" type="Script" id=13]
-[ext_resource path="res://gslib/tools/GsEdgeTool.gd" type="Script" id=14]
-[ext_resource path="res://gslib/GsIndexedImage.gd" type="Script" id=15]
-[ext_resource path="res://gslib/scripts/gs-rnd-ast.gd" type="Script" id=16]
-[ext_resource path="res://gslib/GsGroup.gd" type="Script" id=17]
-[ext_resource path="res://gslib/GsApp.gd" type="Script" id=18]
-[ext_resource path="res://fonts/noto-font.tres" type="FontFile" id=19]
-[ext_resource path="res://gslib/GsCanvas.gd" type="Script" id=20]
-[ext_resource path="res://gslib/GsCamera.gd" type="Script" id=21]
-[ext_resource path="res://gslib/GsConsole.gd" type="Script" id=22]
-[ext_resource path="res://gslib/tools/GsMouseTool.gd" type="Script" id=23]
-
-[sub_resource type="ButtonGroup" id=1]
+[ext_resource type="Script" path="res://gslib/GsGrid.gd" id="1"]
+[ext_resource type="Script" path="res://gslib/GsSketch.gd" id="2"]
+[ext_resource type="Script" path="res://gslib/tools/GsPencilTool.gd" id="3"]
+[ext_resource type="Script" path="res://gslib/tools/GsNodeTool.gd" id="4"]
+[ext_resource type="Script" path="res://gslib/GsMouse.gd" id="5"]
+[ext_resource type="Script" path="res://gslib/tools/GsArrowTool.gd" id="6"]
+[ext_resource type="Script" path="res://gslib/GsSelectangle.gd" id="7"]
+[ext_resource type="Script" path="res://gslib/tools/GsInspector.gd" id="8"]
+[ext_resource type="Script" path="res://gslib/tools/GsMouseToolButton.gd" id="9"]
+[ext_resource type="Script" path="res://gslib/GsHandle.gd" id="10"]
+[ext_resource type="FontFile" path="res://fonts/fa-regular-font.tres" id="11"]
+[ext_resource type="FontFile" path="res://fonts/fa-solid-font.tres" id="12"]
+[ext_resource type="Script" path="res://gslib/tools/GsDragHelper.gd" id="13"]
+[ext_resource type="Script" path="res://gslib/tools/GsEdgeTool.gd" id="14"]
+[ext_resource type="Script" path="res://gslib/GsIndexedImage.gd" id="15"]
+[ext_resource type="Script" path="res://gslib/scripts/gs-rnd-ast.gd" id="16"]
+[ext_resource type="Script" path="res://gslib/GsGroup.gd" id="17"]
+[ext_resource type="Script" path="res://gslib/GsApp.gd" id="18"]
+[ext_resource type="FontFile" uid="uid://1ocjurn612fu" path="res://fonts/noto-font.tres" id="19"]
+[ext_resource type="Script" path="res://gslib/GsCanvas.gd" id="20"]
+[ext_resource type="Script" path="res://gslib/GsCamera.gd" id="21"]
+[ext_resource type="Script" path="res://gslib/GsConsole.gd" id="22"]
+[ext_resource type="Script" path="res://gslib/tools/GsMouseTool.gd" id="23"]
 
 [node name="app" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-clip_contents = true
-mouse_filter = 2
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 18 )
-__meta__ = {
-"_edit_lock_": true
-}
+mouse_filter = 2
+script = ExtResource("18")
+current_fill_color = null
 
 [node name="bg-layer" type="CanvasLayer" parent="."]
 layer = -1
 
 [node name="bg" type="Control" parent="bg-layer"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="canvas" type="ColorRect" parent="bg-layer/bg"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0.2, 0.2, 0.298039, 1 )
-script = ExtResource( 20 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0.2, 0.2, 0.298039, 1)
+script = ExtResource("20")
 
 [node name="grid" type="Control" parent="bg-layer/bg"]
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-color = Color( 0.227451, 0.266667, 0.333333, 1 )
+script = ExtResource("1")
+color = Color(0.227451, 0.266667, 0.333333, 1)
 
 [node name="mouse" type="Label" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 text = "[ GsArrowTool ] (0,0)"
-align = 2
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("5")
 
 [node name="tool" type="Node" parent="mouse"]
-script = ExtResource( 6 )
+script = ExtResource("6")
 
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0
-current = true
 editor_draw_screen = false
-script = ExtResource( 21 )
+script = ExtResource("21")
 
 [node name="selectangle_helper" type="ColorRect" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 1120.0
 offset_top = 288.0
 offset_right = 1152.0
 offset_bottom = 320.0
 mouse_default_cursor_shape = 13
-color = Color( 0.462745, 0.521569, 0.890196, 0.0941176 )
-script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0.462745, 0.521569, 0.890196, 0.0941176)
+script = ExtResource("13")
 target_path = NodePath("../selectangle")
 
 [node name="sketch" type="Control" parent="."]
+anchors_preset = 0
 offset_top = 22.0
 offset_bottom = 22.0
 mouse_filter = 2
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+script = ExtResource("2")
 
 [node name="selectangle" type="ReferenceRect" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 1120.0
 offset_top = 288.0
 offset_right = 1152.0
 offset_bottom = 320.0
 mouse_filter = 2
-border_color = Color( 0.580392, 0.831373, 0.968627, 1 )
+border_color = Color(0.580392, 0.831373, 0.968627, 1)
 border_width = 2.5
 editor_only = false
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("7")
 
 [node name="NW" type="ColorRect" parent="selectangle"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 0
 offset_left = -4.0
 offset_top = -4.0
 offset_right = 4.0
 offset_bottom = 4.0
-custom_minimum_size = Vector2( 8, 8 )
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("10")
 
 [node name="N" type="ColorRect" parent="selectangle"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 0
 offset_left = 12.0
 offset_top = -4.0
 offset_right = 20.0
 offset_bottom = 4.0
-custom_minimum_size = Vector2( 8, 8 )
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("10")
 
 [node name="NE" type="ColorRect" parent="selectangle"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 0
 offset_left = 28.0
 offset_top = -4.0
 offset_right = 36.0
 offset_bottom = 4.0
-custom_minimum_size = Vector2( 8, 8 )
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("10")
 
 [node name="E" type="ColorRect" parent="selectangle"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 0
 offset_left = 28.0
 offset_top = 12.0
 offset_right = 36.0
 offset_bottom = 20.0
-custom_minimum_size = Vector2( 8, 8 )
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("10")
 
 [node name="SE" type="ColorRect" parent="selectangle"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 0
 offset_left = 28.0
 offset_top = 28.0
 offset_right = 36.0
 offset_bottom = 36.0
-custom_minimum_size = Vector2( 8, 8 )
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("10")
 
 [node name="S" type="ColorRect" parent="selectangle"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 0
 offset_left = 12.0
 offset_top = 28.0
 offset_right = 20.0
 offset_bottom = 36.0
-custom_minimum_size = Vector2( 8, 8 )
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("10")
 
 [node name="SW" type="ColorRect" parent="selectangle"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 0
 offset_left = -4.0
 offset_top = 28.0
 offset_right = 4.0
 offset_bottom = 36.0
-custom_minimum_size = Vector2( 8, 8 )
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("10")
 
 [node name="W" type="ColorRect" parent="selectangle"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 0
 offset_left = -4.0
 offset_top = 12.0
 offset_right = 4.0
 offset_bottom = 20.0
-custom_minimum_size = Vector2( 8, 8 )
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("10")
 
 [node name="lasso" type="ReferenceRect" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 456.0
 offset_top = 128.0
 offset_right = 584.0
 offset_bottom = 256.0
 mouse_filter = 2
-border_color = Color( 0.396078, 0.541176, 0.623529, 1 )
+border_color = Color(0.396078, 0.541176, 0.623529, 1)
 editor_only = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorRect" type="ColorRect" parent="lasso"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0.709804, 0.694118, 0.694118, 0.0941176 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0.709804, 0.694118, 0.694118, 0.0941176)
 
 [node name="proto_group" type="Control" parent="."]
+anchors_preset = 0
 offset_top = 30.0
 offset_bottom = 30.0
 mouse_filter = 2
-script = ExtResource( 17 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("17")
 
 [node name="members" type="Control" parent="proto_group"]
+anchors_preset = 0
 
 [node name="drag_helper" type="ColorRect" parent="proto_group"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 1, 1, 1, 0 )
-script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-target_path = ".."
+color = Color(1, 1, 1, 0)
+script = ExtResource("13")
 
 [node name="ui-layer" type="CanvasLayer" parent="."]
 layer = 2
 
 [node name="ui" type="Control" parent="ui-layer"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="inspector" type="PanelContainer" parent="ui-layer/ui"]
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -277,355 +240,224 @@ offset_left = -370.0
 offset_top = 31.0
 offset_right = 7.0
 offset_bottom = -7.0
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("8")
 
 [node name="vbox" type="VBoxContainer" parent="ui-layer/ui/inspector"]
-offset_left = 7.0
-offset_top = 7.0
-offset_right = 370.0
-offset_bottom = 1035.0
+layout_mode = 2
 theme_override_constants/separation = 8
 
 [node name="fill_color" type="HBoxContainer" parent="ui-layer/ui/inspector/vbox"]
-offset_right = 363.0
-offset_bottom = 20.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="ui-layer/ui/inspector/vbox/fill_color"]
-offset_top = 3.0
-offset_right = 295.0
-offset_bottom = 17.0
+layout_mode = 2
 size_flags_horizontal = 3
 text = "fill color"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="ui-layer/ui/inspector/vbox/fill_color"]
-offset_left = 299.0
-offset_right = 363.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 64, 0 )
-color = Color( 1, 1, 1, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+color = Color(1, 1, 1, 1)
 
 [node name="line_color" type="HBoxContainer" parent="ui-layer/ui/inspector/vbox"]
-offset_top = 28.0
-offset_right = 363.0
-offset_bottom = 48.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="ui-layer/ui/inspector/vbox/line_color"]
-offset_top = 3.0
-offset_right = 295.0
-offset_bottom = 17.0
+layout_mode = 2
 size_flags_horizontal = 3
 text = "line color"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="ui-layer/ui/inspector/vbox/line_color"]
-offset_left = 299.0
-offset_right = 363.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 64, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
 
 [node name="text_color" type="HBoxContainer" parent="ui-layer/ui/inspector/vbox"]
-offset_top = 56.0
-offset_right = 363.0
-offset_bottom = 76.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="ui-layer/ui/inspector/vbox/text_color"]
-offset_top = 3.0
-offset_right = 295.0
-offset_bottom = 17.0
+layout_mode = 2
 size_flags_horizontal = 3
 text = "text color"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="ui-layer/ui/inspector/vbox/text_color"]
-offset_left = 299.0
-offset_right = 363.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 64, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
 
 [node name="shape" type="HBoxContainer" parent="ui-layer/ui/inspector/vbox"]
-offset_top = 84.0
-offset_right = 363.0
-offset_bottom = 104.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="ui-layer/ui/inspector/vbox/shape"]
-offset_top = 3.0
-offset_right = 295.0
-offset_bottom = 17.0
+layout_mode = 2
 size_flags_horizontal = 3
 text = "shape"
 
 [node name="shape_picker" type="OptionButton" parent="ui-layer/ui/inspector/vbox/shape"]
-offset_left = 299.0
-offset_right = 363.0
-offset_bottom = 20.0
-custom_minimum_size = Vector2( 64, 0 )
-text = "DISK"
-items = [ "DISK", null, false, 0, null, "RECT", null, false, 1, null ]
-selected = 0
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
 
 [node name="lbl_text" type="Label" parent="ui-layer/ui/inspector/vbox"]
-offset_top = 112.0
-offset_right = 363.0
-offset_bottom = 126.0
+layout_mode = 2
 text = "text	"
 
 [node name="text" type="LineEdit" parent="ui-layer/ui/inspector/vbox"]
-offset_top = 134.0
-offset_right = 363.0
-offset_bottom = 178.0
+layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource( 19 )
+theme_override_fonts/font = ExtResource("19")
 text = "1"
 caret_blink = true
 caret_blink_interval = 0.5
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="lbl_info" type="Label" parent="ui-layer/ui/inspector/vbox"]
-offset_top = 186.0
-offset_right = 363.0
-offset_bottom = 200.0
+layout_mode = 2
 text = "info	"
 
 [node name="info" type="Panel" parent="ui-layer/ui/inspector/vbox"]
-offset_top = 208.0
-offset_right = 363.0
-offset_bottom = 336.0
-custom_minimum_size = Vector2( 0, 128 )
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="label" type="RichTextLabel" parent="ui-layer/ui/inspector/vbox/info"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 bbcode_enabled = true
 text = "GsNode"
-text = "GsNode"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="context_menu" type="PopupMenu" parent="ui-layer/ui"]
-offset_right = 20.0
-offset_bottom = 20.0
 
 [node name="toolbar" type="PanelContainer" parent="ui-layer/ui"]
+layout_mode = 0
 offset_right = 562.0
 offset_bottom = 38.0
-input_pass_on_modal_close_click = false
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="hbox" type="HBoxContainer" parent="ui-layer/ui/toolbar"]
-offset_left = 7.0
-offset_top = 7.0
-offset_right = 555.0
-offset_bottom = 31.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
 
 [node name="arrow" type="Button" parent="ui-layer/ui/toolbar/hbox"]
-offset_right = 22.0
-offset_bottom = 24.0
+layout_mode = 2
 tooltip_text = "Arrow tool"
-theme_override_fonts/font = ExtResource( 12 )
-group = SubResource( 1 )
+theme_override_fonts/font = ExtResource("12")
 text = ""
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-tool_script = ExtResource( 6 )
+script = ExtResource("9")
+tool_script = ExtResource("6")
 
 [node name="node" type="Button" parent="ui-layer/ui/toolbar/hbox"]
-offset_left = 26.0
-offset_right = 52.0
-offset_bottom = 24.0
+layout_mode = 2
 tooltip_text = "Node tool"
-theme_override_fonts/font = ExtResource( 11 )
+theme_override_fonts/font = ExtResource("11")
 text = ""
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-tool_script = ExtResource( 4 )
+script = ExtResource("9")
+tool_script = ExtResource("4")
 
 [node name="build" type="Button" parent="ui-layer/ui/toolbar/hbox"]
-offset_left = 56.0
-offset_right = 88.0
-offset_bottom = 24.0
+layout_mode = 2
 tooltip_text = "Node tool"
-theme_override_fonts/font = ExtResource( 12 )
+theme_override_fonts/font = ExtResource("12")
 text = ""
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-tool_script = ExtResource( 14 )
+script = ExtResource("9")
+tool_script = ExtResource("14")
 
 [node name="pencil" type="Button" parent="ui-layer/ui/toolbar/hbox"]
-offset_left = 92.0
-offset_right = 120.0
-offset_bottom = 24.0
+layout_mode = 2
 tooltip_text = "Pencil tool"
-theme_override_fonts/font = ExtResource( 12 )
+theme_override_fonts/font = ExtResource("12")
 text = ""
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-tool_script = ExtResource( 3 )
+script = ExtResource("9")
+tool_script = ExtResource("3")
 
 [node name="hand" type="Button" parent="ui-layer/ui/toolbar/hbox"]
-offset_left = 124.0
-offset_right = 150.0
-offset_bottom = 24.0
+layout_mode = 2
 tooltip_text = "Hand tool"
-theme_override_fonts/font = ExtResource( 12 )
+theme_override_fonts/font = ExtResource("12")
 disabled = true
 text = ""
-script = ExtResource( 9 )
-tool_script = ExtResource( 23 )
+script = ExtResource("9")
+tool_script = ExtResource("23")
 
 [node name="text" type="Button" parent="ui-layer/ui/toolbar/hbox"]
-offset_left = 154.0
-offset_right = 180.0
-offset_bottom = 24.0
-theme_override_fonts/font = ExtResource( 12 )
+layout_mode = 2
+theme_override_fonts/font = ExtResource("12")
 disabled = true
 text = ""
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-tool_script = ExtResource( 23 )
+script = ExtResource("9")
+tool_script = ExtResource("23")
 
 [node name="grid" type="CheckBox" parent="ui-layer/ui/toolbar/hbox"]
-offset_left = 184.0
-offset_right = 239.0
-offset_bottom = 24.0
-pressed = true
+layout_mode = 2
 text = "Grid"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="clear" type="Button" parent="ui-layer/ui/toolbar/hbox"]
-offset_left = 243.0
-offset_right = 267.0
-offset_bottom = 24.0
-theme_override_fonts/font = ExtResource( 12 )
+layout_mode = 2
+theme_override_fonts/font = ExtResource("12")
 text = ""
 flat = true
 
 [node name="load" type="Button" parent="ui-layer/ui/toolbar/hbox"]
-offset_left = 271.0
-offset_right = 301.0
-offset_bottom = 24.0
+layout_mode = 2
 tooltip_text = "Load"
-theme_override_fonts/font = ExtResource( 12 )
+theme_override_fonts/font = ExtResource("12")
 text = ""
 flat = true
 
 [node name="save" type="Button" parent="ui-layer/ui/toolbar/hbox"]
-offset_left = 305.0
-offset_right = 331.0
-offset_bottom = 24.0
+layout_mode = 2
 tooltip_text = "Save"
-theme_override_fonts/font = ExtResource( 12 )
+theme_override_fonts/font = ExtResource("12")
 text = ""
 flat = true
 
 [node name="delete" type="Button" parent="ui-layer/ui/toolbar/hbox"]
-offset_left = 335.0
-offset_right = 361.0
-offset_bottom = 24.0
+layout_mode = 2
 tooltip_text = "delete"
-theme_override_fonts/font = ExtResource( 12 )
+theme_override_fonts/font = ExtResource("12")
 text = ""
 flat = true
 
 [node name="to_front" type="Button" parent="ui-layer/ui/toolbar/hbox"]
-offset_left = 365.0
-offset_right = 387.0
-offset_bottom = 24.0
+layout_mode = 2
 tooltip_text = "move to front"
-theme_override_fonts/font = ExtResource( 12 )
+theme_override_fonts/font = ExtResource("12")
 text = ""
 flat = true
 
 [node name="to_back" type="Button" parent="ui-layer/ui/toolbar/hbox"]
-offset_left = 391.0
-offset_right = 413.0
-offset_bottom = 24.0
+layout_mode = 2
 tooltip_text = "move to back"
-theme_override_fonts/font = ExtResource( 12 )
+theme_override_fonts/font = ExtResource("12")
 text = ""
 flat = true
 
 [node name="color" type="ColorPickerButton" parent="ui-layer/ui/toolbar/hbox"]
-offset_left = 417.0
-offset_right = 448.0
-offset_bottom = 24.0
-tooltip_text = "Fill  Color"
+layout_mode = 2
 size_flags_horizontal = 0
+tooltip_text = "Fill  Color"
 text = "BG"
 flat = true
-color = Color( 1, 1, 1, 1 )
+color = Color(1, 1, 1, 1)
 
 [node name="palette" type="Control" parent="ui-layer/ui/toolbar/hbox"]
-offset_left = 452.0
-offset_right = 548.0
-offset_bottom = 24.0
-custom_minimum_size = Vector2( 96, 24 )
-script = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-cell_size = Vector2( 12, 12 )
-data = PackedByteArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 )
+custom_minimum_size = Vector2(96, 24)
+layout_mode = 2
+script = ExtResource("15")
+cell_size = Vector2(12, 12)
+palette = Array[Color]([])
+data = null
 
 [node name="FileDialog" type="FileDialog" parent="ui-layer/ui"]
-offset_left = 786.562
-offset_top = 260.0
-offset_right = 1102.56
-offset_bottom = 721.0
-custom_minimum_size = Vector2( 300, 105 )
-exclusive = true
-window_title = "Open a File"
-mode = 0
 access = 1
-filters = PackedStringArray( "*.tscn" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+filters = PackedStringArray("*.tscn")
 
 [node name="fog" type="ColorRect" parent="ui-layer/ui"]
 visible = false
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 1, 1, 1, 0.2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(1, 1, 1, 0.2)
 
 [node name="script" type="Node2D" parent="."]
-position = Vector2( 64, 96 )
-script = ExtResource( 16 )
+position = Vector2(64, 96)
+script = ExtResource("16")
 animated = false
 
 [node name="Timer" type="Timer" parent="script"]
@@ -633,14 +465,12 @@ wait_time = 0.001
 autostart = true
 
 [node name="GsConsole" type="Control" parent="."]
+anchors_preset = 0
 offset_left = 356.707
 offset_top = 581.489
 offset_right = 1635.71
 offset_bottom = 1225.49
-script = ExtResource( 22 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("22")
 
 [connection signal="color_changed" from="ui-layer/ui/inspector/vbox/fill_color/ColorPickerButton" to="ui-layer/ui/inspector" method="_on_fill_color_changed"]
 [connection signal="color_changed" from="ui-layer/ui/inspector/vbox/line_color/ColorPickerButton" to="ui-layer/ui/inspector" method="_on_line_color_changed"]
@@ -661,4 +491,3 @@ __meta__ = {
 [connection signal="about_to_popup" from="ui-layer/ui/FileDialog" to="." method="_on_FileDialog_about_to_show"]
 [connection signal="confirmed" from="ui-layer/ui/FileDialog" to="." method="_on_FileDialog_confirmed"]
 [connection signal="file_selected" from="ui-layer/ui/FileDialog" to="." method="_on_FileDialog_file_selected"]
-[connection signal="popup_hide" from="ui-layer/ui/FileDialog" to="." method="_on_FileDialog_popup_hide"]

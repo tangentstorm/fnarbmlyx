@@ -1,4 +1,4 @@
-tool class_name GsNodeTool extends GsArrowTool
+@tool class_name GsNodeTool extends GsArrowTool
 func get_class_name(): return "GsNodeTool"
 
 var node : GsNode
@@ -19,7 +19,7 @@ func _drag_step(mouse):
 		node.position = r.position
 		node.size.x = max(node.custom_minimum_size.x, r.size.x)
 		node.size.y = max(node.custom_minimum_size.y, r.size.y)
-		node.update()
+		node.queue_redraw()
 
 func _drag_end(mouse):
 	if mouse.subject: super._drag_end(mouse)

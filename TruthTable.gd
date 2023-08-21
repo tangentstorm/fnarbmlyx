@@ -7,15 +7,15 @@ tool extends Control
 
 func _set_nvars(v):
 	nvars = int(clamp(v, 0, 5))
-	update()
+	queue_redraw()
 
 func _set_bits(v):
 	bits = v
-	update()
+	queue_redraw()
 
 func _set_cellSize(v):
 	cellSize = v
-	update()
+	queue_redraw()
 
 func _draw():
 	var w = 1 << nvars

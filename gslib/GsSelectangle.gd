@@ -1,4 +1,5 @@
-tool extends GsBase
+@tool 
+extends GsBase
 func get_class_name(): return "Selectangle"
 
 func _ready():

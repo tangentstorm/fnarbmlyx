@@ -7,7 +7,7 @@ var rng = RandomNumberGenerator.new()
 func set_seed(v):
 	rng_seed = v
 	rng.seed = v
-	update()
+	queue_redraw()
 
 func _draw():
 	var xy = Vector2.ZERO

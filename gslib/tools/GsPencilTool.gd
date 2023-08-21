@@ -1,4 +1,4 @@
-tool extends GsMouseTool
+@tool extends GsMouseTool
 func get_class_name(): return "GsPencilTool"
 
 var curve : GsCurve

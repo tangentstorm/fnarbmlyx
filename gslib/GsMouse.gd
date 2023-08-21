@@ -1,4 +1,5 @@
-tool class_name GsMouse extends Label
+@tool
+class_name GsMouse extends Label
 func get_class_name(): return "GsMouse"
 
 @export var grid_path : NodePath = '../bg-layer/bg/grid'
@@ -8,7 +9,7 @@ var button_mask : int = 0
 var alt_pressed : bool = false
 var shift_pressed : bool = false
 var control_pressed : bool = false
-var position : Vector2 = Vector2.ZERO
+#var position : Vector2 = Vector2.ZERO
 var dxy : Vector2 = Vector2.ZERO
 var dragging : bool = false
 var origin : Vector2 = Vector2.ZERO
@@ -43,7 +44,9 @@ func handle(e:InputEventMouse):
 		p -= p.posmodv(current_grid.spacing)
 	dxy = p - position
 	position = p; button_mask = e.button_mask
-	alt_pressed = e.alt; shift_pressed = e.shift; control_pressed = e.control
+	alt_pressed = e.alt_pressed
+	shift_pressed = e.shift_pressed
+	control_pressed = e.is_command_or_control_pressed()
 	if e is InputEventMouseButton:
 		if e.pressed:
 			match e.button_index:
@@ -71,7 +74,7 @@ func _leave(_c:Control):
 
 func _process(_dt):
 	var t = ''
-	if subject: t += '<'+subject.get_path()+' ('+subject.get_class_name()+')> '
+	if subject: t += '<'+str(subject.get_path())+' ('+subject.get_class_name()+')> '
 	t += '[ ' + ($tool._name() + ' ' if $tool.script else '') +'] '
 	t += "(" + str(int(position.x)) + "," + str(int(position.y)) + ")"
 	if dragging: t += " dragging"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxx5nqlhbqc7y"]
 
-[ext_resource type="Script" path="res://ShadedGrid.gd" id="1"]
-[ext_resource type="Script" path="res://ASTNodeDemo.gd" id="2"]
+[ext_resource type="Script" path="res://widgets/ShadedGrid.gd" id="1"]
+[ext_resource type="Script" path="res://demos/boolean_syntax_tree/ASTNodeDemo.gd" id="2"]
 
 [node name="ShadedGrid" type="ColorRect"]
 anchors_preset = 15

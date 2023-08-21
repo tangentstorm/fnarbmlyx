@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ipmftww8xdbp"]
 
-[ext_resource type="Script" path="res://OverlapDemo.gd" id="1"]
+[ext_resource type="Script" path="res://demos/overlap_demo/OverlapDemo.gd" id="1"]
 
 [node name="OverlapDemo" type="ColorRect"]
 anchors_preset = 15

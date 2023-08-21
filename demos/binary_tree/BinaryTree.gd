@@ -1,7 +1,6 @@
 @tool class_name BinaryTree extends Control
 
-var colors = Palettes.colors_category10
-
+var colors = GsPalette.d3_category10
 
 var node_radius = 16
 var gap = 2

@@ -19,3 +19,9 @@ const pico : Array[Color] = [
 	Color(0xAB5236ff),Color(0x5F574Fff),Color(0xC2C3C7ff),Color(0xFFF1E8ff),
 	Color(0xFF004Dff),Color(0xFFA300ff),Color(0xFFEC27ff),Color(0x00E436ff),
 	Color(0x29ADFFff),Color(0x83769Cff),Color(0xFF77ABff),Color(0xFFCCAAff)]
+
+# https://github.com/d3/d3-3.x-api-reference/blob/master/Ordinal-Scales.md
+const d3_category10 : Array[Color] = [  # d3 category10
+  Color(0x1f77b4ff), Color(0xff7f0eff), Color(0x2ca02cff),  Color(0xd62728ff),
+  Color(0x9467bdff), Color(0x8c564bff), Color(0xe377c2ff),  Color(0x7f7f7fff),
+  Color(0xbcbd22ff), Color(0x17becfff)]

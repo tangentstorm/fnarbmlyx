@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b2fuk5go41et1"]
 
-[ext_resource type="Script" path="res://TruthTable.gd" id="1"]
+[ext_resource type="Script" path="res://widgets/TruthTable.gd" id="1"]
 
 [node name="TruthTable" type="Control"]
 custom_minimum_size = Vector2(1024, 32)

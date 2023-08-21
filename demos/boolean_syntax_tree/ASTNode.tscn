@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://duqplp2n3e6bo"]
 
-[ext_resource type="Script" path="res://ASTNode.gd" id="1"]
+[ext_resource type="Script" path="res://demos/boolean_syntax_tree/ASTNode.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://1ocjurn612fu" path="res://fonts/noto-font.tres" id="2"]
 
 [node name="ASTNode" type="Container"]

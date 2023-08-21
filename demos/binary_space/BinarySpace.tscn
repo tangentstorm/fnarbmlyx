@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6jyaqhs4hl44"]
 
-[ext_resource type="PackedScene" uid="uid://b2fuk5go41et1" path="res://TruthTable.tscn" id="1"]
-[ext_resource type="Script" path="res://ShadedGrid.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://b2fuk5go41et1" path="res://widgets/TruthTable.tscn" id="1"]
+[ext_resource type="Script" path="res://widgets/ShadedGrid.gd" id="2"]
 
 [node name="Node2D" type="Node2D"]
 

@@ -3,10 +3,10 @@
 [ext_resource path="res://NodeArray.gd" type="Script" id=1]
 
 [node name="NodeArray" type="Container"]
-margin_left = 198.341
-margin_top = 625.632
-margin_right = 198.341
-margin_bottom = 625.632
+offset_left = 198.341
+offset_top = 625.632
+offset_right = 198.341
+offset_bottom = 625.632
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

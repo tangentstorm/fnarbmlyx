@@ -3,10 +3,10 @@ func get_class_name(): return 'GsIndexedImage'
 
 signal clicked(node,x,y,i,color)
 
-export var shape : Vector2 = Vector2(8,2) setget _set_shape
-export var cell_size : Vector2 = Vector2(16, 16) setget _set_cell_size
-export (Array, Color) var palette = GsPalette.arne setget _set_palette
-export var data : PoolByteArray setget _set_data
+@export var shape : Vector2 = Vector2(8,2): set = _set_shape
+@export var cell_size : Vector2 = Vector2(16, 16): set = _set_cell_size
+@export (Array, Color) var palette = GsPalette.arne: set = _set_palette
+@export var data : PackedByteArray: set = _set_data
 
 func _set_shape(v):
 	shape = v; _rebuild()
@@ -24,8 +24,8 @@ func _ready():
 	_rebuild()
 
 func _rebuild():
-	rect_min_size = cell_size * shape
-	data = PoolByteArray()
+	custom_minimum_size = cell_size * shape
+	data = PackedByteArray()
 	for i in range(len(palette)):
 		data.append(i)
 	update()

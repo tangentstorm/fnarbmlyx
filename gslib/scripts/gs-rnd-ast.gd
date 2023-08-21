@@ -1,8 +1,8 @@
 # draw a random AST
 tool extends Node2D
 
-export var animated: bool = true
-export var rng_seed: int = 82076 setget set_rng_seed
+@export var animated: bool = true
+@export var rng_seed: int = 82076: set = set_rng_seed
 
 enum BFn { X0, X1, X2, X3, X4, O, I, AND, OR, XOR, NONE } # ITE, MAJ ?
 const R = GsNode.SHAPE.RECT; const D = GsNode.SHAPE.DISK
@@ -33,7 +33,7 @@ func play():
 	self.tree = sprout(trace, Vector2.ZERO, 32)
 	var co = animate(trace, tree)
 	while co is GDScriptFunctionState:
-		if animated: yield($Timer, "timeout")
+		if animated: await $Timer.timeout
 		co = co.resume()
 	call_deferred('to_bottom')
 
@@ -73,7 +73,7 @@ class TreeNode:
 			height = max(height, c.height)
 		height += 1
 		if self.view:
-			self.view.rect_position.y = 500 - (height * 48)
+			self.view.position.y = 500 - (height * 48)
 
 func sprout(trace, xy, budget):
 	var res
@@ -113,7 +113,7 @@ func animate(trace, tree):
 					tree.view = gsn
 			'LEAF':
 				set_theme(gsn, s['v'])
-				gsn.modulate = Color.white
+				gsn.modulate = Color.WHITE
 			'SPLIT':
 				var split = s['split']
 				lo = add_node(xy + CELLSIZE * Vector2.DOWN, str(split[0]))
@@ -124,25 +124,25 @@ func animate(trace, tree):
 				gsn.modulate = DIM_NODE; hi.modulate = DIM_NODE
 			'LHS':
 				stack.push_back([gsn, lo, hi, xy, tree])
-				xy = lo.rect_position - position
+				xy = lo.position - position
 				gsn = lo; tree = tree.lo()
 			'RHS':
 				stack.push_back([gsn, lo, hi, xy, tree])
-				xy = hi.rect_position - position
+				xy = hi.position - position
 				gsn = hi; tree = tree.hi()
 			'END_LHS':
 				#draw_box(s['n'].xy, s['n'].wh, Color.goldenrod)
-				hi.rect_position = position + (tree.hi().xy * CELLSIZE)
+				hi.position = position + (tree.hi().xy * CELLSIZE)
 			'END_RHS':
 				# center the gsn between the two branches
 				#draw_box(s['n'].xy, s['n'].wh, Color.cornflower)
 				var cx = (tree.lo().wh.x + tree.hi().wh.x) * CELLSIZE.x/2
-				gsn.rect_position += Vector2.RIGHT * cx
+				gsn.position += Vector2.RIGHT * cx
 			'UP':
 				if stack.size():
 					var p = stack.pop_back()
 					gsn=p[0]; lo=p[1]; hi=p[2]; xy=p[3]; tree=p[4]
-					gsn.modulate = Color.white
+					gsn.modulate = Color.WHITE
 
 func set_theme(node, key):
 	var theme = THEME[BFn.keys()[key]]
@@ -155,16 +155,16 @@ func set_theme(node, key):
 func draw_box(xy, wh, color):
 	var box = add_node(xy * CELLSIZE, '')
 	box.shape = GsNode.SHAPE.RECT
-	box.rect_size = wh * CELLSIZE
+	box.size = wh * CELLSIZE
 	box.get_parent().move_child(box, 0)
-	box.fill_color = Color.transparent
+	box.fill_color = Color.TRANSPARENT
 	box.line_color = color
 
 func add_node(xy:Vector2, text:String)->GsNode:
 	var node = GsNode.new()
-	node.rect_position = position + xy
+	node.position = position + xy
 	node.text = text
-	node.rect_min_size = 32 * Vector2.ONE
+	node.custom_minimum_size = 32 * Vector2.ONE
 	node.shape = GsNode.SHAPE.DISK
 	GsLib.add_node(node)
 	GsLib.app.selection = []
@@ -177,6 +177,6 @@ func add_edge(a:GsNode, b:GsNode):
 	var edge = GsEdge.new()
 	edge.modulate = Color(0xffffff11)
 	edge = GsEdge.new(); edge.curve = curve
-	edge.rect_position = a.link_point(0)
+	edge.position = a.link_point(0)
 	GsLib.add_edge(a, b, edge)
 

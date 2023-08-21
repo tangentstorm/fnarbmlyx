@@ -4,17 +4,17 @@ func get_class_name(): return "GsNode"
 const NOTO = preload("res://fonts/noto-font.tres")
 
 enum SHAPE { DISK, RECT }
-export(SHAPE) var shape = SHAPE.RECT setget _set_shape
-export var fill_color : Color = Color.white setget _set_fill_color
-export var line_color : Color = Color.black setget _set_line_color
-export var text_color : Color = Color.black setget _set_text_color
-export var text : String = '' setget _set_text
-export var font : Font = NOTO setget _set_font
-export (Array, NodePath) var edge_refs : Array setget _set_edge_refs
+@export var shape: SHAPE = SHAPE.RECT: set = _set_shape
+@export var fill_color : Color = Color.WHITE: set = _set_fill_color
+@export var line_color : Color = Color.BLACK: set = _set_line_color
+@export var text_color : Color = Color.BLACK: set = _set_text_color
+@export var text : String = '': set = _set_text
+@export var font : Font = NOTO: set = _set_font
+@export (Array, NodePath) var edge_refs : Array: set = _set_edge_refs
 var edges : Array # Array[GsEdge]
 
 func _clone():
-	var c = .duplicate(0)
+	var c = super.duplicate(0)
 	for slot in get_property_list():
 		var k = slot['name']
 		if not k in ['edges', 'edge_refs']:
@@ -38,11 +38,11 @@ func _set_font(v):
 
 func _set_text(v):
 	text = v
-	if text == '': rect_min_size = Vector2.ONE * 32
+	if text == '': custom_minimum_size = Vector2.ONE * 32
 	else:
 		var size = font.get_string_size(text)
-		rect_min_size.x = max(32, size.x)
-		rect_min_size.y = max(32, size.y)
+		custom_minimum_size.x = max(32, size.x)
+		custom_minimum_size.y = max(32, size.y)
 	update()
 
 func _clear_edges():
@@ -63,7 +63,7 @@ func _set_edge_refs_deferred(vs):
 func add_edge(e):
 	edge_refs.append(e.get_path()); edges.append(e)
 	# print("CONNECT: ", self.get_name(), " -> ", e.get_name())
-	connect("item_rect_changed", e, '_on_node_moved')
+	connect("item_rect_changed", Callable(e, '_on_node_moved'))
 
 func rm_edge(e):
 	print('rm_edge:', e)
@@ -71,30 +71,30 @@ func rm_edge(e):
 	if ix > -1:
 		edges.remove(ix); edge_refs.remove(ix)
 		# print("DISCONNECT: ", self.get_name(), " -> ", e.get_name())
-		disconnect("item_rect_changed", e, '_on_node_moved')
+		disconnect("item_rect_changed", Callable(e, '_on_node_moved'))
 
 func add_edge_ref(ref):
 	add_edge(get_node(ref))
 
 func _draw():
 	var center = link_offset(0)
-	var radius = rect_min_size.x * 0.5
+	var radius = custom_minimum_size.x * 0.5
 
 	for c in get_children():
-		draw_line(center, c.rect_position + c.link_point(0), Color.black, 1.5, true)
+		draw_line(center, c.position + c.link_point(0), Color.BLACK, 1.5)
 
 	match shape:
 		SHAPE.RECT:
-			draw_rect(Rect2(Vector2.ZERO, rect_size), fill_color, true)
-			draw_rect(Rect2(Vector2.ZERO, rect_size), line_color, false)
+			draw_rect(Rect2(Vector2.ZERO, size), fill_color, true)
+			draw_rect(Rect2(Vector2.ZERO, size), line_color, false)
 		SHAPE.DISK:
 			draw_circle(center, radius, fill_color)
-			var num = 32; var pts = PoolVector2Array()
+			var num = 32; var pts = PackedVector2Array()
 			for i in range(num+1):
-				var t = deg2rad(i * 360 / num)
+				var t = deg_to_rad(i * 360 / num)
 				pts.push_back(center + Vector2(cos(t), sin(t)) * radius)
 			for i in range(num):
-				draw_line(pts[i], pts[i+1], line_color, 1.0, true)
+				draw_line(pts[i], pts[i+1], line_color, 1.0)
 
 	var baseline = font.get_ascent() - 2
 	var text_size = font.get_string_size(text)
@@ -103,12 +103,12 @@ func _draw():
 
 	if selected and GsLib.app.selection.size() > 1:
 		var pad = Vector2(5,5)
-		draw_rect(Rect2(-pad, rect_size + 2*pad), Color(0xffffff66), true)
+		draw_rect(Rect2(-pad, size + 2*pad), Color(0xffffff66), true)
 
 func link_offset(_i:int=0):
 	# link_point 0 = center. others can be added later
-	return Vector2(rect_size.x, rect_size.y) * 0.5
+	return Vector2(size.x, size.y) * 0.5
 
 func link_point(i:int):
 	# link_point 0 = center. others can be added later
-	return rect_position + link_offset(i)
+	return position + link_offset(i)

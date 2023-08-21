@@ -3,8 +3,8 @@ tool extends VBoxContainer
 
 var ws : WebSocketClient = WebSocketClient.new()
 
-export var url : String = "ws://localhost:8081" setget _set_url
-export var msg : String = "+/\\ p: i. 10" setget _set_msg
+@export var url : String = "ws://localhost:8081": set = _set_url
+@export var msg : String = "+/\\ p: i. 10": set = _set_msg
 
 func _set_msg(v:String):
 	$sentence/editSentence.text = v
@@ -20,10 +20,10 @@ func _set_url(v:String):
 
 func _ready():
 	$output.text = "WebSocketDemo is ready!"
-	ws.connect("connection_established", self, "_on_ws_connect")
-	ws.connect("connection_error", self, "_on_ws_closed")
-	ws.connect("connection_closed", self, "_on_ws_closed")
-	ws.connect("data_received", self, "_on_ws_data")
+	ws.connect("connection_established", Callable(self, "_on_ws_connect"))
+	ws.connect("connection_error", Callable(self, "_on_ws_closed"))
+	ws.connect("connection_closed", Callable(self, "_on_ws_closed"))
+	ws.connect("data_received", Callable(self, "_on_ws_data"))
 
 func _process(_dt):
 	ws.poll()
@@ -52,7 +52,7 @@ func _on_btnDisconnect_pressed():
 	ws.disconnect_from_host()
 
 func _on_btnSend_pressed():
-	ws.get_peer(1).put_packet(msg.to_utf8())
+	ws.get_peer(1).put_packet(msg.to_utf8_buffer())
 
 func _on_editServer_text_changed(v):
 	self.url = v

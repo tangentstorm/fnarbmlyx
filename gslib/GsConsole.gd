@@ -2,23 +2,23 @@ tool class_name GsConsole extends Control
 
 signal keypress(code, ch, fns)
 
-export var font : Font = preload("res://fonts/noto-font.tres")
-export var font_base : Vector2 = Vector2(1,20)
+@export var font : Font = preload("res://fonts/noto-font.tres")
+@export var font_base : Vector2 = Vector2(1,20)
 
-export var rng_seed : int = 82076 setget _set_rng_seed
-export var grid_wh : Vector2 = Vector2(80, 25)
-export var cell_wh : Vector2 = Vector2(16,26)
-export var cursor_visible: bool = true setget _set_cursor_visible
+@export var rng_seed : int = 82076: set = _set_rng_seed
+@export var grid_wh : Vector2 = Vector2(80, 25)
+@export var cell_wh : Vector2 = Vector2(16,26)
+@export var cursor_visible: bool = true: set = _set_cursor_visible
 
 var cursor_xy : Vector2 = Vector2.ZERO
-var fg : Color = Color.gray
-var bg : Color = Color.black
+var fg : Color = Color.GRAY
+var bg : Color = Color.BLACK
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
-var FGB : PoolColorArray
-var BGB : PoolColorArray
-var CHB : PoolIntArray # unicode code points
+var FGB : PackedColorArray
+var BGB : PackedColorArray
+var CHB : PackedInt32Array # unicode code points
 
 func _set_rng_seed(v):
 	rng_seed = v
@@ -30,7 +30,7 @@ func _set_cursor_visible(v):
 
 func _ready():
 	var cursor = GsConsoleCursor.new()
-	cursor.rect_size = cell_wh
+	cursor.size = cell_wh
 	cursor.name = "cursor"
 	add_child(cursor)
 	_set_cursor_visible(cursor_visible)
@@ -38,13 +38,13 @@ func _ready():
 	_cscr()
 
 func _reset():
-	fg = Color.gray
-	bg = Color.black
+	fg = Color.GRAY
+	bg = Color.BLACK
 
 func _cscr():
-	FGB = PoolColorArray()
-	BGB = PoolColorArray()
-	CHB = PoolIntArray()
+	FGB = PackedColorArray()
+	BGB = PackedColorArray()
+	CHB = PackedInt32Array()
 	for i in range(grid_wh.x * grid_wh.y):
 		FGB.append(fg)
 		BGB.append(bg)
@@ -55,7 +55,7 @@ func _rnd():
 	# ("screen saver" for debugging / fps checks)
 	for i in range(grid_wh.x * grid_wh.y):
 		FGB[i] = 0x333333ff + (rng.randi_range(0, 0xcccccc) << 8)
-		BGB[i] = Color.black
+		BGB[i] = Color.BLACK
 		CHB[i] = rng.randi_range(33,126)
 	update()
 
@@ -68,9 +68,9 @@ func _draw():
 			draw_rect(Rect2(xy, cell_wh), BGB[p])
 			draw_char(font, xy+font_base, char(CHB[p]), ' ', FGB[p])
 
-onready var pal : PoolColorArray = _make_palette()
+@onready var pal : PackedColorArray = _make_palette()
 func _make_palette():
-	var res = PoolColorArray()
+	var res = PackedColorArray()
 	var ansi = [ # -- ansi colors --
 		0x000000, # black
 		0xaa0000, # red
@@ -108,7 +108,7 @@ func _make_palette():
 
 func _gui_input(e):
 	if e is InputEventKey and e.pressed:
-		var code = e.scancode
+		var code = e.keycode
 		var ch = char(e.unicode)
 		var fns = []
 		if code >= 32 and code < 127:
@@ -129,7 +129,7 @@ func _gui_input(e):
 			if asc: fns.append('k_asc')
 		else:
 			match code:
-				KEY_SHIFT, KEY_ALT, KEY_CONTROL: return
+				KEY_SHIFT, KEY_ALT, KEY_CTRL: return
 				KEY_UP: fns.append('k_arup')
 				KEY_DOWN: fns.append('k_ardn')
 				KEY_RIGHT: fns.append('k_arrt')

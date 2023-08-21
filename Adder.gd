@@ -1,14 +1,14 @@
 tool extends Control
 
-onready var _script = make_script()
+@onready var _script = make_script()
 
 const O : Color = Color('222')
 const I : Color = Color('eee')
 
-export var a : int = 0 setget set_a
-export var b : int = 1 setget set_b
+@export var a : int = 0: set = set_a
+@export var b : int = 1: set = set_b
 
-onready var sm = $AnimationTree['parameters/playback']
+@onready var sm = $AnimationTree['parameters/playback']
 
 func set_a(val):
 	a = val
@@ -26,7 +26,7 @@ func set_bit(reg, i, val):
 	var np = reg + '/bit' + str(i)
 	return ['sync',
 		['set', np, 'color', I if val else O],
-		['set', np, 'line_color', Color.black]]
+		['set', np, 'line_color', Color.BLACK]]
 
 func make_script():
 	var res = [
@@ -52,7 +52,7 @@ var await # [object, signal] pair for yield
 func play():
 	for step in _script:
 		do_step(step)
-		yield(await[0], await[1])
+		await await[0].await[1]
 
 
 func do_step(step):

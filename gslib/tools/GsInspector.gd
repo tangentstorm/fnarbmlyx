@@ -1,6 +1,6 @@
 tool extends PanelContainer
 
-var o : GsBase = null setget set_item
+var o : GsBase = null: set = set_item
 
 func set_item(x: GsNode):
 	o = x
@@ -10,7 +10,7 @@ func set_item(x: GsNode):
 		$vbox/text_color/ColorPickerButton.color = o.text_color
 		$vbox/shape/shape_picker.selected = o.shape
 		$vbox/text.text = o.text
-		$vbox/info/label.bbcode_text = o.get_info()
+		$vbox/info/label.text = o.get_info()
 
 
 func _on_text_color_changed(color):

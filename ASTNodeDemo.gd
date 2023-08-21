@@ -1,7 +1,7 @@
 class_name ASTNodeDemo
 tool extends Control
 
-export var rng_seed : int = 82076 setget _set_rng_seed
+@export var rng_seed : int = 82076: set = _set_rng_seed
 var node_radius = 16
 var gap = 2
 var DEPTH = 5
@@ -45,13 +45,13 @@ func rebuild():
 	rng.seed = rng_seed
 	self.tree = build_subtree(rng, 5, MAXNODES)
 	var scene = build_scene(self.tree)
-	rect_size = get_viewport().size
-	scene.rect_position = (rect_size - scene.rect_size) * 0.5
+	size = get_viewport().size
+	scene.position = (size - scene.size) * 0.5
 	add_child(scene)
 	
 var ASTScene = preload("res://ASTNode.tscn")
 func build_scene(t:TreeNode) -> Container:
-	var res = ASTScene.instance()
+	var res = ASTScene.instantiate()
 	res.op = t.value
 	for tn in t.nodes:
 		res.add_child(build_scene(tn))

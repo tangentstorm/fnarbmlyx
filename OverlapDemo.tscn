@@ -12,8 +12,8 @@ __meta__ = {
 }
 
 [node name="mouseXY" type="Label" parent="."]
-margin_right = 356.0
-margin_bottom = 68.0
+offset_right = 356.0
+offset_bottom = 68.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

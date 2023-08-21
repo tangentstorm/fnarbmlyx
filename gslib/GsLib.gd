@@ -9,8 +9,8 @@ var sketch : GsSketch
 func add_group(xy, wh)->GsGroup:
 	var g = app.get_node('proto_group').duplicate()
 	g.visible = true
-	g.rect_position = xy; g.rect_size = wh
-	g.get_node('members').rect_position = -xy
+	g.position = xy; g.size = wh
+	g.get_node('members').position = -xy
 	GsLib.sketch.add_child(g); g.set_owner(GsLib.sketch)
 	for c in g.get_children(): c.set_owner(GsLib.sketch)
 	return g
@@ -22,8 +22,8 @@ func add_node(n:GsNode, select:bool=true)->GsNode:
 
 func add_rect(xy:Vector2, wh=null, fill_color=null, select:bool=false)->GsNode:
 	var n:GsNode = GsNode.new()
-	n.rect_position = xy if wh else xy - app.DEFAULT_NODE_SIZE/2
-	n.rect_size = wh if wh else app.DEFAULT_NODE_SIZE
+	n.position = xy if wh else xy - app.DEFAULT_NODE_SIZE/2
+	n.size = wh if wh else app.DEFAULT_NODE_SIZE
 	n.fill_color = fill_color if fill_color else app.current_fill_color
 	return add_node(n, select)
 

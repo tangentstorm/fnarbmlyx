@@ -1,11 +1,11 @@
 tool class_name GsCurve extends GsBase
 func get_class_name(): return "GsCurve"
 
-export var curve : Curve2D
-export var color : Color = Color.black
-export var width : float = 1.0
-export var antialised : bool = true
-export var start : Vector2 = Vector2.ZERO setget set_start
+@export var curve : Curve2D
+@export var color : Color = Color.BLACK
+@export var width : float = 1.0
+@export var antialised : bool = true
+@export var start : Vector2 = Vector2.ZERO: set = set_start
 
 func _ready():
 	if curve == null:
@@ -38,8 +38,8 @@ func _draw():
 		tl.y = min(tl.y, p.y)
 		br.x = max(br.x, p.x)
 		br.y = max(br.y, p.y)
-	rect_position = start + tl
-	rect_size = br - tl
+	position = start + tl
+	size = br - tl
 	# draw_rect(Rect2(Vector2.ZERO, rect_size), Color.red, false)
 	draw_set_transform(-tl, 0.0, Vector2.ONE)
 	draw_polyline(points, color, width, antialised)

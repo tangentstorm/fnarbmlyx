@@ -9,8 +9,8 @@ func _drag_start(mouse):
 func _drag_step(mouse):
 	if mouse.lasso.visible:
 		var r : Rect2 = mouse.drag_rect().abs()
-		mouse.lasso.rect_position = r.position
-		mouse.lasso.rect_size = r.size
+		mouse.lasso.position = r.position
+		mouse.lasso.size = r.size
 	elif mouse.subject:
 		mouse.subject._drag_step(mouse.dxy)
 

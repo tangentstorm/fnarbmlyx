@@ -2,14 +2,14 @@ tool class_name GsHandle extends GsBase
 func get_class_name(): return "GsHandle"
 
 func _dxy(dxy):
-	get_parent().rect_position += dxy
+	get_parent().position += dxy
 	if GsLib.app.selection.size() == 1:
-		GsLib.app.selection[0].rect_position += dxy
+		GsLib.app.selection[0].position += dxy
 
 func _dwh(dwh):
-	get_parent().rect_size += dwh
+	get_parent().size += dwh
 	if GsLib.app.selection.size() == 1:
-		GsLib.app.selection[0].rect_size += dwh
+		GsLib.app.selection[0].size += dwh
 
 func _drag_step(dxy):
 	# dragging a handle resizes the control, leaving

@@ -9,8 +9,8 @@ func _drag_step(dxy):
 	# even though they are in our relative space. therefore,
 	# every time we adjust the group's position,
 	# we offset $members in the opposite direction.
-	rect_position += dxy
-	$members.rect_position -= dxy
+	position += dxy
+	$members.position -= dxy
 	for c in $members.get_children(): c._drag_step(dxy)
 
 func ungroup()->Array:
@@ -23,6 +23,6 @@ func ungroup()->Array:
 	return res
 
 func set_selected(v):
-	.set_selected(v)
+	super.set_selected(v)
 	if $drag_helper:
-		$drag_helper.color = Color('60215dc3') if v else Color.transparent
+		$drag_helper.color = Color('60215dc3') if v else Color.TRANSPARENT

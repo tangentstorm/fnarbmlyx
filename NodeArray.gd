@@ -1,11 +1,11 @@
 class_name NodeArray
 tool extends Container
 
-export var ref : NodePath setget _set_ref
-export var dxy : Vector2 = Vector2.RIGHT * 32 setget _set_dxy
-export var num : int = 2 setget _set_num
+@export var ref : NodePath: set = _set_ref
+@export var dxy : Vector2 = Vector2.RIGHT * 32: set = _set_dxy
+@export var num : int = 2: set = _set_num
 
-onready var node : Control = get_node(ref)
+@onready var node : Control = get_node(ref)
 
 func _set_ref(v):
 	ref = v
@@ -31,6 +31,6 @@ func rebuild():
 	var xy = Vector2.ZERO
 	for i in range(num):
 		var c : Control = node.duplicate()
-		c.rect_position = xy
+		c.position = xy
 		add_child(c)
 		xy += dxy

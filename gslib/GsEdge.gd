@@ -5,14 +5,14 @@
 tool class_name GsEdge extends GsCurve
 func get_class_name(): return 'GsEdge'
 
-export var src_path : NodePath setget _set_src_path
-export var dst_path : NodePath setget _set_dst_path
+@export var src_path : NodePath: set = _set_src_path
+@export var dst_path : NodePath: set = _set_dst_path
 
-onready var src = null if src_path == '' else get_node(src_path) setget _set_src
-onready var dst = null if dst_path == '' else get_node(dst_path) setget _set_dst
+@onready var src = null if src_path == '' else get_node(src_path): set = _set_src
+@onready var dst = null if dst_path == '' else get_node(dst_path): set = _set_dst
 
 func _clone()->Node:
-	var c = .duplicate(0)
+	var c = super.duplicate(0)
 	for slot in get_property_list():
 		var k = slot['name']
 		if not k in ['src', 'dst', 'src_path', 'dst_path']:

@@ -6,8 +6,8 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="bg" type="ColorRect" parent="."]
-margin_right = 1920.0
-margin_bottom = 1080.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 color = Color( 0.2, 0.32549, 0.439216, 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -24,327 +24,327 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 visible = false
-margin_left = 384.0
-margin_top = 128.0
-margin_right = 1408.0
-margin_bottom = 556.0
-custom_constants/separation = 0
+offset_left = 384.0
+offset_top = 128.0
+offset_right = 1408.0
+offset_bottom = 556.0
+theme_override_constants/separation = 0
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="x4" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_right = 1024.0
-margin_bottom = 32.0
+offset_right = 1024.0
+offset_bottom = 32.0
 bits = 65535
 
 [node name="x3" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 32.0
-margin_right = 1024.0
-margin_bottom = 64.0
+offset_top = 32.0
+offset_right = 1024.0
+offset_bottom = 64.0
 bits = 16711935
 
 [node name="x2" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 64.0
-margin_right = 1024.0
-margin_bottom = 96.0
+offset_top = 64.0
+offset_right = 1024.0
+offset_bottom = 96.0
 bits = 252645135
 
 [node name="x1" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 96.0
-margin_right = 1024.0
-margin_bottom = 128.0
+offset_top = 96.0
+offset_right = 1024.0
+offset_bottom = 128.0
 bits = 858993459
 
 [node name="x0" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 128.0
-margin_right = 1024.0
-margin_bottom = 160.0
+offset_top = 128.0
+offset_right = 1024.0
+offset_bottom = 160.0
 
 [node name="HSeparator" type="Control" parent="VBoxContainer"]
-margin_top = 160.0
-margin_right = 1024.0
-margin_bottom = 176.0
-rect_min_size = Vector2( 0, 16 )
+offset_top = 160.0
+offset_right = 1024.0
+offset_bottom = 176.0
+custom_minimum_size = Vector2( 0, 16 )
 
 [node name="O" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 176.0
-margin_right = 1024.0
-margin_bottom = 208.0
+offset_top = 176.0
+offset_right = 1024.0
+offset_bottom = 208.0
 bits = 0
 
 [node name="I" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 208.0
-margin_right = 1024.0
-margin_bottom = 240.0
+offset_top = 208.0
+offset_right = 1024.0
+offset_bottom = 240.0
 bits = 4294967295
 
 [node name="HSeparator2" type="Control" parent="VBoxContainer"]
-margin_top = 240.0
-margin_right = 1024.0
-margin_bottom = 256.0
-rect_min_size = Vector2( 0, 16 )
+offset_top = 240.0
+offset_right = 1024.0
+offset_bottom = 256.0
+custom_minimum_size = Vector2( 0, 16 )
 
 [node name="nx0" parent="VBoxContainer" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.364706 )
-margin_top = 256.0
-margin_right = 1024.0
-margin_bottom = 288.0
+offset_top = 256.0
+offset_right = 1024.0
+offset_bottom = 288.0
 bits = 2863311530
 
 [node name="nx1" parent="VBoxContainer" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.364706 )
-margin_top = 288.0
-margin_right = 1024.0
-margin_bottom = 320.0
+offset_top = 288.0
+offset_right = 1024.0
+offset_bottom = 320.0
 bits = 3435973836
 
 [node name="nx2" parent="VBoxContainer" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.364706 )
-margin_top = 320.0
-margin_right = 1024.0
-margin_bottom = 352.0
+offset_top = 320.0
+offset_right = 1024.0
+offset_bottom = 352.0
 bits = 4042322160
 
 [node name="nx3" parent="VBoxContainer" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.364706 )
-margin_top = 352.0
-margin_right = 1024.0
-margin_bottom = 384.0
+offset_top = 352.0
+offset_right = 1024.0
+offset_bottom = 384.0
 bits = 4278255360
 
 [node name="nx4" parent="VBoxContainer" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.364706 )
-margin_top = 384.0
-margin_right = 1024.0
-margin_bottom = 416.0
+offset_top = 384.0
+offset_right = 1024.0
+offset_bottom = 416.0
 bits = 4294901760
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
-margin_left = 416.0
-margin_top = 32.0
-margin_right = 1440.0
-margin_bottom = 1056.0
-custom_constants/separation = 0
+offset_left = 416.0
+offset_top = 32.0
+offset_right = 1440.0
+offset_bottom = 1056.0
+theme_override_constants/separation = 0
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="row0" parent="VBoxContainer2" instance=ExtResource( 1 )]
-margin_right = 1024.0
-margin_bottom = 32.0
+offset_right = 1024.0
+offset_bottom = 32.0
 bits = 4294967295
 
 [node name="row1" parent="VBoxContainer2" instance=ExtResource( 1 )]
-margin_top = 32.0
-margin_right = 1024.0
-margin_bottom = 64.0
+offset_top = 32.0
+offset_right = 1024.0
+offset_bottom = 64.0
 bits = 2863311530
 
 [node name="row2" parent="VBoxContainer2" instance=ExtResource( 1 )]
-margin_top = 64.0
-margin_right = 1024.0
-margin_bottom = 96.0
+offset_top = 64.0
+offset_right = 1024.0
+offset_bottom = 96.0
 bits = 3435973836
 
 [node name="row3" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 96.0
-margin_right = 1024.0
-margin_bottom = 128.0
+offset_top = 96.0
+offset_right = 1024.0
+offset_bottom = 128.0
 bits = 2290649224
 
 [node name="row4" parent="VBoxContainer2" instance=ExtResource( 1 )]
-margin_top = 128.0
-margin_right = 1024.0
-margin_bottom = 160.0
+offset_top = 128.0
+offset_right = 1024.0
+offset_bottom = 160.0
 bits = 4042322160
 
 [node name="row5" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 160.0
-margin_right = 1024.0
-margin_bottom = 192.0
+offset_top = 160.0
+offset_right = 1024.0
+offset_bottom = 192.0
 bits = 2694881440
 
 [node name="row6" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 192.0
-margin_right = 1024.0
-margin_bottom = 224.0
+offset_top = 192.0
+offset_right = 1024.0
+offset_bottom = 224.0
 bits = 3233857728
 
 [node name="row7" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 224.0
-margin_right = 1024.0
-margin_bottom = 256.0
+offset_top = 224.0
+offset_right = 1024.0
+offset_bottom = 256.0
 bits = 2155905152
 
 [node name="row8" parent="VBoxContainer2" instance=ExtResource( 1 )]
-margin_top = 256.0
-margin_right = 1024.0
-margin_bottom = 288.0
+offset_top = 256.0
+offset_right = 1024.0
+offset_bottom = 288.0
 bits = 4278255360
 
 [node name="row9" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 288.0
-margin_right = 1024.0
-margin_bottom = 320.0
+offset_top = 288.0
+offset_right = 1024.0
+offset_bottom = 320.0
 bits = 2852170240
 
 [node name="row10" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 320.0
-margin_right = 1024.0
-margin_bottom = 352.0
+offset_top = 320.0
+offset_right = 1024.0
+offset_bottom = 352.0
 bits = 3422604288
 
 [node name="row11" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 352.0
-margin_right = 1024.0
-margin_bottom = 384.0
+offset_top = 352.0
+offset_right = 1024.0
+offset_bottom = 384.0
 bits = 2281736192
 
 [node name="row12" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 384.0
-margin_right = 1024.0
-margin_bottom = 416.0
+offset_top = 384.0
+offset_right = 1024.0
+offset_bottom = 416.0
 bits = 4026593280
 
 [node name="row13" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 416.0
-margin_right = 1024.0
-margin_bottom = 448.0
+offset_top = 416.0
+offset_right = 1024.0
+offset_bottom = 448.0
 bits = 2684395520
 
 [node name="row14" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 448.0
-margin_right = 1024.0
-margin_bottom = 480.0
+offset_top = 448.0
+offset_right = 1024.0
+offset_bottom = 480.0
 bits = 3221274624
 
 [node name="row15" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 480.0
-margin_right = 1024.0
-margin_bottom = 512.0
+offset_top = 480.0
+offset_right = 1024.0
+offset_bottom = 512.0
 bits = 2147516416
 
 [node name="row16" parent="VBoxContainer2" instance=ExtResource( 1 )]
-margin_top = 512.0
-margin_right = 1024.0
-margin_bottom = 544.0
+offset_top = 512.0
+offset_right = 1024.0
+offset_bottom = 544.0
 bits = 4294901760
 
 [node name="row17" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 544.0
-margin_right = 1024.0
-margin_bottom = 576.0
+offset_top = 544.0
+offset_right = 1024.0
+offset_bottom = 576.0
 bits = 2863267840
 
 [node name="row18" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 576.0
-margin_right = 1024.0
-margin_bottom = 608.0
+offset_top = 576.0
+offset_right = 1024.0
+offset_bottom = 608.0
 bits = 3435921408
 
 [node name="row19" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 608.0
-margin_right = 1024.0
-margin_bottom = 640.0
+offset_top = 608.0
+offset_right = 1024.0
+offset_bottom = 640.0
 bits = 2290614272
 
 [node name="row20" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 640.0
-margin_right = 1024.0
-margin_bottom = 672.0
+offset_top = 640.0
+offset_right = 1024.0
+offset_bottom = 672.0
 bits = 4042260480
 
 [node name="row21" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 672.0
-margin_right = 1024.0
-margin_bottom = 704.0
+offset_top = 672.0
+offset_right = 1024.0
+offset_bottom = 704.0
 bits = 2694840320
 
 [node name="row22" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 704.0
-margin_right = 1024.0
-margin_bottom = 736.0
+offset_top = 704.0
+offset_right = 1024.0
+offset_bottom = 736.0
 bits = 3233808384
 
 [node name="row23" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 736.0
-margin_right = 1024.0
-margin_bottom = 768.0
+offset_top = 736.0
+offset_right = 1024.0
+offset_bottom = 768.0
 bits = 2155872256
 
 [node name="row24" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 768.0
-margin_right = 1024.0
-margin_bottom = 800.0
+offset_top = 768.0
+offset_right = 1024.0
+offset_bottom = 800.0
 bits = 4278190080
 
 [node name="row25" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 800.0
-margin_right = 1024.0
-margin_bottom = 832.0
+offset_top = 800.0
+offset_right = 1024.0
+offset_bottom = 832.0
 bits = 2852126720
 
 [node name="row26" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 832.0
-margin_right = 1024.0
-margin_bottom = 864.0
+offset_top = 832.0
+offset_right = 1024.0
+offset_bottom = 864.0
 bits = 3422552064
 
 [node name="row27" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 864.0
-margin_right = 1024.0
-margin_bottom = 896.0
+offset_top = 864.0
+offset_right = 1024.0
+offset_bottom = 896.0
 bits = 2281701376
 
 [node name="row28" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 896.0
-margin_right = 1024.0
-margin_bottom = 928.0
+offset_top = 896.0
+offset_right = 1024.0
+offset_bottom = 928.0
 bits = 4026531840
 
 [node name="row29" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 928.0
-margin_right = 1024.0
-margin_bottom = 960.0
+offset_top = 928.0
+offset_right = 1024.0
+offset_bottom = 960.0
 bits = 2684354560
 
 [node name="row30" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 960.0
-margin_right = 1024.0
-margin_bottom = 992.0
+offset_top = 960.0
+offset_right = 1024.0
+offset_bottom = 992.0
 bits = 3221225472
 
 [node name="row31" parent="VBoxContainer2" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-margin_top = 992.0
-margin_right = 1024.0
-margin_bottom = 1024.0
+offset_top = 992.0
+offset_right = 1024.0
+offset_bottom = 1024.0
 bits = 2147483648

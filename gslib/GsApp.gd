@@ -1,29 +1,29 @@
 tool class_name GsApp extends Control
 func get_class_name(): return "GsApp"
 
-export var current_fill_color : Color = Color.white setget _set_fill_color
-export var current_line_color : Color = Color.black
-export var current_text_color : Color = Color.black
-var selection : Array setget _set_selection
+@export var current_fill_color : Color = Color.WHITE: set = _set_fill_color
+@export var current_line_color : Color = Color.BLACK
+@export var current_text_color : Color = Color.BLACK
+var selection : Array: set = _set_selection
 
 const SELECTANGLE_PADDING = Vector2(5,5)
 const DEFAULT_NODE_SIZE = Vector2(32, 32)
-onready var ui = $'ui-layer/ui'
-onready var bg = $'bg-layer/bg'
-onready var selectangle = $"selectangle"
-onready var file_dlg = ui.get_node("FileDialog")
+@onready var ui = $'ui-layer/ui'
+@onready var bg = $'bg-layer/bg'
+@onready var selectangle = $"selectangle"
+@onready var file_dlg = ui.get_node("FileDialog")
 
 func _ready():
 	GsLib.app = self
 	self.current_fill_color = current_fill_color
-	GsLib.camera.connect('camera_changed', bg.get_node('grid'), '_on_camera_changed')
-	self.connect("item_rect_changed", self, '_resized')
+	GsLib.camera.connect('camera_changed', Callable(bg.get_node('grid'), '_on_camera_changed'))
+	self.connect("item_rect_changed", Callable(self, '_resized'))
 	_resized()
 
 func _resized():
 	for uilayer in [bg,ui]:
-		uilayer.rect_size = rect_size
-		uilayer.rect_position = rect_position
+		uilayer.size = size
+		uilayer.position = position
 
 func _clear_selection():
 	for c in GsLib.sketch.get_children():
@@ -31,7 +31,7 @@ func _clear_selection():
 
 func _set_selection(nodes:Array):
 	_clear_selection(); selection = nodes
-	if nodes.empty(): selectangle.visible = false
+	if nodes.is_empty(): selectangle.visible = false
 	else:
 		var xy0 = Vector2.INF; var xy1 = -Vector2.INF
 		var fill = current_fill_color
@@ -43,19 +43,19 @@ func _set_selection(nodes:Array):
 			xy0.y = min(xy0.y, r.position.y); xy1.y = max(xy1.y, r.end.y)
 		var s = selectangle; s.visible = true
 		var padding = SELECTANGLE_PADDING if nodes.size() > 1 else Vector2.ZERO
-		s.rect_position = xy0 - padding; s.rect_size = (xy1 - xy0) + 2 * padding
+		s.position = xy0 - padding; s.size = (xy1 - xy0) + 2 * padding
 		_set_fill_color(fill, true, false)
 	if nodes.size() == 1:
 		ui.get_node('inspector').set_item(nodes[0])
 
 func _on_load_pressed():
 	file_dlg.current_dir = 'user://'
-	file_dlg.mode = FileDialog.MODE_OPEN_FILE
+	file_dlg.mode = FileDialog.FILE_MODE_OPEN_FILE
 	file_dlg.popup()
 
 func _on_save_pressed():
 	file_dlg.current_dir = 'user://'
-	file_dlg.mode = FileDialog.MODE_SAVE_FILE
+	file_dlg.mode = FileDialog.FILE_MODE_SAVE_FILE
 	file_dlg.popup()
 
 func _on_FileDialog_about_to_show():
@@ -71,15 +71,15 @@ func _on_FileDialog_confirmed():
 
 func _on_FileDialog_file_selected(path):
 	match file_dlg.mode:
-		FileDialog.MODE_SAVE_FILE:
+		FileDialog.FILE_MODE_SAVE_FILE:
 			var s = PackedScene.new()
 			s.pack($sketch)
 			var e = ResourceSaver.save(path, s)
 			if e != OK:
 				print("error on save: ", e)
-		FileDialog.MODE_OPEN_FILE:
+		FileDialog.FILE_MODE_OPEN_FILE:
 			var rsc = load(path)
-			var scn = rsc.instance()
+			var scn = rsc.instantiate()
 			# $sketch.replace_by(scn) # !!no: https://github.com/godotengine/godot/issues/28746
 			var pos = $sketch.get_position_in_parent()
 			remove_child($sketch)
@@ -143,7 +143,7 @@ func cmd_duplicate():
 		var n = o.clone(); newsel.append(n); n.set_name('n_' + o.get_name())
 		if n is GsEdge:
 			n.src_path=''; n.dst_path=''; n.src = null; n.dst = null
-			n.color = Color.red
+			n.color = Color.RED
 		if n is GsNode:
 			n.edge_refs = []; n.edges = []
 		$sketch.add_child(n); n.set_owner($sketch)
@@ -171,7 +171,7 @@ func cmd_duplicate():
 
 func cmd_group():
 	if selection.size():
-		var g = GsLib.add_group($selectangle.rect_position, $selectangle.rect_size)
+		var g = GsLib.add_group($selectangle.position, $selectangle.size)
 		for item in selection:
 			GsLib.sketch.remove_child(item)
 			g.add_item(item)

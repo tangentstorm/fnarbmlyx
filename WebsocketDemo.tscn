@@ -5,62 +5,62 @@
 [node name="WebSocketDemo" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 334.412
-margin_top = 7.79266
-margin_right = -945.588
-margin_bottom = -536.207
-rect_scale = Vector2( 2, 2 )
+offset_left = 334.412
+offset_top = 7.79266
+offset_right = -945.588
+offset_bottom = -536.207
+scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="server" type="HBoxContainer" parent="."]
-margin_right = 640.0
-margin_bottom = 24.0
+offset_right = 640.0
+offset_bottom = 24.0
 
 [node name="editServer" type="LineEdit" parent="server"]
-margin_right = 487.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 100, 24 )
+offset_right = 487.0
+offset_bottom = 24.0
+custom_minimum_size = Vector2( 100, 24 )
 size_flags_horizontal = 3
 text = "ws://localhost:8081"
 
 [node name="btnConnect" type="Button" parent="server"]
-margin_left = 491.0
-margin_right = 554.0
-margin_bottom = 24.0
+offset_left = 491.0
+offset_right = 554.0
+offset_bottom = 24.0
 text = "connect"
 
 [node name="btnDisconnect" type="Button" parent="server"]
-margin_left = 558.0
-margin_right = 640.0
-margin_bottom = 24.0
+offset_left = 558.0
+offset_right = 640.0
+offset_bottom = 24.0
 text = "disconnect"
 
 [node name="sentence" type="HBoxContainer" parent="."]
-margin_top = 28.0
-margin_right = 640.0
-margin_bottom = 52.0
+offset_top = 28.0
+offset_right = 640.0
+offset_bottom = 52.0
 
 [node name="editSentence" type="LineEdit" parent="sentence"]
-margin_right = 593.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 100, 24 )
+offset_right = 593.0
+offset_bottom = 24.0
+custom_minimum_size = Vector2( 100, 24 )
 size_flags_horizontal = 3
 text = "+/\\ p: i. 10"
 
 [node name="btnSend" type="Button" parent="sentence"]
-margin_left = 597.0
-margin_right = 640.0
-margin_bottom = 24.0
+offset_left = 597.0
+offset_right = 640.0
+offset_bottom = 24.0
 text = "send"
 
 [node name="output" type="TextEdit" parent="."]
-margin_top = 56.0
-margin_right = 640.0
-margin_bottom = 536.0
-rect_min_size = Vector2( 640, 480 )
+offset_top = 56.0
+offset_right = 640.0
+offset_bottom = 536.0
+custom_minimum_size = Vector2( 640, 480 )
 text = "WebSocketDemo is ready!"
 readonly = true
 

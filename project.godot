@@ -6,179 +6,7 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "Container",
-"class": "ASTNode",
-"language": "GDScript",
-"path": "res://ASTNode.gd"
-}, {
-"base": "Control",
-"class": "ASTNodeDemo",
-"language": "GDScript",
-"path": "res://ASTNodeDemo.gd"
-}, {
-"base": "Control",
-"class": "BinaryTree",
-"language": "GDScript",
-"path": "res://BinaryTree.gd"
-}, {
-"base": "Control",
-"class": "ColorGrid",
-"language": "GDScript",
-"path": "res://gslib/GsColorGrid.gd"
-}, {
-"base": "Control",
-"class": "GsApp",
-"language": "GDScript",
-"path": "res://gslib/GsApp.gd"
-}, {
-"base": "GsMouseTool",
-"class": "GsArrowTool",
-"language": "GDScript",
-"path": "res://gslib/tools/GsArrowTool.gd"
-}, {
-"base": "Control",
-"class": "GsBase",
-"language": "GDScript",
-"path": "res://gslib/GsBase.gd"
-}, {
-"base": "Camera2D",
-"class": "GsCamera",
-"language": "GDScript",
-"path": "res://gslib/GsCamera.gd"
-}, {
-"base": "Control",
-"class": "GsConsole",
-"language": "GDScript",
-"path": "res://gslib/GsConsole.gd"
-}, {
-"base": "Control",
-"class": "GsConsoleCursor",
-"language": "GDScript",
-"path": "res://gslib/GsConsoleCursor.gd"
-}, {
-"base": "GsBase",
-"class": "GsCurve",
-"language": "GDScript",
-"path": "res://gslib/GsCurve.gd"
-}, {
-"base": "GsBase",
-"class": "GsDragHelper",
-"language": "GDScript",
-"path": "res://gslib/tools/GsDragHelper.gd"
-}, {
-"base": "GsCurve",
-"class": "GsEdge",
-"language": "GDScript",
-"path": "res://gslib/GsEdge.gd"
-}, {
-"base": "GsArrowTool",
-"class": "GsEdgeTool",
-"language": "GDScript",
-"path": "res://gslib/tools/GsEdgeTool.gd"
-}, {
-"base": "GsBase",
-"class": "GsGroup",
-"language": "GDScript",
-"path": "res://gslib/GsGroup.gd"
-}, {
-"base": "GsBase",
-"class": "GsHandle",
-"language": "GDScript",
-"path": "res://gslib/GsHandle.gd"
-}, {
-"base": "Control",
-"class": "GsIndexedImage",
-"language": "GDScript",
-"path": "res://gslib/GsIndexedImage.gd"
-}, {
-"base": "Label",
-"class": "GsMouse",
-"language": "GDScript",
-"path": "res://gslib/GsMouse.gd"
-}, {
-"base": "Node",
-"class": "GsMouseTool",
-"language": "GDScript",
-"path": "res://gslib/tools/GsMouseTool.gd"
-}, {
-"base": "GsBase",
-"class": "GsNode",
-"language": "GDScript",
-"path": "res://gslib/GsNode.gd"
-}, {
-"base": "GsArrowTool",
-"class": "GsNodeTool",
-"language": "GDScript",
-"path": "res://gslib/tools/GsNodeTool.gd"
-}, {
-"base": "Object",
-"class": "GsPalette",
-"language": "GDScript",
-"path": "res://gslib/GsPalette.gd"
-}, {
-"base": "Control",
-"class": "GsSketch",
-"language": "GDScript",
-"path": "res://gslib/GsSketch.gd"
-}, {
-"base": "Container",
-"class": "NodeArray",
-"language": "GDScript",
-"path": "res://NodeArray.gd"
-}, {
-"base": "Node",
-"class": "Palettes",
-"language": "GDScript",
-"path": "res://Palettes.gd"
-}, {
-"base": "ColorRect",
-"class": "Rect",
-"language": "GDScript",
-"path": "res://Rect.gd"
-}, {
-"base": "Control",
-"class": "TruthTable",
-"language": "GDScript",
-"path": "res://TruthTable.gd"
-}, {
-"base": "VBoxContainer",
-"class": "WebSocketDemo",
-"language": "GDScript",
-"path": "res://WebsocketDemo.gd"
-} ]
-_global_script_class_icons={
-"ASTNode": "",
-"ASTNodeDemo": "",
-"BinaryTree": "",
-"ColorGrid": "",
-"GsApp": "",
-"GsArrowTool": "",
-"GsBase": "",
-"GsCamera": "",
-"GsConsole": "",
-"GsConsoleCursor": "",
-"GsCurve": "",
-"GsDragHelper": "",
-"GsEdge": "",
-"GsEdgeTool": "",
-"GsGroup": "",
-"GsHandle": "",
-"GsIndexedImage": "",
-"GsMouse": "",
-"GsMouseTool": "",
-"GsNode": "",
-"GsNodeTool": "",
-"GsPalette": "",
-"GsSketch": "",
-"NodeArray": "",
-"Palettes": "",
-"Rect": "",
-"TruthTable": "",
-"WebSocketDemo": ""
-}
+config_version=5
 
 [application]
 
@@ -186,12 +14,13 @@ config/name="fnarbmlyx"
 run/main_scene="res://gslib/GsApp.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="fnarbmlyx"
+config/features=PackedStringArray("4.1")
 config/icon="res://icon.png"
 
 [audio]
 
-default_bus_layout=""
-enable_audio_input=true
+buses/default_bus_layout=""
+driver/enable_input=true
 
 [autoload]
 
@@ -199,39 +28,38 @@ GsLib="*res://gslib/GsLib.gd"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/sketchlib/plugin.cfg" )
+enabled=PackedStringArray("res://addons/sketchlib/plugin.cfg")
 
 [input]
 
 ui_record={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194325,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
 ui_save={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":83,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
 ui_delete={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777224,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194312,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
 }
 
 [physics]
 
+2d/default_gravity_vector=Vector2(0, 0)
 common/enable_pause_aware_picking=true
-2d/default_gravity_vector=Vector2( 0, 0 )
 
 [rendering]
 
+environment/defaults/default_environment="res://default_env.tres"
 quality/driver/fallback_to_gles2=true
 vram_compression/import_etc=true
-vram_compression/import_etc2=false
-environment/default_environment="res://default_env.tres"

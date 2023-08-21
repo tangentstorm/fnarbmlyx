@@ -4,7 +4,7 @@
 tool class_name GsDragHelper extends GsBase
 func get_class_name(): return "GsDragHelper"
 
-export (NodePath) var target_path = '..'
+@export (NodePath) var target_path = '..'
 
 func _drag_step(dxy):
 	get_node(target_path)._drag_step(dxy)

@@ -1,8 +1,8 @@
 tool class_name ColorGrid extends Control
 
-export var cell_size : Vector2 = Vector2(32, 32) setget set_cell_size
-export var grid_size : Vector2 = Vector2(16, 16) setget set_grid_size
-export var data = PoolByteArray([]) setget set_data
+@export var cell_size : Vector2 = Vector2(32, 32): set = set_cell_size
+@export var grid_size : Vector2 = Vector2(16, 16): set = set_grid_size
+@export var data = PackedByteArray([]): set = set_data
 
 func set_cell_size(val):
 	cell_size = val
@@ -17,7 +17,7 @@ func set_data(val):
 	update()
 
 func rebuild():
-	rect_size = cell_size * grid_size
+	size = cell_size * grid_size
 	data.resize(grid_size.x * grid_size.y)
 	update()
 
